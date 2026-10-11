@@ -1,0 +1,6 @@
+{
+  "enabled": false,
+  "api_key_env": "FINNHUB_API_KEY",
+  "base_url": "https://finnhub.io/api/v1",
+  "note": "key不落文件。candle 403已知（腾讯兜底）；港股无权限。启用前 export FINNHUB_API_KEY=..."
+}

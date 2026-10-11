@@ -1,0 +1,57 @@
+{
+  "calendar": "FOMC 2026年例会日程（静态配置，维护人:宏观基本面研究员）",
+  "source": "静态配置(维护人:宏观研究员);来源:Fed官方会议日程",
+  "update_rule": "每次决议后24h内由宏观研究员更新 decision 与 dot_plot_median 字段",
+  "meetings": [
+    {
+      "date_start": "2026-01-27",
+      "date_end": "2026-01-28",
+      "decision": "historical",
+      "dot_plot_median": null
+    },
+    {
+      "date_start": "2026-03-17",
+      "date_end": "2026-03-18",
+      "decision": "historical",
+      "dot_plot_median": null
+    },
+    {
+      "date_start": "2026-04-28",
+      "date_end": "2026-04-29",
+      "decision": "historical",
+      "dot_plot_median": null
+    },
+    {
+      "date_start": "2026-06-16",
+      "date_end": "2026-06-17",
+      "decision": "historical",
+      "dot_plot_median": null
+    },
+    {
+      "date_start": "2026-07-28",
+      "date_end": "2026-07-29",
+      "decision": "historical",
+      "dot_plot_median": null
+    },
+    {
+      "date_start": "2026-09-15",
+      "date_end": "2026-09-16",
+      "decision": "pending",
+      "dot_plot_median": null,
+      "note": "下次会议:市场定价降息概率约48%(宏观研究员9/12快评)"
+    },
+    {
+      "date_start": "2026-10-27",
+      "date_end": "2026-10-28",
+      "decision": "pending",
+      "dot_plot_median": null
+    },
+    {
+      "date_start": "2026-12-08",
+      "date_end": "2026-12-09",
+      "decision": "pending",
+      "dot_plot_median": null
+    }
+  ],
+  "fetched_at": "2026-10-10 13:27:05"
+}

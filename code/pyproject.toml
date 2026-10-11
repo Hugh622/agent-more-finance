@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "team-framework"
+version = "1.3.0"
+description = "Multi-agent investment research team: organizational framework, rule system v1.3, collaboration workflow, and schedule engine (packaged for external review)"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "Proprietary" }
+authors = [{ name = "Five-Agent Investment Research Team" }]
+keywords = ["multi-agent", "investment", "risk-control", "workflow"]
+
+[project.scripts]
+team-framework = "team_framework.main:main"
+
+[tool.setuptools.packages.find]
+include = ["team_framework*"]

@@ -1,0 +1,16 @@
+{
+  "purpose": "美国重要数据公布日历模板（宏观P0-6: CPI/非农等）",
+  "background": "具体公布日期需检索核验后录入(BLS官方日程)，勿凭记忆填入",
+  "fields": {
+    "event": "事件类型: CPI / NFP(非农) / PPI / PCE / GDP",
+    "release_date": "公布日期 YYYY-MM-DD",
+    "reference_period": "数据所属期间",
+    "consensus": "市场预期值(检索获得)",
+    "actual": "实际值(公布后更新)",
+    "source_url": "检索来源",
+    "verified_by": "录入人"
+  },
+  "records": [],
+  "fetched_at": "2026-10-10 13:27:05",
+  "source": "检索兜底录入模板(无稳定行情通道,人工/通用助手检索更新)"
+}

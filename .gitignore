@@ -1,0 +1,30 @@
+# ===== 密鑰與憑證（最高優先級）=====
+config/finnhub.json
+*.env
+.env*
+**/credentials*.json
+**/service-account*.json
+**/*token*.json
+**/*secret*.json
+
+# ===== 事故版原始包（含真實 key，永禁入庫）=====
+**/框架档案全套_20261010.zip
+
+# ===== 日誌與運行時產物（事故源）=====
+logs/
+*.log
+finnhub_verify_result*.json
+finnhub_health.json
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# ===== 數據產物 =====
+daily/_deprecated_alias_*/
+*.csv.gz
+
+# ===== 編輯器與系統 =====
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

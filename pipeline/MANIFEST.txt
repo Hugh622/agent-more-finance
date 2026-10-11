@@ -1,0 +1,118 @@
+數據工程補充包_20261011 MANIFEST
+生成: 2026-10-11T16:23:34
+文件數: 95  總大小: 1.32 MB
+密鑰掃描: 通過（0殘留）
+============================================================
+  MANIFEST.txt  (4 KB)
+  README_補充包說明_全棧開發_20261011.md  (6 KB)
+[01_23小時交易管道腳手架]
+  README.md  (3 KB)
+  anchor.py  (2 KB)
+  verify.py  (3 KB)
+  windows.py  (2 KB)
+[01_23小時交易管道腳手架/tests]
+  test_pipeline.py  (5 KB)
+[02_年檢數據作業]
+  build_coverage_20261010.py  (9 KB)
+  fix_suffix_refetch.py  (3 KB)
+  pool_refresh_20261010.py  (4 KB)
+  pool_refresh_summary.json  (2 KB)
+[03_運維與自愈]
+  HEARTBEAT_自愈清單.md  (3 KB)
+  數據管道健康檢查報告_20260919.md  (6 KB)
+  港股第二源核驗收口_20261009.md  (6 KB)
+  部署與運維要點_20261011.md  (4 KB)
+[04_掃描與仲裁工具]
+  README_JGB通道定案.md  (1 KB)
+  parse_mof.py  (2 KB)
+  pull_tencent.py  (2 KB)
+  scan_levels_20260928.py  (6 KB)
+  watchdog.sh  (2 KB)
+[05_安全脫敏]
+  finnhub.json.example  (0 KB)
+  patch_main_zip_secrets.py  (3 KB)
+  安全整改清單.md  (1 KB)
+[06_數據樣本]
+[06_數據樣本/ah]
+  ah_premium.csv  (3 KB)
+[06_數據樣本/calendar]
+  fomc_calendar.json  (2 KB)
+  southbound_template.json  (1 KB)
+  us_earnings_calendar.json  (9 KB)
+  us_release_calendar_template.json  (1 KB)
+[06_數據樣本/daily_sample]
+  hk00700.csv  (53 KB)
+  sh600519.csv  (55 KB)
+[06_數據樣本/fundamentals]
+  us_metrics_latest.csv  (2 KB)
+[06_數據樣本/fx]
+  fx_matrix.csv  (0 KB)
+  fx_snapshot.csv  (1 KB)
+[06_數據樣本/manifest]
+  run_20260912_171829_kline_batch.json  (23 KB)
+  run_20260912_171910_kline_batch.json  (23 KB)
+  run_20260912_172413_kline_batch.json  (23 KB)
+  run_20260912_172437_macro.json  (4 KB)
+  run_20260912_172625_kline_batch.json  (23 KB)
+  run_20260912_172652_macro.json  (4 KB)
+  run_20260912_175722_kline_batch.json  (25 KB)
+  run_20260912_175743_macro.json  (4 KB)
+  run_20260912_202523_kline_batch.json  (34 KB)
+  run_20260912_202523_realtime_snapshot.json  (0 KB)
+  run_20260912_202546_macro.json  (4 KB)
+  run_20260919_142559_kline_batch.json  (31 KB)
+  run_20260919_142651_macro.json  (4 KB)
+  run_20260919_142840_kline_batch.json  (2 KB)
+  run_20260928_004227_kline_batch.json  (31 KB)
+  run_20260928_004319_macro.json  (4 KB)
+  run_20260928_004419_kline_batch.json  (2 KB)
+  run_20261006_082308_kline_batch.json  (15 KB)
+  run_20261006_082308_realtime_snapshot.json  (0 KB)
+  run_20261006_082358_macro.json  (4 KB)
+  run_20261009_201812_kline_batch.json  (34 KB)
+  run_20261009_201812_realtime_snapshot.json  (0 KB)
+  run_20261009_202543_macro.json  (4 KB)
+  run_20261009_202852_kline_batch.json  (15 KB)
+  run_20261009_202852_realtime_snapshot.json  (0 KB)
+  run_20261009_203355_macro.json  (4 KB)
+  run_20261010_132327_kline_batch.json  (42 KB)
+  run_20261010_132705_kline_batch.json  (21 KB)
+  run_20261010_132705_realtime_snapshot.json  (0 KB)
+  run_20261010_132759_macro.json  (4 KB)
+  run_20261010_133344_kline_batch.json  (4 KB)
+  run_20261010_133450_kline_batch.json  (1 KB)
+  run_20261010_133639_kline_batch.json  (3 KB)
+[06_數據樣本/rates]
+  credit_spread_hy.csv  (4 KB)
+  fedfunds.csv  (4 KB)
+  us02y.csv  (3 KB)
+  us10y.csv  (3 KB)
+  us30y.csv  (3 KB)
+  ust_full_curve.csv  (5 KB)
+  vix.csv  (4 KB)
+[06_數據樣本/realtime]
+  latest.csv  (39 KB)
+  snapshot_20260912_1718.csv  (35 KB)
+  snapshot_20260912_1719.csv  (35 KB)
+  snapshot_20260912_1724.csv  (35 KB)
+  snapshot_20260912_1726.csv  (35 KB)
+  snapshot_20260912_1757.csv  (39 KB)
+  snapshot_20260912_2025.csv  (39 KB)
+  snapshot_20260919_1425.csv  (39 KB)
+  snapshot_20260928_0042.csv  (39 KB)
+  snapshot_20261006_0823.csv  (39 KB)
+  snapshot_20261009_2018.csv  (39 KB)
+  snapshot_20261009_2028.csv  (39 KB)
+  snapshot_20261010_1323.csv  (39 KB)
+  snapshot_20261010_1327.csv  (39 KB)
+[06_數據樣本/sec]
+  finnhub_filings_crosscheck.csv  (95 KB)
+  us_recent_filings.csv  (4 KB)
+[06_數據樣本/spcx_monitor]
+  SPCX量价基线监控_20260916.md  (3 KB)
+  SPCX量价基线监控_20260919.md  (3 KB)
+  SPCX量价基线监控_20260928.md  (3 KB)
+  SPCX量价基线监控_20261009.md  (3 KB)
+  spcx_baseline_monitor_latest.csv  (31 KB)
+[06_數據樣本/volatility]
+  hkvhsi.csv  (52 KB)

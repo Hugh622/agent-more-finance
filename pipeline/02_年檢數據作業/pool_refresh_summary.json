@@ -1,0 +1,166 @@
+{
+ "probed": [
+  {
+   "symbol": "RKLB",
+   "verified": true,
+   "code": "usRKLB.OQ"
+  },
+  {
+   "symbol": "MRNA",
+   "verified": true,
+   "code": "usMRNA.OQ"
+  },
+  {
+   "symbol": "NOW",
+   "verified": true,
+   "code": "usNOW.OQ"
+  },
+  {
+   "symbol": "SNDK",
+   "verified": true,
+   "code": "usSNDK.OQ"
+  },
+  {
+   "symbol": "CRWD",
+   "verified": true,
+   "code": "usCRWD.OQ"
+  },
+  {
+   "symbol": "PANW",
+   "verified": true,
+   "code": "usPANW.OQ"
+  },
+  {
+   "symbol": "ZS",
+   "verified": true,
+   "code": "usZS.OQ"
+  },
+  {
+   "symbol": "NRG",
+   "verified": true,
+   "code": "usNRG.OQ"
+  },
+  {
+   "symbol": "HPE",
+   "verified": true,
+   "code": "usHPE.OQ"
+  },
+  {
+   "symbol": "ZETA",
+   "verified": true,
+   "code": "usZETA.OQ"
+  },
+  {
+   "symbol": "UNH",
+   "verified": true,
+   "code": "usUNH.OQ"
+  },
+  {
+   "symbol": "PFE",
+   "verified": true,
+   "code": "usPFE.OQ"
+  },
+  {
+   "symbol": "SNOW",
+   "verified": true,
+   "code": "usSNOW.OQ"
+  },
+  {
+   "symbol": "NTAP",
+   "verified": true,
+   "code": "usNTAP.OQ"
+  },
+  {
+   "symbol": "ESTC",
+   "verified": true,
+   "code": "usESTC.OQ"
+  },
+  {
+   "symbol": "KKR",
+   "verified": true,
+   "code": "usKKR.OQ"
+  },
+  {
+   "symbol": "ASTS",
+   "verified": true,
+   "code": "usASTS.OQ"
+  },
+  {
+   "symbol": "AUR",
+   "verified": true,
+   "code": "usAUR.OQ"
+  },
+  {
+   "symbol": "QS",
+   "verified": true,
+   "code": "usQS.OQ"
+  },
+  {
+   "symbol": "OKLO",
+   "verified": true,
+   "code": "usOKLO.OQ"
+  },
+  {
+   "symbol": "SMR",
+   "verified": true,
+   "code": "usSMR.OQ"
+  },
+  {
+   "symbol": "BMNR",
+   "verified": true,
+   "code": "usBMNR.OQ"
+  },
+  {
+   "symbol": "CIBR",
+   "verified": true,
+   "code": "usCIBR.OQ"
+  },
+  {
+   "symbol": "BUG",
+   "verified": true,
+   "code": "usBUG.OQ"
+  },
+  {
+   "symbol": "SOXX",
+   "verified": true,
+   "code": "usSOXX.OQ"
+  },
+  {
+   "symbol": "IGV",
+   "verified": true,
+   "code": "usIGV.OQ"
+  },
+  {
+   "symbol": "XBI",
+   "verified": true,
+   "code": "usXBI.OQ"
+  },
+  {
+   "symbol": "CPER",
+   "verified": true,
+   "code": "usCPER.OQ"
+  },
+  {
+   "symbol": "GLDM",
+   "verified": true,
+   "code": "usGLDM.OQ"
+  },
+  {
+   "symbol": "GDX",
+   "verified": true,
+   "code": "usGDX.OQ"
+  }
+ ],
+ "mapping_added": 30,
+ "mapping_fail": [],
+ "batch": {
+  "ok": 192,
+  "thin": 28,
+  "fail": 0,
+  "manifest": "/home/z/my-project/shared/market_data/manifest/run_20261010_132327_kline_batch.json",
+  "fails": []
+ },
+ "snapshot": {
+  "total": 186
+ }
+}
