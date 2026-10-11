@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reason Code 分类定稿 v1.0 ＋ Override 全记录机制</title>
+<style>
+:root{--bg:#0d1117;--card:#161b22;--card2:#1c2330;--bd:#30363d;--gold:#d4af37;--grn:#3fb950;--red:#f85149;--blu:#58a6ff;--org:#f0883e;--mut:#8b949e;--tx:#e6edf3;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:"PingFang TC","Microsoft JhengHei",sans-serif;}
+body{background:var(--bg);color:var(--tx);padding:28px 18px;max-width:1080px;margin:0 auto;line-height:1.65;}
+h1{font-size:25px;color:var(--gold);border-bottom:2px solid var(--gold);padding-bottom:10px;margin-bottom:6px;}
+h2{font-size:19px;color:var(--gold);margin:26px 0 12px;border-left:4px solid var(--gold);padding-left:10px;}
+.sub{color:var(--mut);font-size:13px;margin-bottom:20px;}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:16px 18px;margin:12px 0;}
+.card2{background:var(--card2);}
+table{width:100%;border-collapse:collapse;font-size:12.5px;margin:10px 0;}
+th{background:#21262d;color:var(--gold);padding:7px 9px;text-align:left;border:1px solid var(--bd);white-space:nowrap;}
+td{padding:6px 9px;border:1px solid var(--bd);vertical-align:top;}
+tr:nth-child(even) td{background:#11161d;}
+.line{font-size:12px;color:var(--mut);}
+.hl{color:var(--gold);font-weight:bold;}
+.g{color:var(--grn);}.b{color:var(--blu);}.o{color:var(--org);}.r{color:var(--red);}
+code{background:#21262d;padding:1px 6px;border-radius:4px;font-size:12px;color:var(--org);}
+footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--bd);color:var(--mut);font-size:12px;}
+.pill{display:inline-block;padding:1px 8px;border-radius:10px;font-size:11px;border:1px solid var(--bd);margin:1px;}
+</style>
+</head>
+<body>
+
+<h1>Reason Code 分类定稿 v1.0（八类终版）＋ 人工 Override 全记录机制</h1>
+<div class="sub">签发：首席投资策略师｜2026-10-11｜效力：<span class="hl">量化腿 reason code 枚举与历史台账迁移映射，以本定稿为唯一基准</span>（管理员开工令②明示）｜编码落库：MySQL rules/decision 表 reason_code 字段（待 Q-P1-2 收编）</div>
+
+<div class="card" style="border-color:var(--gold)">
+<b class="hl">设计原则（三条）：</b>
+① <b>判例锚定制</b>——每类必须挂现行判例库在案判例，无判例不立码；② <b>机检优先</b>——每类给出可机检触发特征，供五闸审计器/覆盖矩阵校验器直接消费；③ <b>主辅码制</b>——复合事件按「最初触发原因」定主码、处置结果定辅码，一单最多一主一辅，防编码爆炸。
+</div>
+
+<h2>一、八类终版定义表</h2>
+<table>
+<tr><th>Code</th><th>中文名</th><th>定义</th><th>典型判例（现行判例库在案）</th><th>机检触发特征</th><th>下游动作</th></tr>
+<tr><td><code>DATA_CONFLICT</code></td><td>数据冲突</td><td>多源读数矛盾、快照漂移、口径漂移、陈旧缓存</td><td>SPCX -0.80% 漂移勘误带｜N225 新浪陈旧缓存（44,946 vs 官方 65,877）｜GLDM 85.09/85.29 口径漂移｜南向资金全栈双源 vs 宏观旧引</td><td>同标的同时点≥2源差&gt;0.5%；同字段多文档不一致</td><td>双源仲裁→勘误带→总表更正；单源必须明示</td></tr>
+<tr><td><code>MODEL_DISAGREEMENT</code></td><td>模型分歧</td><td>两腿/多腿结论冲突，需首席仲裁</td><td>1816 宏观绿灯×技术量比硬伤｜NRG 宏观黄灯×技术否决｜网安加仓 提名3 vs 加=0</td><td>同决策点两腿结论相反且均有依据</td><td>首席仲裁→「同一把尺」裁定→入判例库</td></tr>
+<tr><td><code>HUMAN_OVERRIDE</code></td><td>人工裁定</td><td>用户明示破闸/改判，或首席行使终审权改变规则默认输出</td><td>finnhub key 不轮换（用户兜底）｜付费港股源取消｜v1.3 追认与否决权｜XOM/CVX 统合改判</td><td>决策链出现「用户明示」「首席终审」标记且偏离规则默认值</td><td><span class="hl">必须全量入 override 台账（§三）</span></td></tr>
+<tr><td><code>EXECUTION_SLIP</code></td><td>执行偏差</td><td>规则正确但执行走样：踏空、追价、滑点超带、错过挂单窗</td><td>介入区 2/9 触及（美股三格差 1.1% 踏空）｜止盈腿 0/3｜强趋势股等回踩系统性踏空</td><td>纸面台账实际成交价 vs 计划挂价差&gt;滑点容差；应触发未触发</td><td>行为复盘扣分项；C 系列修法候选证据</td></tr>
+<tr><td><code>RULE_VIOLATION</code></td><td>规则失效/违反</td><td>规则本身缺陷或被违反：口径硬伤、闸门未拦、CI 假绿灯类工程失效</td><td>02269「收51.40」实为午间快照（催生 C23 收市口径机器校验）｜假绿灯 discover 0 tests｜四闸差点被 SPCX 超限</td><td>规则输出与事实校验不符；闸门应 BLOCK 未 BLOCK</td><td>规则修法（supersedes 链）＋失效登记；涉工程转工程线</td></tr>
+<tr><td><code>GAP_FILL</code></td><td>缺口补录</td><td>信息不全/留白/待核项的补全与收口</td><td>75 条缺口总清单｜A10 港股 OHLC 单源收口｜JGB 官方 print 回填｜Kell 复查闭卷</td><td>缺口登记册状态由 open→closed</td><td>补全后回写引用源；无法补全须明示收口</td></tr>
+<tr><td><code>LESSON_LEARNED</code></td><td>经验沉淀</td><td>复盘产出方法论修正、条件结构升级、判例入库</td><td>C20-C24 写入 v1.3（两轮同向程序）｜条件结构&gt;单一信号（康希诺 vs 银娱）｜清仓复活名单立项（ZETA+BNTX 同构）</td><td>复盘收口产出条款级变更提案</td><td>走「两轮同向」升格程序→条款库版本号递增</td></tr>
+<tr><td><code>REGIME_CHANGE</code></td><td><span class="hl">环境跃迁</span>（增补）</td><td>市场环境/状态机降档或升档导致的规则适用域切换，非规则、非执行、非数据问题</td><td>AI 十信号 3.5→4.5 ALERT（主题闸 20%→12%）｜L2 固化｜红线 B 触发执行闸 36→32%｜whipsaw E1 生效（ADX&lt;20）</td><td>状态机档位变更事件；天花板/执行闸数值切换</td><td>闸值联动切换＋全员通报；回检窗口随档位重置</td></tr>
+</table>
+
+<div class="card card2">
+<b class="o">主辅码判定细则：</b>复合事件示例——「快照漂移导致止损误判」＝主码 <code>DATA_CONFLICT</code>＋辅码 <code>EXECUTION_SLIP</code>；「用户明示破闸后造成回撤触发」＝主码 <code>HUMAN_OVERRIDE</code>＋辅码 <code>REGIME_CHANGE</code>（若伴随状态机动作）。<b>同单仅一主一辅，第三码入备注。</b>无法归类时挂 <code>GAP_FILL</code> 并在周检提请首席立码，防滥立。
+</div>
+
+<h2>二、必填字段（decision/override 共用最小集，供 Q-P1-2 直接采用）</h2>
+<table>
+<tr><th>字段</th><th>类型</th><th>说明</th></tr>
+<tr><td>code_id</td><td>主码＋可选辅码</td><td>八类枚举，一单一主一辅</td></tr>
+<tr><td>as_of_time</td><td>UTC+HKT 双时戳</td><td>与 Manifest v2 对齐；判定时点不可回填篡改</td></tr>
+<tr><td>snapshot_id</td><td>外键</td><td>引用市场快照批次（数据源分离铁律：结论可追溯至签名快照）</td></tr>
+<tr><td>rule_id</td><td>外键</td><td>C/R/N/D/K/W/G 收编编号；无规则来源填 N-A</td></tr>
+<tr><td>evidence</td><td>文本≤300字</td><td>判例锚/来源链接/双源标注</td></tr>
+<tr><td>owner</td><td>枚举</td><td>判定责任人：首席/量化/宏观/全栈/通用/用户</td></tr>
+</table>
+
+<h2>三、人工 Override 全记录机制 v1.0</h2>
+<div class="card">
+<h3 style="margin-top:0">3.1 覆盖范围（三类必记）</h3>
+<p>① 用户明示破闸/裁定（如三项用户裁定）；② 首席终审改判（仲裁、勘误、规则改判）；③ 紧急风控手工干预（事件窗跳过流程类动作）。<span class="r">未入记录的 override 一律视为无效决策，五闸审计器可拒认。</span></p>
+<h3>3.2 台账字段（override_log 最小七列）</h3>
+<table>
+<tr><th>字段</th><th>说明</th></tr>
+<tr><td>override_id</td><td>OV-日期-序号（如 OV-20261011-01）</td></tr>
+<tr><td>object</td><td>被改对象：规则/仓位/标的/流程，带原值→新值</td></tr>
+<tr><td>reason_code</td><td>主码（多为 HUMAN_OVERRIDE，也允许其他主码）</td></tr>
+<tr><td>decider</td><td>决策人：用户／首席／（紧急时）当值腿</td></tr>
+<tr><td>rationale</td><td>理由分类：用户裁定／首席改判／紧急风控，附一句话依据</td></tr>
+<tr><td>validity</td><td>有效期：一次性／限期（到期自动失效）／永久（须附复检日）</td></tr>
+<tr><td>review_due</td><td>复检日；到期未复检的限期项在周检自动亮红</td></tr>
+</table>
+<h3>3.3 分析节奏（并轨条款）</h3>
+<p>每<b>三个月</b>做一次 override 增值分析：统计频次分布、破闸率、事后胜率；与现行<b>「判断 vs 恐惧截胡」行为复盘并轨</b>——凡属用户侧 override，逐条标注「判断问题（正面记录）／恐惧截胡（行为标注）／合理审慎（不扣分）」三分法，产出行为模式季度报告。此节奏与外部评审「override 三个月增值分析」要求合并执行，不另立会议。</p>
+</div>
+
+<h2>四、历史台账迁移指引（交量化腿，Q-P1-2 输入）</h2>
+<div class="card">
+<p><b>迁移对象：</b>纸面执行台账 v1.0（13 条历史令＋15 笔未决仓）＋判例库 8 条＋复盘三份收口。<b>工作量控制：只打标不重写</b>——原台账文本不动，映射表另附，逐条给主码（＋辅码）。</p>
+<table>
+<tr><th>历史项（示例）</th><th>主码</th><th>辅码</th><th>备注</th></tr>
+<tr><td>P-013 SPCX 双段限价部分撤销</td><td>HUMAN_OVERRIDE</td><td>EXECUTION_SLIP</td><td>用户侧裁定＋执行踏空并案</td></tr>
+<tr><td>ZETA 二守清仓（9/28）</td><td>RULE_VIOLATION</td><td>—</td><td>规则强制非裁量；纪律满分、结果偏差不修规则（在案终判）</td></tr>
+<tr><td>GLDM 85.09→85.29 定案</td><td>DATA_CONFLICT</td><td>LESSON_LEARNED</td><td>口径漂移收口＋静态冻结新规</td></tr>
+<tr><td>02269「收51.40」午间快照</td><td>RULE_VIOLATION</td><td>GAP_FILL</td><td>催生 C23 机器校验</td></tr>
+<tr><td>XOM/CVX 区带误标</td><td>DATA_CONFLICT</td><td>LESSON_LEARNED</td><td>代码校验条款素材（黄金题 #01）</td></tr>
+<tr><td>十信号 3.5→4.5 ALERT</td><td>REGIME_CHANGE</td><td>—</td><td>C17 刻度联动（跨阈窄幅摆动不翻转条款在案）</td></tr>
+<tr><td>finnhub key 事件三波处置</td><td>RULE_VIOLATION</td><td>LESSON_LEARNED</td><td>工程侧安全收口＋扫描器 v1.1</td></tr>
+</table>
+<p class="line">迁移优先级：P0（本周）＝13 历史令＋15 未决仓；P1＝判例库 8 条＋三份复盘收口判例；P2＝75 条缺口清单归档打标。迁移完成后由本席抽检 ≥10% 条目，抽检不合格整批返工。</p>
+</div>
+
+<footer>首席投资策略师 签发 · 2026-10-11｜本定稿即量化腿迁移唯一基准；修订走 supersedes 链（v1.0→v1.1 需附判例）｜纸面推演口径，不构成投资建议</footer>
+</body>
+</html>

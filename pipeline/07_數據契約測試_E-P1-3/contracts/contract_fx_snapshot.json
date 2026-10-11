@@ -1,0 +1,19 @@
+{
+  "contract_id": "fx_snapshot@1.0.0",
+  "kind": "csv",
+  "artifact_globs": ["fx/fx_snapshot.csv"],
+  "allow_empty": false,
+  "min_files": 1,
+  "encoding": "utf-8-sig",
+  "required_columns": ["date", "ticker", "value", "prev_close", "quote_ts", "fetched_at", "source"],
+  "optional_columns": ["note", "source_level"],
+  "column_rules": {
+    "date": {"format_date": true},
+    "ticker": {"non_empty": true},
+    "value": {"float_gt": 0},
+    "prev_close": {"float_gt": 0}
+  },
+  "file_rules": {
+    "key_unique": ["date", "ticker"]
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "contract_id": "freeze_index@1.0.0",
+  "kind": "csv",
+  "artifact_glob": "manifest_v2_freeze/freeze_index_*.csv",
+  "allow_empty": false,
+  "min_files": 1,
+  "encoding": "utf-8-sig",
+  "required_columns": ["run_id", "type", "files_total", "files_frozen", "mutable_pointer", "missing", "missing_superseded", "manifest_sha256_16", "frozen_at", "verify_mode"],
+  "optional_columns": ["code_commit"],
+  "column_rules": {
+    "run_id": {"non_empty": true},
+    "type": {"non_empty": true},
+    "files_total": {"int_ge": 0},
+    "files_frozen": {"int_ge": 0},
+    "mutable_pointer": {"int_ge": 0},
+    "missing": {"int_ge": 0},
+    "missing_superseded": {"int_ge": 0},
+    "manifest_sha256_16": {"regex": "^[0-9a-f]{16}$"},
+    "frozen_at": {"non_empty": true},
+    "verify_mode": {"non_empty": true}
+  },
+  "file_rules": {
+    "le_column": {"files_frozen": "files_total"}
+  }
+}

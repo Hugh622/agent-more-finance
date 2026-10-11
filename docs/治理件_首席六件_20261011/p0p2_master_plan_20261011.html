@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>P0-P2 工作总册 v1.0 · 治理线收编</title>
+<style>
+:root{--bg:#0d1117;--card:#161b22;--card2:#1c2330;--bd:#30363d;--gold:#d4af37;--grn:#3fb950;--red:#f85149;--blu:#58a6ff;--org:#f0883e;--mut:#8b949e;--tx:#e6edf3;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:"PingFang TC","Microsoft JhengHei",sans-serif;}
+body{background:var(--bg);color:var(--tx);padding:28px 18px;max-width:1080px;margin:0 auto;line-height:1.65;}
+h1{font-size:26px;color:var(--gold);border-bottom:2px solid var(--gold);padding-bottom:10px;margin-bottom:6px;}
+h2{font-size:19px;color:var(--gold);margin:26px 0 12px;border-left:4px solid var(--gold);padding-left:10px;}
+h3{font-size:15px;color:var(--blu);margin:16px 0 8px;}
+.sub{color:var(--mut);font-size:13px;margin-bottom:20px;}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:16px 18px;margin:12px 0;}
+.card2{background:var(--card2);}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+.tag{display:inline-block;padding:2px 10px;border-radius:12px;font-size:12px;font-weight:bold;margin-right:6px;}
+.t-done{background:rgba(63,185,80,.15);color:var(--grn);border:1px solid var(--grn);}
+.t-run{background:rgba(88,166,255,.15);color:var(--blu);border:1px solid var(--blu);}
+.t-wait{background:rgba(139,148,158,.15);color:var(--mut);border:1px solid var(--mut);}
+.t-cut{background:rgba(248,81,73,.15);color:var(--red);border:1px solid var(--red);text-decoration:line-through;}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0;}
+th{background:#21262d;color:var(--gold);padding:8px 10px;text-align:left;border:1px solid var(--bd);white-space:nowrap;}
+td{padding:7px 10px;border:1px solid var(--bd);vertical-align:top;}
+tr:nth-child(even) td{background:#11161d;}
+.line{font-size:12px;color:var(--mut);}
+.warn{color:var(--red);font-weight:bold;}
+.hl{color:var(--gold);font-weight:bold;}
+.g{color:var(--grn);}.b{color:var(--blu);}.o{color:var(--org);}.r{color:var(--red);}
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:12px;margin:10px 0;}
+.fbox{background:#21262d;border:1px solid var(--bd);border-radius:8px;padding:6px 10px;}
+.farr{color:var(--gold);font-weight:bold;}
+footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--bd);color:var(--mut);font-size:12px;}
+.badge{display:inline-block;min-width:64px;text-align:center;}
+</style>
+</head>
+<body>
+
+<h1>《P0-P2 工作总册》v1.0</h1>
+<div class="sub">签发：首席投资策略师（治理线收编）｜开工令：群管理员 2026-10-11 22:20｜依据：四腿外部评审评估共识＋用户三项裁定｜性质：全团队开工基准文件（纸面推演口径，零实盘）</div>
+
+<div class="card" style="border-color:var(--gold)">
+<h3 style="margin-top:0;color:var(--gold)">⚡ 用户三项裁定（10/11 22:17，全册效力最高，各线不得越裁）</h3>
+<div class="grid3">
+<div class="card card2"><b class="g">① finnhub key 不轮换</b><br><span class="line">用户本人兜底安全。原「作废换新」P0 项取消，保留<b>密钥管理规范化</b>：env 注入、运行时擦除（已上线）、扫描器 v1.1 持续拦截。</span></div>
+<div class="card card2"><b class="b">② GitHub PAT 沿用</b><br><span class="line">现有 PAT 继续使用，后续推送一律按《GitHub儲存庫初始化與安全推送守則》SOP（先扫描后推送＋语义化 tag）。</span></div>
+<div class="card card2"><b class="r">③ 付费港股源取消</b><br><span class="line">P2 付费第二数据源撤销。既定防线维持：每日本地冷备＋腾讯双端一致性校验＋单源明示（转为常态化运维项）。</span></div>
+</div>
+</div>
+
+<h2>一、依赖关系总图（先读此图再开工）</h2>
+<div class="card">
+<div class="flow">
+<span class="fbox">C-G-2 reason code 定稿（治理线·本席）</span><span class="farr">→</span>
+<span class="fbox">Q-P1-2 九表 schema 定稿＋历史迁移映射（量化）</span><span class="farr">→</span>
+<span class="fbox">E-P1-2 状态库 rule_id 正式收编（全栈·MySQL）</span>
+</div>
+<div class="flow">
+<span class="fbox">C-G-4 轮值红队 Validation Gate 设计（治理线）</span><span class="farr">→</span>
+<span class="fbox">O-G-1/O-G-5 盲审信封制＋分级原则写入组织文档（宏观）</span><span class="farr">→</span>
+<span class="fbox">G1/G2 验收材料全程走盲审</span>
+</div>
+<div class="flow">
+<span class="fbox">C-G-6 Paper Trading v2＋Event Replay 十二周路线图（治理线）</span><span class="farr">→</span>
+<span class="fbox">Q-P1-3 信号/成交分离规格（量化）</span><span class="farr">→</span>
+<span class="fbox">E 状态库第二期·订单五表（全栈）</span>
+</div>
+<div class="flow">
+<span class="fbox">E-P0-2 原子写入 ／ E-P1-1 Manifest v2（全栈）</span><span class="farr">→</span>
+<span class="fbox">Q-P1-1 数据冻结层（量化）</span><span class="farr">→</span>
+<span class="fbox">Q-P2-1 三规则族回测首批（量化）</span>
+</div>
+<div class="line">硬性顺序（量化腿主张、全队采纳）：<span class="hl">冻结层先于回测引擎</span>；试验登记册先于任何回测执行；盲审先于 G1/G2 验收签发。</div>
+</div>
+
+<h2>二、工程线（全栈开发）— 13 项</h2>
+<table>
+<tr><th>编号</th><th>事项</th><th>验收标准</th><th>依赖</th><th>状态</th></tr>
+<tr><td>E-P0-1</td><td>排程外部化＋heartbeat＋告警（按云工作区实际宿主落地，非 launchd）</td><td>杀进程演练：2 分钟内自动拉起；漏跑 15 分钟告警触发留痕</td><td>无</td><td><span class="badge t-run">进行中</span></td></tr>
+<tr><td>E-P0-2</td><td>原子写入工具函数（tmp+fsync+rename+读 _SUCCESS）全管道复用</td><td>kill 100 次演练零半写文件；全管道改用单一 write_atomic</td><td>无</td><td><span class="badge t-wait">待开工</span></td></tr>
+<tr><td>E-P0-3</td><td>CI 假绿灯修复：固定 pytest runner＋断言收集数&gt;0</td><td>runner 报告 tests_collected≥约定值 且 failed=0；禁自订 runner 绕过</td><td>无</td><td><span class="badge t-wait">待开工</span></td></tr>
+<tr><td>E-P0-4</td><td>缺失状态枚举化（覆盖矩阵空白→OK/MISSING/DEGRADED/NA）</td><td>矩阵零空白语义；枚举写入契约测试</td><td>无</td><td><span class="badge t-wait">待开工</span></td></tr>
+<tr><td>E-P0-5</td><td>finnhub key 管理规范化（<span class="r">用户裁定不轮换</span>）</td><td>env 注入＋运行时擦除常态化＋扫描器 v1.1 全包零命中（每次推送前）</td><td>无</td><td><span class="badge t-run">进行中</span></td></tr>
+<tr><td>E-P1-1</td><td>Manifest v2（run_id／UTC+HKT 双时戳／sha256／code commit／quality status）</td><td>新增产出 manifest 100% v2 字段；存量 33 份随 Q-P1-1 补齐</td><td>E-P0-2</td><td><span class="badge t-wait">待开工</span></td></tr>
+<tr><td>E-P1-2</td><td>九表事实主档（MySQL warren_learning_db，10/11 已落地）＋rule_id 正式收编</td><td>量化腿 schema 定稿后，rules 表 v1.0.0 占位→正式收编；双轨定案执行（MySQL 唯一事实主档／SQLite=本地测试 fixture／Markdown=阅读视图）</td><td>Q-P1-2</td><td><span class="badge t-run">进行中</span></td></tr>
+<tr><td>E-P1-3</td><td>数据源契约测试（文件即合约）</td><td>schema 变更自动报警；契约清单覆盖主要源</td><td>E-P1-1</td><td><span class="badge t-wait">待开工</span></td></tr>
+<tr><td>E-P1-4</td><td>GitHub 仓库治理（PAT 沿用；分支保护待用户开启）</td><td>每次更新先扫描后推送＋语义化 tag；事故版原包永禁入库</td><td>用户开启分支保护</td><td><span class="badge t-run">进行中</span></td></tr>
+<tr><td>E-P2-1</td><td>Parquet（降级项）：状态库只存档案位置+hash</td><td>行情文件位置+hash 入库可查</td><td>E-P1-2</td><td><span class="badge t-wait">待开工</span></td></tr>
+<tr><td>E-P2-2</td><td>测试金字塔全套分批（property-based／golden dataset／故障注入／E2E replay）</td><td>按批次交付；golden dataset 优先覆盖三地 corporate action</td><td>E-P0-3</td><td><span class="badge t-wait">待开工</span></td></tr>
+<tr><td>E-P2-3</td><td>B/S/G 分层完整版（Bronze 不可变+hash→Silver 统一 id/时区/复权→Gold 快照）</td><td>lineage 指针贯通；schema registry 不过度工程</td><td>E-P1-1</td><td><span class="badge t-wait">待开工</span></td></tr>
+<tr><td>~~E-P2-4~~</td><td>付费港股第二数据源</td><td><span class="r">⛔ 用户裁定取消</span>——转为常态化运维项：每日冷备＋双端一致性校验＋单源明示</td><td>—</td><td><span class="badge t-cut">已取消</span></td></tr>
+</table>
+
+<h2>三、方法学线（量化）— 7 项</h2>
+<table>
+<tr><th>编号</th><th>事项</th><th>验收标准</th><th>依赖</th><th>状态</th></tr>
+<tr><td>Q-P0-1</td><td>试验登记册＋go/no-go 预注册机制</td><td>任何回测/规则验证先登记后执行；登记项含试验 ID、假设、验收门槛、结果；登记册入库</td><td>无</td><td><span class="badge t-wait">待开工</span></td></tr>
+<tr><td>Q-P1-1</td><td>数据冻结层硬性前置（33 份 manifest 补 checksum/code commit）</td><td>冻结层建成且回测引擎未建前不得回测；corporate action 校验（CRWD 拆股案）内置</td><td>E-P1-1</td><td><span class="badge t-wait">待开工</span></td></tr>
+<tr><td>Q-P1-2</td><td>九表 schema 定稿＋C/R/N/D/K/W/G→rule_id 收编映射＋混合模式（元数据/参数 YAML＋logic 主体 Python）</td><td>定稿文档交付；supersedes 链兼容判例库；reason code 枚举迁移映射以 C-G-2 定稿为唯一基准</td><td><span class="hl">C-G-2（治理线）</span></td><td><span class="badge t-wait">待开工</span></td></tr>
+<tr><td>Q-P1-3</td><td>Paper Trading v2 信号/成交分离规格：paper_fill 内建三地微结构（16:00 ET OCP／港·A 集合竞价／隔夜段 'T' 条件不具 Last Sale 资格）</td><td>规格文档定稿并经首席签核；与 C-G-6 路线图 W1 节点对齐</td><td><span class="hl">C-G-6（治理线）</span></td><td><span class="badge t-wait">待开工</span></td></tr>
+<tr><td>Q-P2-1</td><td>三规则族回测首批（P0 突破确认／MA 滑动退出／事件窗扩 E0 全日历回放＋「随机等待 N 日」反事实基准）</td><td>登记册预注册→冻结层数据→结论走 Validation Gate 盲审→首席收口</td><td>Q-P0-1、Q-P1-1</td><td><span class="badge t-wait">待开工</span></td></tr>
+<tr><td>Q-P2-2</td><td>回测最低规格（point-in-time／成本模型三地分参数）</td><td>成本参数表过首席签核；purge/embargo 仅对重叠标签使用防过度工程</td><td>Q-P1-1</td><td><span class="badge t-wait">待开工</span></td></tr>
+<tr><td>Q-P2-3</td><td>DSR/PBO 后置（试验数≥30 才启用）；hit rate 弱化，expectancy/MAE-MFE 主判</td><td>启用条件写入试验登记册规则页</td><td>Q-P2-1 累积</td><td><span class="badge t-wait">待开工</span></td></tr>
+</table>
+
+<h2>四、治理线（首席·本席）— 6 项（本册及五项定稿）</h2>
+<table>
+<tr><th>编号</th><th>事项</th><th>验收标准</th><th>交付物</th><th>状态</th></tr>
+<tr><td>C-G-1</td><td>《P0-P2 工作总册》四线统一收编</td><td>四腿清单零遗漏合编、三项裁定吸收、责任/验收/依赖逐项标注</td><td>本册</td><td><span class="badge t-done">本件</span></td></tr>
+<tr><td>C-G-2</td><td>reason code 分类定稿（七类＋REGIME_CHANGE）＋人工 override 全记录机制</td><td>八类终版表＋判定规则＋迁移指引；<span class="hl">量化腿枚举与历史台账迁移映射以本定稿为唯一基准</span></td><td>reason_code_registry_v1_20261011.html</td><td><span class="badge t-run">随发</span></td></tr>
+<tr><td>C-G-3</td><td>drawdown policy 成文（周回撤 -5% 触发器雏形转正式条款）</td><td>三级触发＋动作表＋与红线/五闸/G 验收衔接条款，可机检可手算</td><td>drawdown_policy_v1_20261011.html</td><td><span class="badge t-run">随发</span></td></tr>
+<tr><td>C-G-4</td><td>轮值红队 Validation Gate 轻量版设计（通用/全栈轮任、盲审与解盲）</td><td>五步流程＋轮值表＋分级适用＋时限；宏观组织线据以写入盲审信封制</td><td>validation_gate_v1_20261011.html</td><td><span class="badge t-run">随发</span></td></tr>
+<tr><td>C-G-5</td><td>AI Use-Case Register 黄金题 30-50 题起步</td><td>≥30 题入册、判例锚全标注、滚动增补机制成文（XOM/CVX 区带误标、药明代码混淆、GLDM 口径漂移等转考题）</td><td>ai_usecase_register_v1_20261011.html</td><td><span class="badge t-run">随发</span></td></tr>
+<tr><td>C-G-6</td><td>Paper Trading v2＋Event Replay 十二周路线图定稿</td><td>滑窗合并微调吸收（第 5-6 周与 7-8 周允许合并）、总验收锚定 G2＋、周任务与节点全排</td><td>paper_trading_v2_roadmap_20261011.html</td><td><span class="badge t-run">随发</span></td></tr>
+</table>
+
+<h2>五、组织线（宏观）— 5 项</h2>
+<table>
+<tr><th>编号</th><th>事项</th><th>验收标准</th><th>依赖</th><th>状态</th></tr>
+<tr><td>O-G-1</td><td>《运行机制与裁决流程》三-1 改盲审信封制（结论封存提交、解盲后分歧才走条件化表态＋首席仲裁）</td><td>修订版文档发群；与 C-G-4 流程逐字对齐</td><td><span class="hl">C-G-4</span></td><td><span class="badge t-wait">待开工</span></td></tr>
+<tr><td>O-G-2</td><td>核验规则增第 7 条：数据腿产出签名快照＋品质评分，研究腿引用必须指向 snapshot id</td><td>与 Manifest v2 字段对齐（E-P1-1）</td><td>E-P1-1</td><td><span class="badge t-wait">待开工</span></td></tr>
+<tr><td>O-G-3</td><td>《团队框架总览》管线图改双轨：数据层互证保留、结论层隔离盲审</td><td>修订版文档发群</td><td>C-G-4</td><td><span class="badge t-wait">待开工</span></td></tr>
+<tr><td>O-G-4</td><td>宏观验收边界升级：thesis＋invalidation 完整性检查＋「时间证伪」条款模板（X 月底前未发生 Y 即作废）</td><td>模板入验收清单；防叙事漂移硬闸生效</td><td>无</td><td><span class="badge t-wait">待开工</span></td></tr>
+<tr><td>O-G-5</td><td>分级盲审适用原则成文（仅进场/仓位/规则变更走全盲审，日度扫描不适用）＋「保留不改」声明（L0-L3 天花板＋CPI/FOMC 双裁决点维持，压力测试列实盘准入条件）</td><td>声明文档发群</td><td>C-G-4</td><td><span class="badge t-wait">待开工</span></td></tr>
+</table>
+
+<h2>六、已闭环亮点（10/11 当日，计开工基数）</h2>
+<div class="grid2">
+<div class="card card2"><b class="g">✅ GitHub v1.0-20261011 基线上线</b><br><span class="line">commit 0786c31＋tag；91 文件；三道扫描全 0 命中；事故版原包永禁入库；PAT 零残留。</span></div>
+<div class="card card2"><b class="g">✅ MySQL 九表账本落地</b><br><span class="line">warren_learning_db 九表＋种子 17 行八表 JOIN 贯通；隔离断言零接触他方表；双轨定案生效。等待 Q-P1-2 rule_id 正式收编。</span></div>
+<div class="card card2"><b class="g">✅ 密钥防线三级到位</b><br><span class="line">扫描器 v1.1（token 键名＋20 位下限）、运行时擦除（URL 复发向量封堵）、REDACTED 占位版兼容验证通过。</span></div>
+<div class="card card2"><b class="g">✅ 五件外发包终扫零残留</b><br><span class="line">宏观组织层／量化脱敏修复版（16:14 终版）／team_framework_code v1.3／数据工程补充包（16:23 重建版）／运作系统层包。</span></div>
+</div>
+
+<h2>七、开工节奏与通报机制</h2>
+<div class="card">
+<p><b class="o">节奏：</b>治理线六件随本册即刻连发（本席）；量化线自 Q-P0-1 起按依赖图推进；全栈线四项 P0 并行；宏观线五项在 C-G-4 定稿后启动。各线完成一项即发群通报一项，全部完成后各线交《××线开工总回报》并@群管理员验收。</p>
+<p><b class="o">冲突裁决：</b>各线执行中若与本册验收标准冲突，先在本席处仲裁，不得私自降标；用户裁定效力最高，任何新增预算/付费类事项一律先请用户拍板。</p>
+<p><b class="o">总检节点：</b>与复盘复检机制并轨——G1（11/6-7）首次检视 P0 完成度；G2（12/18-20）P0-P1 全量验收＋路线图总验收（锚定 G2+）。</p>
+</div>
+
+<footer>首席投资策略师 签发 · 2026-10-11｜本册为治理线开工基准文件，全队开工以此为对齐锚｜纸面推演口径，不构成投资建议</footer>
+</body>
+</html>

@@ -1,0 +1,448 @@
+# =====================================================================
+# rules_registry.yaml — C/R/N/D/K/W/G＋P0 規則註冊冊（方法學線 P1② 定稿 v1.0.0）
+# 生成 SQL 用源文件；載入目標 warren_learning_db.rules（經全棧單寫者執行）
+# 混合模式：本 YAML=元數據/參數/版本；Python 主體=logic_ref（含單測）；流程類規則 logic.mode=process
+# 收編基準：框架 v1.2 正式定稿（2026-09-27）＋v1.1（R1-R10/N1-N8）＋P0 v1.0（2026-09-12/09-16）
+#           ＋23/5 修訂（2026-10-10，執行線現行口徑）
+# 72 行（含歷史版本）：P0×8（C1/C2/E0 各含 2 版）｜ C×19 ｜ R×10 ｜ N×19（不採納邊界）｜ D×3 ｜ K×6 ｜ G×2 ｜ W×5
+# =====================================================================
+meta:
+  registry_version: "1.0.0"
+  date: "2026-10-11"
+  owner_leg: "量化技術專家（方法學線）"
+  supersedes_note: "supersedes 欄=被取代版本 rule_id@version；鏈條在 SQL 中經 id 外鍵閉合"
+  placeholder_retire: ["C@1.0.0","R@1.0.0","N@1.0.0","D@1.0.0","K@1.0.0","W@1.0.0","G@1.0.0"]
+  naming_decisions:
+    - "P0 確認制五件獨立命名空間 P0.C1/P0.C2/P0.C3/P0.E0/P0.E1——避免與 v1.2 C 系列撞號（框架明文：兩套並行系統）"
+    - "v1.2 拒收終版①-⑪ 收編為 N9-N19（N1-N8 已被 v1.1 不採納清單占用，順延）"
+    - "23/5 研究報告新編 N1（隔夜假突破統計）→ 重編 D3：語義本屬記帳觀察，且 N1 已占用；溯源寫入 notes"
+    - "T4 大盤總閘=現行閘重申，依裁決不佔新編號——作 C18 parameters 附註，不單獨立冊"
+    - "台賬 G1(11/6-7)/G2(12/18-20) 雙門=實盤準入驗證關口（M 族里程碑），非規則——不入本冊，與 TW G1/G2 嚴格區分"
+
+rules:
+  # ---------------- P0 確認制＋過濾器 ----------------
+  - {rule_id: "P0.C1", version: "1.0.0", status: retired, owner: quantitative, scope: [US,HK,CN],
+     inputs: [close, breakout_level], entry_effective: next_tradable_bar,
+     parameters: {buffer_pct: 0.002, basis: "收盘越位（收盤價站上前高突破位＋0.2%緩衝方確認，盤中假越位不算）"},
+     logic_mode: python, logic_ref: "bt_engine.rules_p0::c1_close_break",
+     logic_desc: "C1 收盤越位確認 v1.0：收盤＞突破位×(1+0.002) 才確認；盤中越位不作數",
+     invalidation: "回測判決 EXP-2026-001 NO-GO 或覆盤證實失效→永久撤回", supersedes: null,
+     validation_experiment_id: "EXP-2026-001", notes: "v1.0 定稿 2026-09-12；v1.1 承繼不變"}
+  - {rule_id: "P0.C1", version: "1.2.0", status: active, owner: quantitative, scope: [US],
+     inputs: [close, breakout_level, session], entry_effective: next_tradable_bar,
+     parameters: {buffer_pct: 0.002, close_definition: "16:00 ET OCP（正式收盤競價 print）", overnight_bars: "23×5 隔夜段打印不具確認資格"},
+     logic_mode: python, logic_ref: "bt_engine.rules_p0::c1_close_break_v12",
+     logic_desc: "C1 收盤明文修訂（23/5）：美市確認價=16:00 ET OCP；隔夜段『T』條件打印不得觸發 C1",
+     invalidation: "回測判決 EXP-2026-001 NO-GO 或 12/8 校準報告證偽→回退 1.0.0 口徑", supersedes: "P0.C1@1.0.0",
+     validation_experiment_id: "EXP-2026-001", notes: "2026-10-10 23/5 修訂；框架 v1.4 收編程序進行中；HK/CN 維持 1.0.0 口徑"}
+  - {rule_id: "P0.C2", version: "1.0.0", status: retired, owner: quantitative, scope: [US,HK,CN],
+     inputs: [volume, ma20_volume], entry_effective: next_tradable_bar,
+     parameters: {vol_gate: 1.5, vol_soft_floor: 1.2, vol_fail_floor: 1.0, baseline_days: 20},
+     logic_mode: python, logic_ref: "bt_engine.rules_p0::c2_volume_gate",
+     logic_desc: "C2 量能確認 v1.0：突破日量≥1.5×20日均量；1.2-1.5×降級檔；v1.1 加 R9 時間尺度註解（日線 1.2-1.5×/日內 5×+ 禁混）",
+     invalidation: "EXP-2026-001/002 分層判決證偽→撤回", supersedes: null,
+     validation_experiment_id: "EXP-2026-001", notes: "<1.0×直接不合格（R9 硬門檻）"}
+  - {rule_id: "P0.C2", version: "1.2.0", status: active, owner: quantitative, scope: [US,HK,CN],
+     inputs: [volume, ma20_volume, ma21_volume], entry_effective: next_tradable_bar,
+     parameters: {vol_gate: 1.5, vol_soft_floor: 1.2, vol_fail_floor: 1.0, amendment: "量能不足由單獨否決改為減半觀察檔（輔助訊號）；恢復判據=量能重回 21 日均量 1.0×"},
+     logic_mode: python, logic_ref: "bt_engine.rules_p0::c2_volume_gate_v12",
+     logic_desc: "C2 量能降級修訂（23/5）：量能不足→確認維持但倉位減半＋觀察標記；21 日量能中樞恢復為解除條件",
+     invalidation: "EXP-2026-001 分層顯示降級檔期望值劣於硬門檻→回退", supersedes: "P0.C2@1.0.0",
+     validation_experiment_id: "EXP-2026-001", notes: "2026-10-10 23/5 修訂"}
+  - {rule_id: "P0.C3", version: "1.0.0", status: active, owner: quantitative, scope: [US,HK,CN],
+     inputs: [close, breakout_level], entry_effective: next_tradable_bar,
+     parameters: {window_days: 3, hold_days_required: 2, buffer_pct: 0.002},
+     logic_mode: python, logic_ref: "bt_engine.rules_p0::c3_three_day_two_hold",
+     logic_desc: "C3 三日二守：突破後 3 個交易日內≥2 日收於突破位＋0.2%上方；未守=假突破處置（移出/留觀）",
+     invalidation: "EXP-2026-001 判決或 60 日統計（D3）證偽→撤回", supersedes: null,
+     validation_experiment_id: "EXP-2026-001", notes: "v1.0→v1.2 承繼不變"}
+  - {rule_id: "P0.E0", version: "1.0.0", status: retired, owner: quantitative, scope: [US,HK,CN],
+     inputs: [event_calendar], entry_effective: event_window,
+     parameters: {window_trading_days: 1, events: ["FOMC"], action: "只減不加"},
+     logic_mode: python, logic_ref: "bt_engine.rules_p0::e0_event_filter",
+     logic_desc: "E0 事件過濾器 v1.0：FOMC 決議日±1 交易日只減不加",
+     invalidation: "EXP-2026-003 NO-GO→撤回", supersedes: null,
+     validation_experiment_id: "EXP-2026-003", notes: "v1.0 定稿"}
+  - {rule_id: "P0.E0", version: "1.2.0", status: active, owner: quantitative, scope: [US,HK,CN],
+     inputs: [event_calendar, session], entry_effective: event_window,
+     parameters: {window_trading_days: 1, events: ["FOMC"], action: "只減不加",
+                  amendment: "事件時刻以決議公布時點錨定（23×5 跨時段）；事件日曆載入 market_data/calendar/fomc_calendar.json"},
+     logic_mode: python, logic_ref: "bt_engine.rules_p0::e0_event_filter_v12",
+     logic_desc: "E0 事件時刻更新（23/5）：公布時點錨定＋三地日曆對齊；全日曆回放驗證=EXP-2026-003",
+     invalidation: "EXP-2026-003 NO-GO→撤回", supersedes: "P0.E0@1.0.0",
+     validation_experiment_id: "EXP-2026-003", notes: "2026-10-10 23/5 修訂"}
+  - {rule_id: "P0.E1", version: "1.0.0", status: active, owner: quantitative, scope: [US,HK,CN],
+     inputs: [adx14, ma5, ma10, ma20, atr], entry_effective: next_tradable_bar,
+     parameters: {adx_threshold: 20, entangle_rule: "MA5/10/20 高低差<1×ATR→纏繞", action: "突破類 setup 停做",
+                  release: "ADX>20 且均線發散解除"},
+     logic_mode: python, logic_ref: "bt_engine.rules_p0::e1_environment_filter",
+     logic_desc: "E1 環境過濾器（v1.1 新增，掛載 P0 確認制）：whipsaw 環境自動停做突破類 setup",
+     invalidation: "無失效條款（治理條款：失效即撤）", supersedes: null,
+     validation_experiment_id: null, notes: "父條款=R6@1.0.0；兩處一體，改動須同步"}
+
+  # ---------------- C 系列（v1.2 正式寫入 15 條＋模擬 3＋待核 1）----------------
+  - {rule_id: "C1", version: "1.0.0", status: active, owner: quantitative, scope: [US,HK,CN],
+     inputs: [price, fair_value_band, tbill_yield], entry_effective: next_tradable_bar,
+     parameters: {premium_1sd: "倉位×0.5", premium_2sd: "只觀察不落場", stock_5y_percentile_max: 50, hurdle: "T-bill ~5%"},
+     logic_mode: process, logic_ref: null,
+     logic_desc: "C1 估值折讓檢查（雙刻度）：建倉區間與公允區間核對，升格新倉流程首閘（R8 前）",
+     invalidation: "三個月樣本錯過共振過多→放寬 1.5SD 重測；連續兩季無效即撤", supersedes: null,
+     validation_experiment_id: null, notes: "來源：Buffett 安全邊際＋宏觀 F3"}
+  - {rule_id: "C2", version: "1.0.0", status: active, owner: quantitative, scope: [US,HK,CN],
+     inputs: [], entry_effective: next_tradable_bar,
+     parameters: {declaration_fields: ["格位（短/中/長/超長）", "樣本邊界"], missing_penalty: "計違規，入閘A 違規率≤5%"},
+     logic_mode: process, logic_ref: null,
+     logic_desc: "C2 格位＋樣本邊界聲明制：每筆交易標明格位＋適用邊界，答不出不落場",
+     invalidation: "無（永久紀律）", supersedes: null, validation_experiment_id: null,
+     notes: "與 P0.C2 為不同編號系統的兩條規則（並行不衝突）"}
+  - {rule_id: "C3", version: "1.0.0", status: active, owner: quantitative, scope: [US,HK,CN],
+     inputs: [moat_life_years], entry_effective: next_tradable_bar,
+     parameters: {moat_life_floor_years: 5, under_5y_action: "掛 M 編號里程碑重檢"},
+     logic_mode: process, logic_ref: null,
+     logic_desc: "C3 護城河折舊評估：長線入池須評護城河壽命；『永久特許權』改讀『有到期日』",
+     invalidation: "里程碑到期未兌現→降格或出池", supersedes: null, validation_experiment_id: null, notes: "長線池篩選掛載"}
+  - {rule_id: "C4", version: "1.0.0", status: active, owner: quantitative, scope: [US,HK,CN],
+     inputs: [peg], entry_effective: next_tradable_bar,
+     parameters: {peg_advisory_veto: 1.2, categories: ["緩慢增長","穩定增長","快速增長","周期","轉機","資產富餘"], log_to: "F 分"},
+     logic_mode: process, logic_ref: null,
+     logic_desc: "C4 Lynch 六分類併入 R4 催化劑分類＋PEG>1.2 提示級否決",
+     invalidation: "六分類×催化劑映射一年後檢討重疊度", supersedes: null, validation_experiment_id: null, notes: "入池估值審查掛載"}
+  - {rule_id: "C5", version: "1.0.0", status: active, owner: quantitative, scope: [US,HK,CN],
+     inputs: [realized_vol_20d, vol_percentile], entry_effective: next_tradable_bar,
+     parameters: {pctl_high: 80, coeff_high: 0.6, pctl_restore: 60},
+     logic_mode: python, logic_ref: "bt_engine.rules_sizing::c5_vol_coefficient",
+     logic_desc: "C5 波動率分位→倉位係數：20 日實現波動率 80 分位↑→×0.6；回落 60 分位↓恢復",
+     invalidation: "壓倉期間錯過兩次 P0 確認→檢討分位閾值", supersedes: null, validation_experiment_id: null,
+     notes: "倉位閘·波動率目標制；來源 Moreira & Muir 2017"}
+  - {rule_id: "C6", version: "1.0.0", status: active, owner: quantitative, scope: [US,HK,CN],
+     inputs: [rs_sector, vol_regime, positioning], entry_effective: next_tradable_bar,
+     parameters: {rs_below_median: "減半", momentum_crash: "高波動＋倉位擠壓→全面減倉", recalc: "RS 週度"},
+     logic_mode: process, logic_ref: null,
+     logic_desc: "C6 動量退出機械化：RS 跌破板塊中位→減半；動量崩盤信號→全面減倉",
+     invalidation: "2009 式動量崩盤防禦每季回測校準", supersedes: null, validation_experiment_id: null, notes: "掛 RS 過濾器/R8"}
+  - {rule_id: "C7", version: "1.0.0", status: registered, owner: quantitative, scope: [US],
+     inputs: [earnings_surprise, close, volume], entry_effective: next_tradable_bar,
+     parameters: {trigger: "財報後首個 P0 確認＋量能≥1.2× 雙件套", position: "分級倉位", gate_a: "≥100 筆＋期望值>0"},
+     logic_mode: process, logic_ref: null,
+     logic_desc: "C7 PEAD 漂移入場（🟡模擬 8-12 週，零實盤授權）；C14 拐點閘為前置半邊",
+     invalidation: "模擬驗證失敗→永久撤回", supersedes: null, validation_experiment_id: null,
+     notes: "來源 Ball & Brown 1968（證據 A-）；whipsaw 市況啟動節奏從緊"}
+  - {rule_id: "C8", version: "1.0.0", status: frozen, owner: quantitative, scope: [US],
+     inputs: [], entry_effective: next_tradable_bar,
+     parameters: {budget_share: "對沖 25%+ 的一部分", precondition: "SG Trend 官方數據核實＋與 VIXY 類相關性實測"},
+     logic_mode: process, logic_ref: null,
+     logic_desc: "C8 CTA 危機對沖腿（🟠待核凍結）：SG 官方數據未核實前凍結推進",
+     invalidation: "核實後連續兩季遜現有對沖→回退", supersedes: null, validation_experiment_id: null,
+     notes: "來源 Moskowitz 2012 JFE（證據 A）"}
+  - {rule_id: "C9", version: "1.0.0", status: registered, owner: quantitative, scope: [US],
+     inputs: [edgar_filings], entry_effective: next_tradable_bar,
+     parameters: {drift_window: "申報公布後 1-3 個月", flow: "EDGAR 新申報→觀察名單→P0 確認→分級倉位"},
+     logic_mode: process, logic_ref: null,
+     logic_desc: "C9 13D/G 跟蹤流（🟡模擬，純跟蹤不維權，零實盤授權）",
+     invalidation: "模擬驗證失敗→永久撤回", supersedes: null, validation_experiment_id: null, notes: "掛事件日曆"}
+  - {rule_id: "C10", version: "1.0.0", status: active, owner: quantitative, scope: [US],
+     inputs: [close, ma50, ma150, ma200, high_52w, low_52w, rs], entry_effective: next_tradable_bar,
+     parameters: {above: "50/150/200MA", ma150_gt_ma200_rising_1m: true, off_low_52w: 0.30, off_high_52w_max: 0.25, rs: "高"},
+     logic_mode: python, logic_ref: "bt_engine.rules_prefilter::c10_stage2",
+     logic_desc: "C10 Stage 2 前置過濾器：44 標的池套用，承載金字塔加倉許可狀態機",
+     invalidation: "Stage 3 轉換信號→即時出列", supersedes: null, validation_experiment_id: null,
+     notes: "來源 Minervini（B 級，跨 25 年兩屆）；選股前置掛載"}
+  - {rule_id: "C11", version: "1.0.0", status: active, owner: quantitative, scope: [US,HK,CN],
+     inputs: [entry_price, invalidation_level, atr14], entry_effective: next_tradable_bar,
+     parameters: {stop_formula: "max(技術證偽位, 入場×0.92)", eqr_good_max: 1.2, eqr_poor_min: 2.0, avg_loss_target_pct: 5},
+     logic_mode: python, logic_ref: "bt_engine.rules_exit::c11_stop_cap",
+     logic_desc: "C11 個股止損硬頂（併 EQR 刻度）：止損=技術證偽位與入場×0.92 取嚴；EQR≤1.2 好／>2 劣質進場",
+     invalidation: "與三地波動校準衝突時以『金額細過獲利目標』原則話事", supersedes: null,
+     validation_experiment_id: "EXP-2026-002", notes: "EXP-2026-002 基準臂之一"}
+  - {rule_id: "C12", version: "1.0.0", status: registered, owner: quantitative, scope: [US],
+     inputs: [wedge_contraction, close, volume], entry_effective: next_tradable_bar,
+     parameters: {trigger: "楔形量價收縮段入觀察→收盤確認後入場（P0 前置）", gate_a: "≥100 筆＋期望值>0"},
+     logic_mode: process, logic_ref: null,
+     logic_desc: "C12 收縮→突破前置觸發器（🟡模擬，零實盤授權）",
+     invalidation: "模擬驗證失敗→永久撤回", supersedes: null, validation_experiment_id: null,
+     notes: "來源 Kell Wedge Pop（B 級單年 2020 +941.1%，⚠️ 2021 後無紀錄）"}
+  - {rule_id: "C13", version: "1.0.0", status: active, owner: quantitative, scope: [US],
+     inputs: [iv_percentile, iv, rv], entry_effective: next_tradable_bar,
+     parameters: {high_iv_day: "收窄進場容忍度＋限價單強制", exclude_0dte: true, iv_gt_rv: "倉位天花板輔助讀數"},
+     logic_mode: process, logic_ref: null,
+     logic_desc: "C13 波動率視角環境規則：IV 高分位日收窄容忍＋限價強制；0DTE 到期效應從日內統計剔除",
+     invalidation: "無（視角級紀律）；P0 確認制經此驗證維持不變", supersedes: null, validation_experiment_id: null,
+     notes: "掛環境解讀/E1；來源 XTX 視角＋量化 P4 判決"}
+  - {rule_id: "C14", version: "1.0.0", status: active, owner: macro, scope: [US,HK,CN],
+     inputs: [revenue_growth, estimate_revisions, gross_margin], entry_effective: next_tradable_bar,
+     parameters: {need: "三選二", a: "營收增速連 2 季加速（或負轉正）", b: "一致預期上修>下修／財報後 90 日中位數上調", c: "毛利率環比 2 季改善"},
+     logic_mode: process, logic_ref: null,
+     logic_desc: "C14 盈利拐點三選二閘：買『變化』不買『存量』；入觀察池資格閘",
+     invalidation: "低頻同向閘；與 C1 併組入池首閘組合", supersedes: null, validation_experiment_id: null,
+     notes: "來源宏觀 F1（財報公開數據）"}
+  - {rule_id: "C15", version: "1.0.0", status: active, owner: macro, scope: [US,HK,CN],
+     inputs: [ism_new_orders_minus_inventory, pmi, inventory_days], entry_effective: next_tradable_bar,
+     parameters: {macro: "ISM 新訂單−客戶庫存差值月度跟蹤", pmi_below_50_3m: "去庫段回避重資產周期股",
+                  micro: "存貨週轉天數連 2 季上升＋營收未同步加速=渠道壓貨警號", double_kill: "PMI<50＋ADX<20 同現=禁開新倉"},
+     logic_mode: process, logic_ref: null,
+     logic_desc: "C15 周期位置檢查：宏觀庫存周期＋微觀渠道壓貨雙刻度",
+     invalidation: "低頻同向閘", supersedes: null, validation_experiment_id: null,
+     notes: "掛 E1＋事件日曆；來源宏觀 F2"}
+  - {rule_id: "C16", version: "1.0.0", status: active, owner: macro, scope: [US,HK,CN],
+     inputs: [ocf, net_income, net_debt_ebitda, interest_coverage, debt_maturity_24m], entry_effective: next_tradable_bar,
+     parameters: {ocf_ni_min: 0.80, ocf_ni_years: 2, net_debt_ebitda_max: 2.0, interest_cover_min: 5.0, maturity_24m_lt: "EBITDA"},
+     logic_mode: process, logic_ref: null,
+     logic_desc: "C16 現金流質量三閘：三條全過先算『養得起自己』——利潤係觀點，現金係事實",
+     invalidation: "現金流惡化=論點證偽", supersedes: null, validation_experiment_id: null,
+     notes: "反面教材 CRWV；掛第六問＋C11＋R7"}
+  - {rule_id: "C17", version: "1.0.0", status: active, owner: quantitative, scope: [US,HK,CN],
+     inputs: [l1,l2,l3,l4,l5,l6,l7,l8,l9,l10], entry_effective: next_tradable_bar,
+     parameters: {
+       tiers: {"NORMAL(<=3)": "主題倉≤20%", "ALERT(4-5)": "≤12%，禁新開拋物線股", "LATE(6-7)": "≤8%，只留 leader、止加倉、拋物線減半", "PARABOLIC_END(>=8)": "0-2%，只准減不准加"},
+       cadence: "每週五收市評分", jump_rule: "L1/L5/L9 任兩條由❌轉✅→階段即時上調", current_score_0927: 3.5,
+       nested_within: "L2 40%／個股閘 28% 之內（主題倉子閘）",
+       l_signals: {"L1": "指數高於 200DMA ≥+50%", "L2": "6m ROC ≥+75% 或 12m ROC ≥+100%（40% 為 L2 全權益天花板非主題倉上限）", "L3": "200DMA 六個月斜率 ≥+30%", "L4": "6 個月內 ≥2 次單週漲幅>10%", "L5": "價新高而 12m ROC<6m ROC 一半", "L6": "領袖高於 200DMA ≥+60% 且 12m ROC ≥+200%", "L7": "RS 12m 斜率歷史極值後轉負", "L8": "板塊內部強弱差急擴（定性）", "L9": "20 日漲跌量比<0.7 持續 5 日＋收穿 50MA", "L10": "SPY 收穿 200DMA 或現行砍半線"}},
+     logic_mode: python, logic_ref: "bt_engine.rules_bubble::c17_state_machine",
+     logic_desc: "C17 十信號泡沫狀態機（重標定版）：L1-L10 週評→主題倉四檔上限；L 碼為 C17 參數內信號 ID 不另立冊",
+     invalidation: "樣本更新即重校閾值；與現行閘衝突取嚴；單一信號系統永不單獨話事（須與宏觀 G1 交叉）",
+     supersedes: null, validation_experiment_id: null,
+     notes: "n=3 外推 ⚠️；L9 閾值單源 ⚠️；XLK/IGV 2025-10~2026-03 復權段存疑"}
+  - {rule_id: "C18", version: "1.0.0", status: active, owner: quantitative, scope: [US,HK,CN],
+     inputs: [high_200dma_reach, ma50, ma200, roc_6m, roc_12m, updown_vol_ratio_20d], entry_effective: same_bar_close,
+     parameters: {
+       T1: "拋物線股：高於 200DMA 曾達+60%，其後收穿 50MA→減半；收穿 200DMA→清（主題倉部分）",
+       T2: "背離閘：指數新高而 12m ROC<6m ROC 之半→主題倉減半",
+       T3: "派發閘：20 日量比<0.7 連續 5 日＋收穿 50MA→減半",
+       T4_standing: "SPY 748.8 砍半線／200DMA(≈718.5) 清主題倉——現行閘重申，不佔新編號（裁決明文）",
+       once_only: "同一觸發事件只執行一次、不疊加雙重減倉；衝突取嚴"},
+     logic_mode: python, logic_ref: "bt_engine.rules_bubble::c18_realtime_gates",
+     logic_desc: "C18 即時觸發閘 T1-T3：即時執行不等週評；T4 屬現行閘重申註記",
+     invalidation: "無；與現行閘衝突取嚴", supersedes: null, validation_experiment_id: null,
+     notes: "來源量化避損規則 v1.0（三輪 12 次熊市反彈無一守住 200DMA）"}
+  - {rule_id: "C19", version: "1.0.0", status: active, owner: quantitative, scope: [US,HK,CN],
+     inputs: [burst_date, trough_date, ma200, drawdown_vs_sector], entry_effective: next_tradable_bar,
+     parameters: {dead_cat_days: 45, reentry_min_days: 53, reentry_confirm: "收盤站上 200DMA＋3-10 日回踩不破（二守）", tranches: 3,
+                  survivor_filter: "回撤<板塊均值＋谷底高於 200DMA＋修復段率先新高", first_tranche_max: "目標倉 1/3",
+                  base_case: "谷後 12-45 個月見底、回撤 -77~-84%"},
+     logic_mode: python, logic_ref: "bt_engine.rules_bubble::c19_post_burst",
+     logic_desc: "C19 爆破後右側回補＋倖存者濾網：45 日內反彈一律當死貓；右側三批回補劇本",
+     invalidation: "『遺囑式名單』爆破後按 K6 重新打分，不自動沿用泡沫期結論", supersedes: null,
+     validation_experiment_id: null, notes: "疊加 R8＋P0/T+1；來源量化避損 v1.0＋宏觀 W4"}
+
+  # ---------------- R 系列（v1.1 逐字承繼）----------------
+  - {rule_id: "R1", version: "1.0.0", status: active, owner: quantitative, scope: [US,HK,CN],
+     inputs: [account_equity, daily_pnl], entry_effective: next_tradable_bar,
+     parameters: {daily_loss_stop: -0.02, action: "即日停新倉，持倉照常管理", consecutive_2_days: "強制休市一週＋覆盤報告後恢復", reset: "下一交易日自動重置"},
+     logic_mode: python, logic_ref: "bt_engine.rules_risk::r1_daily_loss_gate",
+     logic_desc: "R1 賬戶級日虧損閘 −2% 停新倉；連續兩日觸閘休市一週",
+     invalidation: "無（治理條款：失效即撤）", supersedes: null, validation_experiment_id: null, notes: "v1.1 新增；掛 P0 確認制"}
+  - {rule_id: "R2", version: "1.0.0", status: active, owner: quantitative, scope: [US,HK,CN],
+     inputs: [intraday_breakout, close, volume], entry_effective: next_tradable_bar,
+     parameters: {probe_size: "1/3 試倉（止損即設）", top_up_condition: "收盤過 C1（收盤越位）＋C2（量能≥1.5×）補足標準倉", else: "試倉即止損，唔准再等等"},
+     logic_mode: python, logic_ref: "bt_engine.rules_p0::r2_probe_confirm",
+     logic_desc: "R2 試倉 1/3＋收盤確認兩段制：盤中買=用倉位換時間；確認制=用時間換確定性",
+     invalidation: "收盤不過 C1 或量能不足 C2→試倉止損；E1 啟動期間 setup 停做", supersedes: null,
+     validation_experiment_id: null, notes: "T+1 確認制正式融合條目"}
+  - {rule_id: "R3", version: "1.0.0", status: active, owner: quantitative, scope: [US,HK,CN],
+     inputs: [entry_price, stop_price, unrealized_r], entry_effective: next_tradable_bar,
+     parameters: {scale_out: "確認後漲 1R 平 50%", remainder_stop: "上移至成本價", no_reversal: "唔准移返止損"},
+     logic_mode: python, logic_ref: "bt_engine.rules_exit::r3_scale_out",
+     logic_desc: "R3 分批止盈平半＋移損至成本：右偏化盈虧分布（用期望值上限換方差下降，誠實標注非免費午餐）",
+     invalidation: "未達 1R 前按原止損執行；餘倉跌回成本即無風險離場", supersedes: null, validation_experiment_id: null,
+     notes: "延伸段=D2（2×ATR trail 記帳觀察中）"}
+  - {rule_id: "R4", version: "1.0.0", status: active, owner: quantitative, scope: [US,HK,CN],
+     inputs: [catalyst_news, float_structure, insider_positioning], entry_effective: next_tradable_bar,
+     parameters: {q1_catalyst: "催化劑係咩/邊類/有冇公開可查；冇新聞暴漲=對倒盤多數", red_flag: "反向合股催化劑特別標紅",
+                  q6_who_is_selling: "流通盤結構/內部人/承銷商/解禁增發日曆"},
+     logic_mode: process, logic_ref: null,
+     logic_desc: "R4 催化劑分類＋第六問『邊個喺度賣？』：否定性檢查前置",
+     invalidation: "催化劑查唔到或反向合股→唔入觀察；增發在途→按 R5", supersedes: null, validation_experiment_id: null, notes: ""}
+  - {rule_id: "R5", version: "1.0.0", status: active, owner: quantitative, scope: [US,HK,CN],
+     inputs: [ipo_date, unlock_shares, free_float], entry_effective: next_tradable_bar,
+     parameters: {auto_flag: "IPO+180日/+365日（港股上市 6/12 個月窗）", unlock_ff_gt_50: "高危", unlock_ff_gt_100: "禁做多",
+                  pre_window: "解禁前禁做多（防 pre-expiry run-up）", re_rating: "解禁後量比<0.8× 連續 5 日＋收復解禁日收盤→重新評級"},
+     logic_mode: process, logic_ref: null,
+     logic_desc: "R5 事件日曆否決權：lock-up expiry＝有日期嘅供給衝擊",
+     invalidation: "縮量企穩定義達成後重新評級（唔係永久迴避=N8 界線）", supersedes: null, validation_experiment_id: null,
+     notes: "Field & Hanka 2001 學術支持；全棧排程自動標記"}
+  - {rule_id: "R6", version: "1.0.0", status: active, owner: quantitative, scope: [US,HK,CN],
+     inputs: [adx14, ma5, ma10, ma20, atr, gap_pct], entry_effective: next_tradable_bar,
+     parameters: {e1_switch: "ADX14<20＋MA5/10/20 纏繞（<1×ATR）→突破類停做", gap_up_ban: "冇催化劑唔追 gap up；確需追＝RR 重算（2.5→1.5）＋倉位減半",
+                  hsip_bottom_window: "新低期突破一律假突破優先假設，直到放量收復 MA20"},
+     logic_mode: python, logic_ref: "bt_engine.rules_p0::e1_environment_filter",
+     logic_desc: "R6 Whipsaw 市減少交易：E1 環境過濾器＋唔追 gap up（E1 實體=P0.E1，兩處一體）",
+     invalidation: "ADX 回升>20 且均線發散→E1 解除", supersedes: null, validation_experiment_id: null,
+     notes: "P0.E1@1.0.0 為其掛載實體；樣本邊界：有催化劑標的走 Ross 語境＋R2 兩段制"}
+  - {rule_id: "R7", version: "1.0.0", status: active, owner: quantitative, scope: [US,HK,CN],
+     inputs: [realized_pnl], entry_effective: next_tradable_bar,
+     parameters: {rule: "交易池實現利潤強制轉入長線池", direction: "單向閘不可倒流", sleeve_cap: "短炒倉位上限=f(已驗證 edge)，冇 edge=零"},
+     logic_mode: process, logic_ref: null,
+     logic_desc: "R7 利潤單向沉澱入長線池：切斷賭徒螺旋",
+     invalidation: "無——單向閘冇例外", supersedes: null, validation_experiment_id: null, notes: "賬戶章程第一條級別"}
+  - {rule_id: "R8", version: "1.0.0", status: active, owner: quantitative, scope: [US,HK,CN],
+     inputs: [ma200_slope, rsi14, stretch_atr20, annual_budget, reclaim_volume], entry_effective: next_tradable_bar,
+     parameters: {f1_trend_filter: "200 天線仍向上先啟動；向下只 DCA 唔加碼", f2_oversold: "RSI14<30＋偏離 50 天線>2×ATR20",
+                  f3_budget_cap: "左側總預算年度封頂", f4_invalidation: "企穩確認（跌穿後收復＋量≥1.2×）先生效，唔係掛單等價"},
+     logic_mode: python, logic_ref: "bt_engine.rules_sizing::r8_dip_adding",
+     logic_desc: "R8 左側加碼四件套規則化（buy the dip）",
+     invalidation: "趨勢過濾不通→只 DCA；預算用罄→停加；GLDM 案：連續收破 50MA＋三日二守破位→加碼檔作廢",
+     supersedes: null, validation_experiment_id: null, notes: "寧德判詞：左側不接刀，右側信號=放量收回 MA20"}
+  - {rule_id: "R9", version: "1.0.0", status: active, owner: quantitative, scope: [US,HK,CN],
+     inputs: [breakout_volume, ma20_volume, rs_sector], entry_effective: next_tradable_bar,
+     parameters: {hard_gate: "突破日量≥1.5×20日均量", outright_fail: "<1.0× 直接不合格", rs_filter: "RS 與板塊同行先完整，不同行→減倉或唔入",
+                  scale_declaration: "日線確認 1.2-1.5×／日內動量 5×+（RVOL）——禁混刻度"},
+     logic_mode: python, logic_ref: "bt_engine.rules_p0::c2_volume_gate",
+     logic_desc: "R9 形態檢查增補：量能硬門檻＋RS 過濾＋時間尺度聲明（C2 加註）",
+     invalidation: "量<1.0× 直接否決", supersedes: null, validation_experiment_id: "EXP-2026-001",
+     notes: "logic_ref 與 P0.C2@1.0.0 同源函數（硬門檻語義）"}
+  - {rule_id: "R10", version: "1.0.0", status: active, owner: quantitative, scope: [US,HK,CN],
+     inputs: [age, assets, max_drawdown_tolerance], entry_effective: next_tradable_bar,
+     parameters: {p1_workbackwards: "由目標倒推配置，順序不可倒轉；雙向收斂（市場只畀 6-8% 就改目標）",
+                  p2_no_pseudo_precision: "可以抄『骨』唔可以抄『數』", p3_rules_not_forecast: "regime first, pattern second；lump sum 約 68% 時間優於 DCA（Vanguard 2012）"},
+     logic_mode: process, logic_ref: null,
+     logic_desc: "R10 配置層心法三條（決策前置 Checklist 對照打勾）",
+     invalidation: "Checklist 任何一項未做→唔好落場", supersedes: null, validation_experiment_id: null, notes: ""}
+
+  # ---------------- N 系列（不採納邊界：N1-N8 v1.1＋N9-N19=v1.2 拒收①-⑪）----------------
+  - {rule_id: "N1", version: "1.0.0", status: rejected, owner: quantitative, scope: [US,HK,CN], entry_effective: next_tradable_bar,
+     parameters: {item: "動量超短線五支柱選股", reason: "頻率哲學互斥（邊界②）"}, logic_mode: process, logic_ref: null,
+     logic_desc: "不採納清單 v1.1 ①：連『試吓』都唔准", invalidation: "無——拒收邊界不設翻案程序（除非治理裁決重開）",
+     supersedes: null, validation_experiment_id: null, notes: "防復辟條目"}
+  - {rule_id: "N2", version: "1.0.0", status: rejected, owner: quantitative, scope: [US], entry_effective: next_tradable_bar,
+     parameters: {item: "繞 PDT", reason: "規則套利違反風控本意"}, logic_mode: process, logic_ref: null,
+     logic_desc: "不採納清單 v1.1 ②", invalidation: "無", supersedes: null, validation_experiment_id: null, notes: ""}
+  - {rule_id: "N3", version: "1.0.0", status: rejected, owner: quantitative, scope: [US], entry_effective: next_tradable_bar,
+     parameters: {item: "1 分鐘級執行依賴", reason: "快變量優勢屬於做市商（0DTE 佔 61% 世界）"}, logic_mode: process, logic_ref: null,
+     logic_desc: "不採納清單 v1.1 ③", invalidation: "無", supersedes: null, validation_experiment_id: null, notes: ""}
+  - {rule_id: "N4", version: "1.0.0", status: rejected, owner: quantitative, scope: [US,HK,CN], entry_effective: next_tradable_bar,
+     parameters: {item: "「勝率 70-80%」宣稱", reason: "自述≠實證；本群紅線"}, logic_mode: process, logic_ref: null,
+     logic_desc: "不採納清單 v1.1 ④；hit rate 在本系統僅分層參考不作判決", invalidation: "無",
+     supersedes: null, validation_experiment_id: null, notes: "與 P0 機制 R-5 條款呼應"}
+  - {rule_id: "N5", version: "1.0.0", status: rejected, owner: quantitative, scope: [US], entry_effective: next_tradable_bar,
+     parameters: {item: "低 float·反向合股參與", reason: "內部人控盤+統計上多數延續下行"}, logic_mode: process, logic_ref: null,
+     logic_desc: "不採納清單 v1.1 ⑤", invalidation: "無", supersedes: null, validation_experiment_id: null, notes: ""}
+  - {rule_id: "N6", version: "1.0.0", status: rejected, owner: quantitative, scope: [US,HK,CN], entry_effective: next_tradable_bar,
+     parameters: {item: "高頻多筆頻率哲學", reason: "與 whipsaw 市減少交易互斥"}, logic_mode: process, logic_ref: null,
+     logic_desc: "不採納清單 v1.1 ⑥", invalidation: "無", supersedes: null, validation_experiment_id: null, notes: ""}
+  - {rule_id: "N7", version: "1.0.0", status: rejected, owner: quantitative, scope: [US], entry_effective: next_tradable_bar,
+     parameters: {item: "「盤前漲幅即追」套用非催化劑標的", reason: "沉沒成本唔係訊號"}, logic_mode: process, logic_ref: null,
+     logic_desc: "不採納清單 v1.1 ⑦", invalidation: "無", supersedes: null, validation_experiment_id: null, notes: ""}
+  - {rule_id: "N8", version: "1.0.0", status: rejected, owner: quantitative, scope: [US,HK,CN], entry_effective: next_tradable_bar,
+     parameters: {item: "「解禁永久迴避」一刀切", reason: "R5 已有縮量企穩重新評級通道"}, logic_mode: process, logic_ref: null,
+     logic_desc: "不採納清單 v1.1 ⑧——迴避係窗口制唔係永久制", invalidation: "無", supersedes: null, validation_experiment_id: null, notes: ""}
+  - {rule_id: "N9",  version: "1.0.0", status: rejected, owner: quantitative, scope: [US], entry_effective: next_tradable_bar,
+     parameters: {item: "波動率收割／裸賣波實盤", reason: "與日虧損閘−2%＋避免永久性虧損根本衝突；XIV −96% 反面教材"}, logic_mode: process, logic_ref: null,
+     logic_desc: "v1.2 拒收終版①（只取 IV>RV 作 C13 輔助讀數）", invalidation: "無", supersedes: null, validation_experiment_id: null, notes: "v1.2 拒收①"}
+  - {rule_id: "N10", version: "1.0.0", status: rejected, owner: quantitative, scope: [US,HK,CN], entry_effective: next_tradable_bar,
+     parameters: {item: "高頻／做市策略複製", reason: "XTX 係產業唔係策略；費用結構都唔同"}, logic_mode: process, logic_ref: null,
+     logic_desc: "v1.2 拒收終版②", invalidation: "無", supersedes: null, validation_experiment_id: null, notes: ""}
+  - {rule_id: "N11", version: "1.0.0", status: rejected, owner: quantitative, scope: [US], entry_effective: next_tradable_bar,
+     parameters: {item: "親身維權／重倉單一事件股", reason: "無 13D 話語權；重倉違反倉位天花板"}, logic_mode: process, logic_ref: null,
+     logic_desc: "v1.2 拒收終版③", invalidation: "無", supersedes: null, validation_experiment_id: null, notes: ""}
+  - {rule_id: "N12", version: "1.0.0", status: rejected, owner: quantitative, scope: [US], entry_effective: next_tradable_bar,
+     parameters: {item: "13F 抄作業當即時訊號", reason: "遲 45 日＋空頭不申報＝舊地圖"}, logic_mode: process, logic_ref: null,
+     logic_desc: "v1.2 拒收終版④（C9 跟蹤流已限定 1-3 個月漂移窗＋P0 確認）", invalidation: "無", supersedes: null, validation_experiment_id: null, notes: ""}
+  - {rule_id: "N13", version: "1.0.0", status: rejected, owner: quantitative, scope: [US,HK,CN], entry_effective: next_tradable_bar,
+     parameters: {item: "D 級自述數字入策略庫", reason: "零獨立核驗"}, logic_mode: process, logic_ref: null,
+     logic_desc: "v1.2 拒收終版⑤", invalidation: "無", supersedes: null, validation_experiment_id: null, notes: ""}
+  - {rule_id: "N14", version: "1.0.0", status: rejected, owner: quantitative, scope: [US], entry_effective: next_tradable_bar,
+     parameters: {item: "單年冠軍當長期期望值", reason: "Kell 941% 分母=2020 完美動量年"}, logic_mode: process, logic_ref: null,
+     logic_desc: "v1.2 拒收終版⑥", invalidation: "無", supersedes: null, validation_experiment_id: null, notes: ""}
+  - {rule_id: "N15", version: "1.0.0", status: rejected, owner: quantitative, scope: [US,HK,CN], entry_effective: next_tradable_bar,
+     parameters: {item: "「永遠持有」字面＋「唔止損」神學", reason: "巴郡結構優勢散戶冇；引 Lynch 剪鮮花澆雜草"}, logic_mode: process, logic_ref: null,
+     logic_desc: "v1.2 拒收終版⑦", invalidation: "無", supersedes: null, validation_experiment_id: null, notes: ""}
+  - {rule_id: "N16", version: "1.0.0", status: rejected, owner: quantitative, scope: [US], entry_effective: next_tradable_bar,
+     parameters: {item: "十倍股期待＋BWYK 當選股系統", reason: "倖存者偏差；Reg FD 2000 後制度性終結"}, logic_mode: process, logic_ref: null,
+     logic_desc: "v1.2 拒收終版⑧", invalidation: "無", supersedes: null, validation_experiment_id: null, notes: ""}
+  - {rule_id: "N17", version: "1.0.0", status: rejected, owner: quantitative, scope: [US,HK,CN], entry_effective: next_tradable_bar,
+     parameters: {item: "現金新高當擇時訊號", reason: "T-bill ~5% 下嘅機會成本行為"}, logic_mode: process, logic_ref: null,
+     logic_desc: "v1.2 拒收終版⑨", invalidation: "無", supersedes: null, validation_experiment_id: null, notes: ""}
+  - {rule_id: "N18", version: "1.0.0", status: rejected, owner: quantitative, scope: [US,HK,CN], entry_effective: next_tradable_bar,
+     parameters: {item: "「跌五成＝神仙價」撈底錨", reason: "跌幅本身唔係買入理由；須 C14-C16＋TW 逐項重判"}, logic_mode: process, logic_ref: null,
+     logic_desc: "v1.2 拒收終版⑩", invalidation: "無", supersedes: null, validation_experiment_id: null, notes: ""}
+  - {rule_id: "N19", version: "1.0.0", status: rejected, owner: quantitative, scope: [US,HK,CN], entry_effective: next_tradable_bar,
+     parameters: {item: "快變量框架複製（美林時鐘精確擇時／日內支撐計數）", reason: "只做慢變量＋事件日曆"}, logic_mode: process, logic_ref: null,
+     logic_desc: "v1.2 拒收終版⑪", invalidation: "無", supersedes: null, validation_experiment_id: null, notes: ""}
+
+  # ---------------- D 系列（記帳觀察）----------------
+  - {rule_id: "D1", version: "1.0.0", status: active, owner: quantitative, scope: [US,HK,CN], entry_effective: next_tradable_bar,
+     parameters: {columns: ["進場 EQR", "加倉批次編號＋當時組合 RR", "過 P0 確認後條件勝率", "劣質進場欄（EQR>2x）", "金字塔與條件勝率（併入本組）"],
+                  stats_trigger: "累積≥30 筆出首份統計"},
+     logic_mode: process, logic_ref: null,
+     logic_desc: "D1 執行帳覆盤欄位組（即刻啟用，純記錄）——映射 position_lot／decision 表欄位",
+     invalidation: "無（紀錄用途）", supersedes: null, validation_experiment_id: null,
+     notes: "突破失敗率 40-45% 外部統計 ⚠️ 單源只作方向參照；本群自算數字先入帳"}
+  - {rule_id: "D2", version: "1.0.0", status: registered, owner: quantitative, scope: [US,HK,CN], entry_effective: next_tradable_bar,
+     parameters: {trail: "浮盈≥2R 啟動 2×ATR14 追蹤止損（代替跌回成本即走）", observation: "8-12 週記帳觀察，不構成執行依據"},
+     logic_mode: python, logic_ref: "bt_engine.rules_exit::d2_atr_trail",
+     logic_desc: "D2 餘倉右尾延長（2×ATR trail）——觀察中，達標提請寫入 v1.3",
+     invalidation: "右尾貢獻未升或方差超標→不升格", supersedes: null, validation_experiment_id: "EXP-2026-002",
+     notes: "R3 延伸段；EXP-2026-002 附帶統計其右尾貢獻"}
+  - {rule_id: "D3", version: "1.0.0", status: active, owner: quantitative, scope: [US], entry_effective: next_tradable_bar,
+     parameters: {condition: "越線（突破位＋0.2%緩衝）但 16:00 ET 收回", action: "只記不動", review: "60 日後檢討"},
+     logic_mode: python, logic_ref: "bt_engine.rules_p0::d3_overnight_fail_stats",
+     logic_desc: "D3 隔夜假突破統計（23/5 新制）：越線收回只記不動，累積檢討假突破頻率",
+     invalidation: "60 日檢討：若統計支持收緊→提請 C1 參數修訂", supersedes: null, validation_experiment_id: null,
+     notes: "原 23/5 研究報告編號 N1，收編時重編 D3（N1 已被不採納清單占用；語義本屬記帳觀察）"}
+
+  # ---------------- K/W/G（TW 科技浪潮模塊：判別層＋操作層）----------------
+  - {rule_id: "K1", version: "1.0.0", status: active, owner: macro, scope: [TW], entry_effective: next_tradable_bar,
+     parameters: {criterion: "成本曲線斷崖式下降", threshold: "單位成本年降幅 ≥50%"},
+     logic_mode: process, logic_ref: null, logic_desc: "K1 判『技術係唔係真』（K1-K4 一組）", invalidation: "無（判別準則，隨產業數據更新）",
+     supersedes: null, validation_experiment_id: null, notes: "TW 模塊專用樣本邊界：常規標的唔套用浪潮語言"}
+  - {rule_id: "K2", version: "1.0.0", status: active, owner: macro, scope: [TW], entry_effective: next_tradable_bar,
+     parameters: {criterion: "採用曲線斜率", threshold: "滲透率<5%→>20% 的年數 ≤5 年；企業級付費客戶加速"},
+     logic_mode: process, logic_ref: null, logic_desc: "K2 採用速度對比上一代技術", invalidation: "無",
+     supersedes: null, validation_experiment_id: null, notes: ""}
+  - {rule_id: "K3", version: "1.0.0", status: active, owner: macro, scope: [TW], entry_effective: next_tradable_bar,
+     parameters: {criterion: "基礎設施成熟度", threshold: "基建利用率上升＋監管框架落地"},
+     logic_mode: process, logic_ref: null, logic_desc: "K3 電力/網絡/支付/法規載體到位度", invalidation: "無",
+     supersedes: null, validation_experiment_id: null, notes: ""}
+  - {rule_id: "K4", version: "1.0.0", status: active, owner: macro, scope: [TW], entry_effective: next_tradable_bar,
+     parameters: {criterion: "殺手級應用出現", threshold: "單一應用收入/用戶規模可獨立核實"},
+     logic_mode: process, logic_ref: null, logic_desc: "K4 一個『單獨成立』的應用養起產業", invalidation: "無",
+     supersedes: null, validation_experiment_id: null, notes: ""}
+  - {rule_id: "K5", version: "1.0.0", status: active, owner: macro, scope: [TW], entry_effective: next_tradable_bar,
+     parameters: {criterion: "資本開支週期位置", threshold: "capex 增速 vs 收入增速缺口；產能利用率；再融資依賴度"},
+     logic_mode: process, logic_ref: null, logic_desc: "K5 判『而家買係唔係死路』（K5-K6 一組）：早段擴張定晚段過度建設", invalidation: "無",
+     supersedes: null, validation_experiment_id: null, notes: "三輪浪潮殺傷力全部來自 K5 晚段＋K6 缺口"}
+  - {rule_id: "K6", version: "1.0.0", status: active, owner: macro, scope: [TW], entry_effective: next_tradable_bar,
+     parameters: {criterion: "盈利模式成立", threshold: "≥2 間上市公司：經營現金流為正＋連續兩季加速"},
+     logic_mode: process, logic_ref: null, logic_desc: "K6 真實經營利潤驗證（非補貼/非發幣）", invalidation: "無",
+     supersedes: null, validation_experiment_id: null, notes: "代價聲明：2000 年 K6 會篩走未盈利 Amazon——組合級避損工具非單票預言機"}
+  - {rule_id: "G1", version: "1.0.0", status: active, owner: macro, scope: [TW], entry_effective: next_tradable_bar,
+     parameters: {criterion: "估值–現金流缺口護欄", alert_threshold: "產業 capex/收入 >5×＝泡沫晚段警報",
+                  current_status: "AI 現值 >8×，常開", structural_ban: "只禁新開模型層/概念層倉，唔構成減現倉理由",
+                  immediate_trigger: "單季 capex 指引下修＝即時減倉覆核觸發器"},
+     logic_mode: process, logic_ref: null, logic_desc: "G1 泡沫溫度計＋結構禁令細則（首席判決）", invalidation: "無（常開護欄）",
+     supersedes: null, validation_experiment_id: null, notes: "與量化腿並行校驗（W3）；注意與台賬 G1/G2 實盤準入雙門（M 里程碑）嚴格區分"}
+  - {rule_id: "G2", version: "1.0.0", status: active, owner: macro, scope: [TW], entry_effective: next_tradable_bar,
+     parameters: {criterion: "負樣本測試", threshold: "主題熱潮中增發/offering 次數月度統計＋內部人減持頻率", hook: "掛 R4＋第六問"},
+     logic_mode: process, logic_ref: null, logic_desc: "G2 『邊個喺度賣』供給端測試", invalidation: "無",
+     supersedes: null, validation_experiment_id: null, notes: ""}
+  - {rule_id: "W1", version: "1.0.0", status: active, owner: macro, scope: [TW], entry_effective: next_tradable_bar,
+     parameters: {introduction: "只可觀察＋模擬盤；真錢只買已過 K6 的賣水人；導入期標的合計≤主題倉 1/3（≈6-7%）；單票終身≤2% 期權型",
+                  bubble: "只持有過 W2 篩查的倖存者候選；純概念股一律不買；R2 試倉 1/3＋收盤確認；破位即走唔補",
+                  washout: "遺囑式倖存者名單分批；R8 四件套＋P0/T+1；首批≤目標倉 1/3"},
+     logic_mode: process, logic_ref: null, logic_desc: "W1 浪潮階段×倉位矩陣", invalidation: "階段判定隨產業數據季度更新",
+     supersedes: null, validation_experiment_id: null, notes: ""}
+  - {rule_id: "W2", version: "1.0.0", status: active, owner: macro, scope: [TW], entry_effective: next_tradable_bar,
+     parameters: {pass_bar: "10 項≥7/10 先夠格入倖存者候選池",
+                  items: ["真實收入≥50% YoY（財報可核）", "backlog/訂單可獨立核實", "毛利率方向向上或穩定", "現金跑道≥24 個月",
+                          "過去 12 個月無大幅折讓增發（G2）", "lock-up 解禁日曆否決權（R5）", "內部人淨賣出頻率未失控",
+                          "前兩大客戶收入集中度<60%", "利息覆蓋>5× 或淨現金", "有一個唔靠新融資都活得落的業務閉環"],
+                  combined: "與 C1（估值折讓）＋C10（Stage 2）併組『資格三件套』"},
+     logic_mode: process, logic_ref: null, logic_desc: "W2 倖存者候選 vs 純概念股篩查", invalidation: "無",
+     supersedes: null, validation_experiment_id: null, notes: "主題股入池資格審查掛載"}
+  - {rule_id: "W3", version: "1.0.0", status: active, owner: macro, scope: [TW], entry_effective: next_tradable_bar,
+     parameters: {g1_gap: "產業 capex/應用收入>5×＝警報（AI>8× 常開）；單季 capex 增速環比轉負＝主警報",
+                  debt_financed_capex: "capex 由現金流轉向債券/私募信貸＝晚段確認", supply_side: "增發頻率（G2）/內部人減持/解禁潮",
+                  cross_check: "與 C18 交叉驗證；銜接 SPY 748.8 砍半線、L2→L3 觸發器、E1"},
+     logic_mode: process, logic_ref: null, logic_desc: "W3 泡沫晚期警報（G1 量化，與量化腿並行校驗）", invalidation: "無",
+     supersedes: null, validation_experiment_id: null, notes: ""}
+  - {rule_id: "W4", version: "1.0.0", status: active, owner: macro, scope: [TW], entry_effective: next_tradable_bar,
+     parameters: {minus80_assumption: "任何倖存者候選都要假設 -80% 級回撤會發生", no_bottom_fishing: "出清期入場必須 R8 四件套＋T+1 確認，唔用跌五成神仙價錨",
+                  survivor_recheck: "名單爆破後按 K6 重新打分", profit_recycle: "R7 利潤單向沉澱定期執行"},
+     logic_mode: process, logic_ref: null, logic_desc: "W4 爆破前後倉位處理（歷史錨：AMZN -94%/BTC -84%/-77%）", invalidation: "無",
+     supersedes: null, validation_experiment_id: null, notes: ""}
+  - {rule_id: "W5", version: "1.0.0", status: active, owner: macro, scope: [TW], entry_effective: next_tradable_bar,
+     parameters: {ai_posture: "AI＝採用期中段＋泡沫晚段特徵並存；唔清倉（K2/K4 真＋芯片層 K6 真），新倉只准賣水人＋過 W2",
+                  next_research: "穩定幣/代幣化＋核能/SMR 鏈（Q4 產業周期儀表板常規欄目，宏觀主理）",
+                  watchlist: "量子/BCI 零倉觀察；翻案條件=利率見頂（12/10 決議後）＋K4 首個可核實收入案例"},
+     logic_mode: process, logic_ref: null, logic_desc: "W5 2026 當前裁決（本群姿態）", invalidation: "隨季度產業數據重判",
+     supersedes: null, validation_experiment_id: null, notes: ""}

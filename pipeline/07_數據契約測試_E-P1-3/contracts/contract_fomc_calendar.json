@@ -1,0 +1,18 @@
+{
+  "contract_id": "fomc_calendar@1.0.0",
+  "kind": "json",
+  "artifact_glob": "calendar/fomc_calendar.json",
+  "allow_empty": false,
+  "min_files": 1,
+  "required_keys": ["calendar", "source", "meetings"],
+  "list_rules": {
+    "meetings": {
+      "min_len": 1,
+      "item_required_keys": ["date_start", "date_end"],
+      "item_rules": {
+        "date_start": {"format_date": true},
+        "date_end": {"format_date": true}
+      }
+    }
+  }
+}

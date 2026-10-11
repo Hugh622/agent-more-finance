@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paper Trading v2 ＋ Event Replay 十二周路线图 v1.0</title>
+<style>
+:root{--bg:#0d1117;--card:#161b22;--card2:#1c2330;--bd:#30363d;--gold:#d4af37;--grn:#3fb950;--red:#f85149;--blu:#58a6ff;--org:#f0883e;--mut:#8b949e;--tx:#e6edf3;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:"PingFang TC","Microsoft JhengHei",sans-serif;}
+body{background:var(--bg);color:var(--tx);padding:28px 18px;max-width:1080px;margin:0 auto;line-height:1.7;}
+h1{font-size:25px;color:var(--gold);border-bottom:2px solid var(--gold);padding-bottom:10px;margin-bottom:6px;}
+h2{font-size:18px;color:var(--gold);margin:24px 0 10px;border-left:4px solid var(--gold);padding-left:10px;}
+.sub{color:var(--mut);font-size:13px;margin-bottom:20px;}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:16px 18px;margin:12px 0;}
+.card2{background:var(--card2);}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0;}
+th{background:#21262d;color:var(--gold);padding:8px 10px;text-align:left;border:1px solid var(--bd);}
+td{padding:7px 10px;border:1px solid var(--bd);vertical-align:top;}
+tr:nth-child(even) td{background:#11161d;}
+.line{font-size:12px;color:var(--mut);}
+.hl{color:var(--gold);font-weight:bold;}
+.g{color:var(--grn);}.b{color:var(--blu);}.o{color:var(--org);}.r{color:var(--red);}
+.gantt{display:flex;gap:4px;margin:3px 0;font-size:11px;}
+.gseg{flex:1;padding:4px 2px;text-align:center;border-radius:4px;background:#21262d;color:var(--mut);}
+.gseg.on{background:rgba(212,175,55,.25);color:var(--gold);border:1px solid var(--gold);}
+.gseg.mid{background:rgba(88,166,255,.2);color:var(--blu);border:1px solid var(--blu);}
+.gseg.key{background:rgba(63,185,80,.2);color:var(--grn);border:1px solid var(--grn);}
+footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--bd);color:var(--mut);font-size:12px;}
+</style>
+</head>
+<body>
+
+<h1>Paper Trading v2 ＋ Event Replay 十二周路线图 v1.0（定稿）</h1>
+<div class="sub">签发：首席投资策略师｜2026-10-11｜采纳终审⑥：认同「若只做一件事先做 Paper Trading v2＋Event Replay」核心（正面回应两大痛点：事件层 80% vs 价格层 36% 断层无法归因、规则多但零正期望值证据）｜滑窗合并微调已吸收：第 5-6 周任务对兼职式团队偏紧，允许与第 7-8 周滑窗合并｜<span class="hl">总验收锚定 G2＋</span>（12/18-20 五闸全过＋用户明示批准）</div>
+
+<h2>一、为什么是它（终审论据备忘）</h2>
+<div class="card">
+<p>无 lineage 的回测＝自我欺骗——投资顺序锁定为：<b>lineage（数据冻结层）→ 台账引擎（九表信号/成交分离）→ 样本外验证（回放＋回测）→ 红队（Validation Gate）→ 风险模型分期 → 极小额</b>。教学仓（极小额受控试验）位于链条最末端，样本量不足前不启动；「6-12 个月影子期」的本质约束是样本量不是时长（触发正确率样本 ≥10 已写死，低频规则自然跨季累积）。</p>
+</div>
+
+<h2>二、十二周总览（W1 起点＝2026-10-12 周一）</h2>
+<table>
+<tr><th>周</th><th>日期</th><th>主线任务</th><th>交付/节点</th><th>依赖</th></tr>
+<tr><td><b>W1</b></td><td>10/12-18</td><td>基线冻结：台账 v1.0→v2 收编（10/16 首次周检＋drawdown policy 生效）；历史台账 reason code 打标启动（13 令＋15 未决仓）；<b>信号/成交分离规格定稿（Q-P1-3）</b></td><td>台账 v2＋规格件</td><td>C-G-2✅</td></tr>
+<tr><td><b>W2</b></td><td>10/19-25</td><td>数据冻结层建成：33 份 manifest 补 checksum/code commit（Q-P1-1）；Manifest v2 全量切换（E-P1-1）；试验登记册上线（Q-P0-1）</td><td>冻结层＋登记册首录</td><td>E-P0-2</td></tr>
+<tr><td><b>W3</b></td><td>10/26-11/1</td><td>Event Replay 引擎开发启动（E0 全日历回放框架）；<span class="r">10/27-29 FOMC＋四财报只减不加——纸面记录照常，是回放引擎第一批活体样本</span></td><td>回放引擎 MVP 骨架</td><td>W2</td></tr>
+<tr><td><b>W4</b></td><td>11/2-8</td><td><span class="hl">G1 首检（11/6-7）</span>：C7/C9/C12 三条款首验＋P0 项完成度检视（工程线四项＋治理线六件全量核销）</td><td>G1 检视报告</td><td>—</td></tr>
+<tr><td><b>W5-W7</b></td><td>11/9-29</td><td><b>事件回放执行期（滑窗合并窗）</b>：三周完成原定 5-8 周任务——①事件窗族回放（扩 E0 全日历）②P0 突破确认 vs 回调接反事实③「随机等待 N 日」基准组④回测结论走 Validation Gate 首次实战盲审。节点：11/3 中期选举、11/14 康方 PDUFA 并入回放样本</td><td>回放结果包＋盲审件</td><td>W2-W4</td></tr>
+<tr><td><b>W8</b></td><td>11/30-12/6</td><td>回放结果首席收口→<b>规则修正提案 v1.4 候选清单</b>（每项须挂试验登记册编号＋盲审件）；<span class="hl">12/6 23×5 新制上线，纸面 v2 监控并轨</span></td><td>v1.4 候选清单</td><td>W5-W7</td></tr>
+<tr><td><b>W9</b></td><td>12/7-13</td><td>三源校准报告（12/8-9）；v1.4 候选走两轮同向程序预审；教学仓准入链预检（极小额框架、用户明示前置）</td><td>校准报告＋预审意见</td><td>W8</td></tr>
+<tr><td><b>W10</b></td><td>12/14-20</td><td><span class="hl">G2 中期验收（12/18-20）：五闸全量＋新增四项（§四）</span>——总验收锚定 G2＋</td><td>G2 验收报告</td><td>全链</td></tr>
+<tr><td><b>W11-W12</b></td><td>12/21-1/3</td><td><b class="g">G2 全过＋用户明示批准→教学仓准入链启动</b>（极小额、首单走全盲审＋用户签发）；<b class="r">未过→回炉延 4 周</b>（回炉条件按五闸验收门槛逐项复跑）；12 月 MU FQ1 纳入首批教学仓样本池</td><td>准入/回炉决定书</td><td>G2</td></tr>
+</table>
+
+<div class="card card2">
+<b class="o">甘特速览：</b>
+<div class="gantt"><div class="gseg on">W1 基线</div><div class="gseg on">W2 冻结层</div><div class="gseg on">W3 引擎</div><div class="gseg key">W4 G1</div><div class="gseg mid">W5-7 回放(滑窗)</div><div class="gseg on">W8 收口</div><div class="gseg on">W9 预审</div><div class="gseg key">W10 G2</div><div class="gseg on">W11-12 准入/回炉</div></div>
+<span class="line">三段论：前 4 周铺地基（lineage＋引擎），中 3 周产证据（回放＋盲审），后 5 周收口验收（v1.4→G2→准入/回炉）。全程不占用例行盘面守护与日历节点作业。</span>
+</div>
+
+<h2>三、信号/成交分离（v2 核心，供 Q-P1-3 对齐）</h2>
+<div class="card">
+<table>
+<tr><th>层</th><th>内容</th><th>落地</th></tr>
+<tr><td>Signal 层</td><td>触发即冻结：as_of_time（UTC+HKT）＋rule_id＋data_run_id（snapshot id）＋版本号</td><td>MySQL 九表 signal 表（已建，W1 收编正式）</td></tr>
+<tr><td>Fill 层</td><td>paper_fill 假设内建三地微结构：<b>16:00 ET OCP 收盘竞价（C1 明文锚）／港·A 集合竞价段／隔夜段 'T' 条件不具 Last Sale 资格</b>（禁按隔夜价成交）</td><td>12/6 新制监控并轨</td></tr>
+<tr><td>可复现</td><td>同一冻结层重跑，回放结果必须 100% 一致；不一致=引擎 <code>RULE_VIOLATION</code></td><td>W5-W7 验收项</td></tr>
+</table>
+</div>
+
+<h2>四、总验收表（锚定 G2＋）</h2>
+<table>
+<tr><th>验收项</th><th>门槛</th><th>性质</th></tr>
+<tr><td>触发正确率</td><td>≥65%（样本 ≥10；低频规则跨季累积）</td><td>五闸原验收</td></tr>
+<tr><td>纪律遵守率</td><td>≥95%（含 drawdown L2 触发处置及时率）</td><td>五闸原验收</td></tr>
+<tr><td>滑点偏差</td><td>≤0.5% 容差内占比 ≥80%</td><td>五闸原验收</td></tr>
+<tr><td>规则零失效</td><td>台账全量零 <code>RULE_VIOLATION</code> 未结案</td><td>五闸原验收</td></tr>
+<tr><td>覆盖矩阵</td><td>212 只 100% 状态枚举化（E-P0-4）</td><td>五闸原验收</td></tr>
+<tr><td>信号/成交分离执行率</td><td>100%（台账 v2 全部记录走分离层，零混记）</td><td><b class="hl">新增</b></td></tr>
+<tr><td>回放可复现率</td><td>100%（冻结层重跑一致）</td><td><b class="hl">新增</b></td></tr>
+<tr><td>盲审覆盖率</td><td>100%（进场/仓位/规则变更三类全走 Validation Gate）</td><td><b class="hl">新增</b></td></tr>
+<tr><td>Override 台账</td><td>抽检零漏记（≥10% 抽检）＋季度增值分析首报</td><td><b class="hl">新增</b></td></tr>
+</table>
+
+<div class="card">
+<p><b class="o">回炉条款（与 G2 绑定）：</b>G2 任一项未过→教学仓推迟 4 周，回放窗口滑入 W13-W16 复跑，期间新增验证一律走快验通道；连续两轮 G2 未过→触发框架降版审查（v1.4 收回候选）＋用户终审。</p>
+<p class="line">说明：本路线图与 10/12 起跑的复盘复检机制 W0 完全并轨，不新增会议；全部验收锚点＝现行 G1/G2 日历，零额外日历负担。</p>
+</div>
+
+<footer>首席投资策略师 签发 · 2026-10-11｜路线图 v1.0 定稿（滑窗合并＋G2+ 锚定）｜纸面推演口径，教学仓启动须用户明示批准，不构成投资建议</footer>
+</body>
+</html>

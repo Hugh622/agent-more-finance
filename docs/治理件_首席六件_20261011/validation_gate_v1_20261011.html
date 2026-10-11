@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>轮值红队 Validation Gate 轻量版设计 v1.0</title>
+<style>
+:root{--bg:#0d1117;--card:#161b22;--card2:#1c2330;--bd:#30363d;--gold:#d4af37;--grn:#3fb950;--red:#f85149;--blu:#58a6ff;--org:#f0883e;--mut:#8b949e;--tx:#e6edf3;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:"PingFang TC","Microsoft JhengHei",sans-serif;}
+body{background:var(--bg);color:var(--tx);padding:28px 18px;max-width:1080px;margin:0 auto;line-height:1.7;}
+h1{font-size:25px;color:var(--gold);border-bottom:2px solid var(--gold);padding-bottom:10px;margin-bottom:6px;}
+h2{font-size:18px;color:var(--gold);margin:24px 0 10px;border-left:4px solid var(--gold);padding-left:10px;}
+.sub{color:var(--mut);font-size:13px;margin-bottom:20px;}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:16px 18px;margin:12px 0;}
+.card2{background:var(--card2);}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0;}
+th{background:#21262d;color:var(--gold);padding:8px 10px;text-align:left;border:1px solid var(--bd);}
+td{padding:7px 10px;border:1px solid var(--bd);vertical-align:top;}
+tr:nth-child(even) td{background:#11161d;}
+.line{font-size:12px;color:var(--mut);}
+.hl{color:var(--gold);font-weight:bold;}
+.g{color:var(--grn);}.b{color:var(--blu);}.o{color:var(--org);}.r{color:var(--red);}
+.step{display:flex;gap:10px;margin:8px 0;}
+.stepn{flex:0 0 30px;height:30px;border-radius:50%;background:var(--gold);color:#000;font-weight:bold;display:flex;align-items:center;justify-content:center;}
+footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--bd);color:var(--mut);font-size:12px;}
+</style>
+</head>
+<body>
+
+<h1>轮值红队 Validation Gate 轻量版设计 v1.0</h1>
+<div class="sub">签发：首席投资策略师｜2026-10-11｜定位：四道关卡中唯一真正新增的 Validation Gate——现有人数不设专职验证者，采轮值红队制｜总纲：不复制持牌机构架构（SFC/IOSCO 为方向参照非合规义务），防过度工程化拖垮响应速度｜宏观组织线据本件写入盲审信封制（O-G-1/3/5）</div>
+
+<h2>§1 两条设计判断（终审在案）</h2>
+<div class="card">
+<p><b>① 盲审防得了流程性从众，防不了系统性盲点</b>——五腿同模型同上下文，角色轮换的真正价值是「强制反证搜索」而非「独立第二意见」。因此本设计的重心是红队任务单（§4 反证清单），不是保密仪式。</p>
+<p><b>② 数据源分离比角色盲审更有效</b>——XOM/CVX 区带误标、药明代码混淆两案皆属数据同源同错。故本 Gate 与 O-G-2 联动：红队验证必须基于签名快照＋品质评分（snapshot id），引用不带叙事的原始数据层复算，而非引用研究腿转述。</p>
+</div>
+
+<h2>§2 适用范围（分级，与 O-G-5 一字对齐）</h2>
+<table>
+<tr><th>等级</th><th>适用对象</th><th>要求</th></tr>
+<tr><td><span class="hl">全盲审</span></td><td>进场决策／仓位变更／规则变更（C 系列增修、闸值调整、政策级文件如 drawdown policy）</td><td>五步全流程（§3）；G1/G2 验收材料必经</td></tr>
+<tr><td><span class="hl">快验</span></td><td>首席统合报告中的关键数值与仲裁（≥3 处数据仲裁的统合件）</td><td>红队只复算数值与条款冲突检查，24h 内，输出 ≤400 字</td></tr>
+<tr><td>不适用</td><td>日度扫描、例行数据作业、缺口补全执行、归档动作</td><td>不走盲审，靠既有双源核验 SOP；滥用盲审=过度工程化，管理员可拦</td></tr>
+</table>
+
+<h2>§3 五步流程</h2>
+<div class="card">
+<div class="step"><div class="stepn">1</div><div><b class="b">封存（首席装信封）</b>：结论/规则定稿后，首席将论证全文＋数据引用（只含 snapshot id，不含撰写方姓名与身份推断线索）装入「盲审信封」，交管理员登记编号。</div></div>
+<div class="step"><div class="stepn">2</div><div><b class="b">派发（管理员按轮值表）</b>：按 §5 轮值表指定红队；利益回避自动校验——任何一方不得审自己撰写/主导的结论。</div></div>
+<div class="step"><div class="stepn">3</div><div><b class="b">盲审（红队产出《验证报告》）</b>：只做四件事——反证搜索（§4 清单）／数据复算（基于 snapshot id 原始层）／条款冲突检查（与现行 C 系列与三闸五禁对照）／内部一致性检查。结论三选一：<span class="g">通过</span>／<span class="o">有保留（附条件）</span>／<span class="r">不通过（附反证）</span>。字数 ≤800。</div></div>
+<div class="step"><div class="stepn">4</div><div><b class="b">解盲（首席开信封）</b>：比对红队结论与原结论。一致→进入第 5 步；分歧→分歧点走「条件化表态＋首席仲裁」，主码 <code>MODEL_DISAGREEMENT</code> 入判例库。</div></div>
+<div class="step"><div class="stepn">5</div><div><b class="b">终审签发（首席签核）</b>：签发意见须回应红队全部保留点；盲审报告＋解盲记录＋签发件三件套归档（台账引用），未过盲审的规则变更不得写入条款库版本号。</div></div>
+</div>
+
+<h2>§4 红队任务单（固定四查）</h2>
+<div class="card card2">
+<table>
+<tr><th>查</th><th>内容</th><th>判例锚</th></tr>
+<tr><td>反证搜索</td><td>主动找「结论不成立」的证据与反面情景，至少列 3 条反面证据或反例尝试</td><td>「条件结构＞单一信号」：银娱金叉裸奔案</td></tr>
+<tr><td>数据复算</td><td>抽 ≥3 个关键数值从 snapshot id 原始层独立重算</td><td>XOM 168.94 双腿交叉复核案</td></tr>
+<tr><td>条款冲突</td><td>与现行条款库（v1.3 全部 25 条）逐一对照，报告矛盾</td><td>C17 刻度误植仲裁案（40%→12% 口径）</td></tr>
+<tr><td>一致性</td><td>结论与自身论据是否自洽；有无循环引用；有无未标注单源</td><td>港股 OHLC 单源明示义务案</td></tr>
+</table>
+</div>
+
+<h2>§5 轮值表 v1.0（2026-10 起）</h2>
+<table>
+<tr><th>被审对象</th><th>红队轮任</th><th>备注</th></tr>
+<tr><td>宏观腿结论／量化腿规则与回测</td><td>通用助手 ↔ 全栈开发 逐次轮换（管理员登记次序）</td><td>通用=文本与口径强项；全栈=数据与代码强项，按被审件性质侧重分工</td></tr>
+<tr><td>首席规则草案/统合件</td><td>同上轮任；重大件可双红队（通用＋全栈并行）</td><td>双红队仅用于 G 验收材料与政策级文件</td></tr>
+<tr><td>工程线交付（全栈）</td><td>量化腿任红队（代码与单测复验）</td><td>全栈件走工程验收链，本表仅列方法学相关交叉</td></tr>
+<tr><td>回避</td><td>撰写方一律回避；利益相关（自评件）由首席指定轮替</td><td>—</td></tr>
+</table>
+
+<h2>§6 时限、轻量边界与失效条款</h2>
+<div class="card">
+<p><b>时限：</b>全盲审 24h 内交付；事件窗（10/27-29 类）可压缩至 4h（只做数据复算＋条款冲突两项）；超时首席可跳过盲审先签发，但必须在台账标注 <code>SKIPPED_VALIDATION</code> 并于 48h 内补验，连续两次跳过→管理员上报用户。</p>
+<p><b>轻量边界：</b>报告 ≤800 字、清单式、不写套话；无专职编制、无新增会议（盲审结果并入周检例会）；工具零新增（群聊＋台账即可运转）。</p>
+<p><b>失效条款：</b>红队连续三次「有保留/不通过」全被终审采纳推翻且事后证明红队正确率低于 50%→触发红队机制复审（本席出复审报告），防盲审沦为橡皮章或反向拍马。</p>
+<p><b>首轮排期：</b>首个全盲审对象＝本席《drawdown policy v1.0》（已随发），红队＝全栈开发，时限 10/13 周检前；首个双红队对象＝G1（11/6-7）验收材料。</p>
+</div>
+
+<footer>首席投资策略师 签发 · 2026-10-11｜Validation Gate v1.0｜宏观组织线 O-G-1/3/5 修订须与本件一字对齐｜纸面推演口径，不构成投资建议</footer>
+</body>
+</html>

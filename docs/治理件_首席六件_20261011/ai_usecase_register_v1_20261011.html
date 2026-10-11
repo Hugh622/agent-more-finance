@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Use-Case Register 黄金题册 v1.0（40 题起步）</title>
+<style>
+:root{--bg:#0d1117;--card:#161b22;--card2:#1c2330;--bd:#30363d;--gold:#d4af37;--grn:#3fb950;--red:#f85149;--blu:#58a6ff;--org:#f0883e;--mut:#8b949e;--tx:#e6edf3;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:"PingFang TC","Microsoft JhengHei",sans-serif;}
+body{background:var(--bg);color:var(--tx);padding:28px 18px;max-width:1080px;margin:0 auto;line-height:1.6;}
+h1{font-size:25px;color:var(--gold);border-bottom:2px solid var(--gold);padding-bottom:10px;margin-bottom:6px;}
+h2{font-size:18px;color:var(--gold);margin:22px 0 10px;border-left:4px solid var(--gold);padding-left:10px;}
+.sub{color:var(--mut);font-size:13px;margin-bottom:20px;}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:14px 16px;margin:12px 0;}
+table{width:100%;border-collapse:collapse;font-size:12.5px;margin:10px 0;}
+th{background:#21262d;color:var(--gold);padding:7px 9px;text-align:left;border:1px solid var(--bd);}
+td{padding:6px 9px;border:1px solid var(--bd);vertical-align:top;}
+tr:nth-child(even) td{background:#11161d;}
+.line{font-size:12px;color:var(--mut);}
+.hl{color:var(--gold);font-weight:bold;}
+.g{color:var(--grn);}.b{color:var(--blu);}.o{color:var(--org);}.r{color:var(--red);}
+code{background:#21262d;padding:1px 6px;border-radius:4px;font-size:11.5px;color:var(--org);}
+footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--bd);color:var(--mut);font-size:12px;}
+</style>
+</head>
+<body>
+
+<h1>AI Use-Case Register 黄金题册 v1.0 · 40 题起步</h1>
+<div class="sub">签发：首席投资策略师｜2026-10-11｜依据：终审裁定④「判例库转考题，30-50 题先跑＋滚动增补」（100-300 题不必一次建成）｜用途：①新会话冷启动自检 ②规则变更前的黄金题回归评测 ③判例防遗忘机制｜每题四栏：题面（场景）／标准处置（答案要点）／判例锚／对应 reason code</div>
+
+<div class="card">
+<b class="hl">滚动增补机制（三条）：</b>①每起一单事故入册一题（随复盘收口即时转题，不等季度）；②每题必须挂现行判例锚，无判例不立题；③回归评测规则——任何规则变更/框架升版（v1.3→v1.4）签发前，抽 10 题回测自检，答错即冻结签发。
+</div>
+
+<h2>一、DATA_CONFLICT 类（Q01-Q05）</h2>
+<table>
+<tr><th>编号</th><th>题面</th><th>标准处置</th><th>判例锚</th></tr>
+<tr><td>Q01</td><td>某报告把「199.6-211 回踩区」标给 XOM，而 XOM 现价 168.94，报告同时称油企强势无跌势记录。</td><td>先验历史轨迹：XOM 一年内从未在 199-211 交易→判定区带实为 <b>CVX</b>（收 211.98 入带上沿）；立即勘误、双腿交叉复算（260 根全量）、判例入库并生成代码校验题。</td><td>10/10 池子年检 XOM/CVX 区带误标案</td></tr>
+<tr><td>Q02</td><td>GLDM 解禁线出现 85.09 与 85.29 两个值，分属 10/9 两份文档。</td><td>定性=同源异时点（9/26 当日 50MA vs 9/28 冻结值）非矛盾；定案 <b>85.29 静态冻结</b>＋50MA 拐平双确认；旧值归档历史锚；移动球门禁令：解禁线不得随滑动均值漂移。</td><td>10/9 GLDM 口径漂移案＋首席四细则终裁</td></tr>
+<tr><td>Q03</td><td>日经 225 从备用源读到 44,946，与常识区间严重背离（官方 65,877）。</td><td>官方一手源优先，缓存源拉黑；新增校验规则：重大指数须过「历史区间带」合理性复核，超带数据拒收并报 <code>DATA_CONFLICT</code>。</td><td>N225 陈旧缓存案（外部评审点名在案）</td></tr>
+<tr><td>Q04</td><td>巴郡现金两个数：$381.6B 与 $397.4B，被外部文档称为「口径差」。</td><td>不同报告期（2025Q3 vs 2026Q1）非口径差；统一引用最新官方 10-Q＝<b>$365.5B（2026Q2）</b>；教训：先查报告期再判口径。</td><td>10/9 事实核查定案</td></tr>
+<tr><td>Q05</td><td>同一 ETF 两源价差 0.2%（腾讯未调整 vs Yahoo adjusted）。</td><td>维持全体系「未调整口径自算」原则；线值（50MA/解禁线）全部同口径；引入 adjusted 须整体重算，禁止混口径比较。</td><td>GLDM 口径脚注（在案）</td></tr>
+</table>
+
+<h2>二、MODEL_DISAGREEMENT 类（Q06-Q10）</h2>
+<table>
+<tr><th>编号</th><th>题面</th><th>标准处置</th><th>判例锚</th></tr>
+<tr><td>Q06</td><td>1816 标的：宏观腿基本面绿灯，技术腿量价硬伤（量比异常）。</td><td>技术否决权——量价硬伤先于基本面绿灯，等修复再议；分歧入判例库。</td><td>1816 宏观×技术分歧案</td></tr>
+<tr><td>Q07</td><td>NRG：宏观黄灯（AI 电力刚需叙事），技术腿距高 -43.7% 证伪。</td><td>取严者——执行线优先；黄灯叙事挂观察不挂仓位。</td><td>10/9 叙事扫描 NRG 仲裁</td></tr>
+<tr><td>Q08</td><td>宏观腿提名网安 3 只回踩限价，首席裁定加=0（四闸近满）。</td><td>闸门约束优先于提名；提名降级为「回踩限价资格」非敞口；闸满=零自由加仓、新仓=先减后加。</td><td>10/10 池子年检仲裁</td></tr>
+<tr><td>Q09</td><td>OpenAI 收入缺口事件：宏观定性「股权→信贷端跃迁」，量化判「杀β不杀α」。</td><td>分层双向采纳——定性采宏观×冲击采量化（半导体/存储收紧、AI 软件安全原判不变）；不各让一半和稀泥。</td><td>10/9 首席收口三案仲裁之一</td></tr>
+<tr><td>Q10</td><td>MU 财报后：数据签名（GM 环比回落自引）吻合判定，价格签名（一周 +9%）反向。</td><td>拆分记账不整体判对错：数据签名✅价格签名❌分账；后续触发线以「数据签名+价格确认」双条件设计。</td><td>9 月复盘 MU 拆分判决</td></tr>
+</table>
+
+<h2>三、HUMAN_OVERRIDE 类（Q11-Q15）</h2>
+<table>
+<tr><th>编号</th><th>题面</th><th>标准处置</th><th>判例锚</th></tr>
+<tr><td>Q11</td><td>用户明示「finnhub key 不作废不轮换，安全我兜底」。</td><td>尊重裁定（效力最高），保留<b>密钥管理规范化</b>（env 注入＋运行时擦除＋扫描拦截）；override 入台账（OV 编号＋validity=限期＋review_due）；残余风险披露留痕。</td><td>10/11 用户三项裁定</td></tr>
+<tr><td>Q12</td><td>用户要求在 C17 主题闸已用 11/12 时继续加仓主题股。</td><td>闸门只可用户明示破——须逐次明示、逐次记录 override＋风险披露；无明示一律拒绝执行。</td><td>「破闸需用户明示」条款</td></tr>
+<tr><td>Q13</td><td>首席欲推翻宏观腿 XOM 四态结论。</td><td>改判必须附独立复算证据（量化腿全量核验），不得凭直觉；改判全程留痕并回注报告勘误。</td><td>10/10 XOM/CVX 改判案</td></tr>
+<tr><td>Q14</td><td>用户否决框架 v1.3 某项执行面改动。</td><td>一句否决立即回退＋supersedes 链记录＋复效需新证据（两轮同向）；否决权不设时限。</td><td>用户保留否决权条款（在案）</td></tr>
+<tr><td>Q15</td><td>事件窗盘中出现 L2 级回撤，周检未到。</td><td>紧急通道（drawdown policy §4.4）：当值腿可先执行「新仓冻结」单动作，48h 内补记录，其余处置归周检——防临时裁量扩大化。</td><td>Drawdown Policy v1.0 §4.4</td></tr>
+</table>
+
+<h2>四、EXECUTION_SLIP 类（Q16-Q20）</h2>
+<table>
+<tr><th>编号</th><th>题面</th><th>标准处置</th><th>判例锚</th></tr>
+<tr><td>Q16</td><td>美股三格区间（MU 980-1000 等）全部落空，最强者差 1.1% 踏空。</td><td>记 <code>EXECUTION_SLIP</code> 驱动修法：强趋势格=突破确认＋移动跟随（C22 修法），回踩资格仅留弱势修复格；不懊悔不追价。</td><td>9 月复盘介入区 2/9 案</td></tr>
+<tr><td>Q17</td><td>8 月止盈腿 0/3 全落空（目标价系统性过远）。</td><td>升格 C20 止盈首阻力位定价制；三段式：首阻力兑现 1/3＋移动跟随＋末段规则止盈。</td><td>8 月复盘止盈全落空案</td></tr>
+<tr><td>Q18</td><td>止损线已破但纸面台账未及时处置。</td><td>48h 内补记＋归因三分（数据延迟/流程断点/纪律违规），五闸「纪律遵守」扣分；连续两次→行为复盘专案。</td><td>五闸纪律考核口径</td></tr>
+<tr><td>Q19</td><td>纸面成交价与计划挂价差 0.8%（超 0.5% 容差）。</td><td>以容差带内次优价假设重算；超带记 slip；滑点偏差率计入 G2 验收（≤0.5% 占比≥80%）。</td><td>复盘复检机制滑点检验条款</td></tr>
+<tr><td>Q20</td><td>MRNA 等回踩 114.5 未到，随后 +47.8% 主升。</td><td>与 Q16 同构（两轮同向）→升格正式条款；「等待回踩」仅适用于回调节奏确认标的，强趋势标的一律右侧。</td><td>8 月复盘 MRNA 踏空案</td></tr>
+</table>
+
+<h2>五、RULE_VIOLATION 类（Q21-Q25）</h2>
+<table>
+<tr><th>编号</th><th>题面</th><th>标准处置</th><th>判例锚</th></tr>
+<tr><td>Q21</td><td>报告引用「02269 收 51.40」，实为午间快照（真实收市 51.90）。</td><td>立 C23 收市口径机器校验：任何引用「收盘价」必须标注数据时点与源；引用不带时点=违规。</td><td>9 月复盘数据硬伤案</td></tr>
+<tr><td>Q22</td><td>测试报告显示「11 passed」但 discover 收集为 0 条。</td><td>判定 CI 假绿灯：固定 pytest runner＋断言收集数&gt;0；假绿灯记工程 <code>RULE_VIOLATION</code>。</td><td>10/11 外部评审假绿灯案</td></tr>
+<tr><td>Q23</td><td>拟议计划将使四闸（33/36）越过上限。</td><td>五闸审计器 audit_plan() 输入即机检，超限判 BLOCK；无豁免，只可走 override 流程（Q12）。</td><td>五闸＋C17 刻度仲裁案</td></tr>
+<tr><td>Q24</td><td>连续两次跳过 Validation Gate 且未标注。</td><td>SKIPPED_VALIDATION 必须留痕＋48h 补验；连续两次→管理员上报用户；盲审覆盖率计入 G 验收（100%）。</td><td>Validation Gate v1.0 §6</td></tr>
+<tr><td>Q25</td><td>发现台账 Markdown 与状态库两处数字不一致。</td><td>单写者铁律：MySQL 为唯一事实主档，Markdown 仅阅读视图；以库为准修正视图，双写不同步记违规。</td><td>10/11 双轨定案</td></tr>
+</table>
+
+<h2>六、GAP_FILL 类（Q26-Q30）</h2>
+<table>
+<tr><th>编号</th><th>题面</th><th>标准处置</th><th>判例锚</th></tr>
+<tr><td>Q26</td><td>港股日内 OHLC 需第二源，实测 16 条免费通道全灭。</td><td>无法补全须明示收口：维持单源＋明示标注＋内部一致性证据链（跨日双拉零漂移/prev_close 校验），不硬编不可靠第二源。</td><td>A10 港股第二源收口案</td></tr>
+<tr><td>Q27</td><td>JGB 官方 print 日文路径 404，暂以备援 1.652 交付。</td><td>持续补拉→英文路径复通后官方值回填（9/28=1.689）＋缺口语径脚注；备援偏离 +69bp 证实弃用正确。</td><td>10/9 JGB 回填案</td></tr>
+<tr><td>Q28</td><td>累计 75 条缺口/待核项散落各报告。</td><td>总清单入册＋状态机（已补全/已闭卷/维持不补/无法补全）＋责任腿逐条消空，零无主项；「维持不补」必须附原裁决依据。</td><td>10/9 缺口总清单＋终局收口</td></tr>
+<tr><td>Q29</td><td>SPCX 解禁日「10 月底 vs 11/17」两说并存。</td><td>以官方 424B4 分级表为准：10/9、10/24 各 3.28 亿股已生效/将生效；第三方估计（11/17）不入模型。</td><td>10/9 SPCX 解禁定案</td></tr>
+<tr><td>Q30</td><td>「中国 AI 安全市场 $48B」无 Gartner/IDC 采信。</td><td>缺口明示不编数；证据分级降权（中文机构广义口径降级）；报告单列「证据缺口声明」。</td><td>AI 安全报告 R7 缺口声明</td></tr>
+</table>
+
+<h2>七、LESSON_LEARNED 类（Q31-Q35）</h2>
+<table>
+<tr><th>编号</th><th>题面</th><th>标准处置</th><th>判例锚</th></tr>
+<tr><td>Q31</td><td>康希诺 A：62-64 回调区精准触及后 +73%；银娱：金叉裸奔 -12.7%。</td><td>提炼「条件结构＞单一信号」：两重条件（价格到位＋承接确认）才开仓，单指标裸奔禁入。</td><td>8 月复盘最准/最错对比案</td></tr>
+<tr><td>Q32</td><td>9 月规则执行层 10/10 全胜，主动回踩介入 2/9 全败。</td><td>被动防护与主动介入分开计分；修法只改介入格不动防护规则——「把错误更一致地执行」也是资产。</td><td>9 月复盘跨期裁决</td></tr>
+<tr><td>Q33</td><td>SPCX 课题证伪线触发后，标的新驱动突破上行。</td><td>事件证伪≠标的证伪：课题证伪线杀逻辑×执行线保仓位，分流处置。</td><td>9/15 SPCX 证伪案</td></tr>
+<tr><td>Q34</td><td>中海油/神华/阿里逻辑兑现但回报为负。</td><td>「好逻辑≠好回报」：定价层断裂单独归因，不混判事件层能力。</td><td>8 月复盘跨层仲裁</td></tr>
+<tr><td>Q35</td><td>ZETA 清仓后 +21.5%、BNTX 缺口后反弹——两例同构。</td><td>按两轮同向程序升格「清仓复活名单」机制（观察窗机制，非个案回补）；单一案不修规则。</td><td>10/9 清仓复活名单立项</td></tr>
+</table>
+
+<h2>八、REGIME_CHANGE 类（Q36-Q40）</h2>
+<table>
+<tr><th>编号</th><th>题面</th><th>标准处置</th><th>判例锚</th></tr>
+<tr><td>Q36</td><td>AI 十信号评分 3.5→4.5 跨阈。</td><td>状态机 WATCH→ALERT 跃迁→C17 主题闸 20%→12% 刻度联动；<b>跨阈窄幅摆动（|Δ|≤1 分）不翻转</b>仲裁规则同记。</td><td>C17 刻度仲裁案</td></tr>
+<tr><td>Q37</td><td>10Y 收 5.31% 越红线 B（5.30%）。</td><td>执行闸 36%→32% 机械执行；改判须首席明示；与 drawdown L2 重叠时取严不叠加。</td><td>10/6 红线 B 触发案</td></tr>
+<tr><td>Q38</td><td>ADX&lt;20 阈值生效（whipsaw 环境确认）。</td><td>E1 假突破防护带启用：突破类新仓暂停、挂单收紧、假突破白名单机制（HPE 7pp 案）优先适用。</td><td>E1 生效＋C24 白名单案</td></tr>
+<tr><td>Q39</td><td>12/6 美股 23×5 新制生效。</td><td>监控钟两刻钟（10:00 隔夜开市/05:00 收盘裁决，冬令 HKT）；16:00 OCP 保留＝执行线数值全部不动；量能基线 20 日重算过渡；生效日锚「实际首夜 T-0」防滑动。</td><td>23h 课题终审七条</td></tr>
+<tr><td>Q40</td><td>月回撤 ≥10%（drawdown L3 触发）。</td><td>回炉：暂停一切新规则验证＋框架降版审查＋须用户明示恢复；环境跃迁引发的回炉记 <code>REGIME_CHANGE</code> 而非 <code>RULE_VIOLATION</code>。</td><td>Drawdown Policy v1.0 §2 L3</td></tr>
+</table>
+
+<div class="card">
+<b class="hl">已满编：40 题（8 类 × 5 题）</b>，落在本轮 30-50 题授权带内。下批增补来源：G1（11/6-7）复盘判例、23×5 新制 12/8-9 校准报告、Q-P2-1 回测首批结论。<span class="line">本册同时是 Validation Gate 红队任务单的隐性考卷——红队应能逐题作答。</span>
+</div>
+
+<footer>首席投资策略师 签发 · 2026-10-11｜AI Use-Case Register v1.0｜纸面推演口径，不构成投资建议</footer>
+</body>
+</html>

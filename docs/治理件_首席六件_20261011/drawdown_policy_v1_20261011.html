@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Drawdown Policy 正式条款 v1.0</title>
+<style>
+:root{--bg:#0d1117;--card:#161b22;--card2:#1c2330;--bd:#30363d;--gold:#d4af37;--grn:#3fb950;--red:#f85149;--blu:#58a6ff;--org:#f0883e;--mut:#8b949e;--tx:#e6edf3;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:"PingFang TC","Microsoft JhengHei",sans-serif;}
+body{background:var(--bg);color:var(--tx);padding:28px 18px;max-width:1080px;margin:0 auto;line-height:1.7;}
+h1{font-size:25px;color:var(--gold);border-bottom:2px solid var(--gold);padding-bottom:10px;margin-bottom:6px;}
+h2{font-size:18px;color:var(--gold);margin:24px 0 10px;border-left:4px solid var(--gold);padding-left:10px;}
+.sub{color:var(--mut);font-size:13px;margin-bottom:20px;}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:16px 18px;margin:12px 0;}
+.card2{background:var(--card2);}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0;}
+th{background:#21262d;color:var(--gold);padding:8px 10px;text-align:left;border:1px solid var(--bd);}
+td{padding:7px 10px;border:1px solid var(--bd);vertical-align:top;}
+tr:nth-child(even) td{background:#11161d;}
+.line{font-size:12px;color:var(--mut);}
+.hl{color:var(--gold);font-weight:bold;}
+.g{color:var(--grn);}.b{color:var(--blu);}.o{color:var(--org);}.r{color:var(--red);}
+.lvl{display:inline-block;padding:2px 10px;border-radius:6px;font-weight:bold;font-size:12px;}
+.l1{background:rgba(240,136,62,.15);color:var(--org);border:1px solid var(--org);}
+.l2{background:rgba(248,81,73,.15);color:var(--red);border:1px solid var(--red);}
+.l3{background:rgba(248,81,73,.3);color:#fff;border:1px solid var(--red);}
+.bar{height:14px;background:#21262d;border-radius:7px;overflow:hidden;margin:4px 0;}
+.bar>div{height:100%;border-radius:7px;}
+footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--bd);color:var(--mut);font-size:12px;}
+</style>
+</head>
+<body>
+
+<h1>Drawdown Policy 正式条款 v1.0（组合级周频回撤政策）</h1>
+<div class="sub">签发：首席投资策略师｜2026-10-11｜沿革：三地配置模板 v1.0 再平衡触发器「周回撤 5%」雏形 → 本件升格正式条款｜性质：组合级风控层，与标的/市场级三线预警（红 A/B/C）平行不替代｜全程纸面计算，首席可手工重算（可验证性硬约束）</div>
+
+<h2>§1 定义与计算口径</h2>
+<div class="card">
+<p><b>1.1 周回撤（Weekly Drawdown, WDD）</b>＝（本周内组合纸面净值最高水位 − 本周五收盘纸面净值）÷ 本周内最高水位最高水位×100%。取正值表述，触发线以「回撤幅度」比较（如 WDD ≥ 5%）。</p>
+<p><b>1.2 净值基准（纸面推演模式专用）：</b>以《纸面执行台账》P 序列假想净值为唯一基准；<span class="hl">空仓期（当前状态）以观察池等权指数代理组合</span>（权重＝A核心层 50%／B卫星层 30%／现金 20%），确保空仓阶段政策仍可演练。</p>
+<p><b>1.3 计算时点：</b>每周五收盘后（周检 SOP 固定步骤，首次 10/16）；事件窗（FOMC/财报扎堆周）内允许盘中临时计算但<b>处置动作仍以周检签发为准</b>，紧急情形按 §4.4。</p>
+<p><b>1.4 水位锚定防过敏：</b>以「周内最高水位」为锚，单日跳空造成的深度不重复累计；跨周水位滚动，不得人为重置抹平。</p>
+</div>
+
+<h2>§2 三级触发与动作表</h2>
+<table>
+<tr><th>级别</th><th>触发条件</th><th>强制动作（触发即执行，无需再议）</th><th>解级条件</th></tr>
+<tr>
+<td><span class="lvl l1">Level 1 · 警觉</span><br><span class="line">WDD ≥ 3%</span>
+<div class="bar"><div style="width:30%;background:var(--org)"></div></div></td>
+<td>周回撤达 3% 或单日组合纸面净值跌幅 ≥ 2%</td>
+<td>① 新仓冻结：纸面新挂单暂停（存量限价单不撤）；② 存量仓逐只复检止损线距离；③ 下次周检强制专项复盘并打标 <code>REGIME_CHANGE</code> 候审</td>
+<td>净值收复水位回撤 ≤1% 且维持两周，自动解级</td>
+</tr>
+<tr>
+<td><span class="lvl l2">Level 2 · 触发（本政策主条款）</span><br><span class="line">WDD ≥ 5%</span>
+<div class="bar"><div style="width:50%;background:var(--red)"></div></div></td>
+<td>周回撤达 5%（原雏形线正式化）</td>
+<td>① <b>权益天花板自动降一档</b>：现行执行闸 36%→32%（与红线 B 处置口径同构，叠加取低者）；② C17 主题闸收一档（ALERT 12%→LATE 8% 口径）；③ <b>高久期群组（SPCX+NOW+ZETA+ETH 类）强制减压 ≥1/2</b>；④ 复盘范围升级为「规则触发正确性审计」（五闸逐项过一遍）；⑤ 全员通报＋台账留痕（主码 <code>REGIME_CHANGE</code>）</td>
+<td>连续两周 WDD &lt;3% 且触发正确性审计无 <code>RULE_VIOLATION</code>，经首席签发解级</td>
+</tr>
+<tr>
+<td><span class="lvl l3">Level 3 · 回炉</span><br><span class="line">月回撤 ≥10% 或连续两周 L2</span>
+<div class="bar"><div style="width:80%;background:var(--red)"></div></div></td>
+<td>月回撤达 10%，或 Level 2 连续两周未解级</td>
+<td>① 暂停一切新规则验证与新试验登记（回测线冻结）；② 框架降版审查启动（对应现行「连续两轮回退 v1.2」回炉条款）；③ 须<span class="hl">用户明示批准</span>方可恢复（与 G2 实盘准入「用户明示」同款流程）</td>
+<td>用户明示＋整改清单闭环</td>
+</tr>
+</table>
+
+<h2>§3 与现行机制衔接（五条，防双重计分）</h2>
+<div class="card">
+<p><b>3.1 与三线预警：</b>红线 A（SPY 748.8 砍半线）/红线 B（10Y≥5.30%）/红线 C（清仓线簇）是<b>标的与市场级即时线</b>，本政策是<b>组合级周频线</b>。两者独立触发、动作叠加、取严者。红线 B 触发的执行闸下调与 L2 下调重叠时，只执行一次不叠加（取更严档）。</p>
+<p><b>3.2 与五闸验收：</b>L2 触发次数与处置及时率计入五闸「纪律遵守 ≥95%」考核；触发后 48h 内未完成规定动作记 <code>EXECUTION_SLIP</code>。</p>
+<p><b>3.3 与事件窗纪律：</b>10/27-29 类「只减不加」窗内触发的 L1/L2，归因复盘须标注事件因素，防止把事件冲击误判为规则失效（归因分流：事件冲击→<code>REGIME_CHANGE</code> 候审；规则未拦→<code>RULE_VIOLATION</code>）。</p>
+<p><b>3.4 与 G1/G2：</b>本政策自 10/16 首次周检起纳入周检 SOP；G2（12/18-20）验收含「政策全周期零漏触发」检查项。</p>
+<p><b>3.5 可验证性硬约束：</b>全部计算首席可手工重算（三档假设收入框架同款原则）；任何工程化实现（覆盖矩阵校验器）输出必须与手工重算一致，不一致以手工为准并立 <code>RULE_VIOLATION</code>。</p>
+</div>
+
+<h2>§4 防滥用与边界（四条）</h2>
+<div class="card">
+<p><b>4.1 不减码规则本身：</b>回撤触发只收紧仓位与节奏，不自动修改任何 C 系列条款与执行线数值——「升格只加纪律不加自由」镜像适用。</p>
+<p><b>4.2 空仓期演练有效：</b>空仓阶段以代理组合演练计算与流程，触发不产生真实动作但必须全流程留痕——政策肌肉记忆属 G2 验收前置。</p>
+<p><b>4.3 时间止损不冲突：</b>SPCX 10/7 类时间止损、个股阶梯减磅等存量规则照常执行，本政策不豁免也不替代。</p>
+<p><b>4.4 紧急通道：</b>事件窗盘中若触发相当于 L2 的深度（盘中临时计算），当值腿可先执行「新仓冻结」单动作，其余处置仍归周检——防临时裁量扩大化。</p>
+</div>
+
+<h2>§5 生效与复检</h2>
+<div class="card">
+<p><b>生效：</b>2026-10-16（首次周五周检）随台账 v2 收编同步生效。<b>复检：</b>每月末随月度复盘复检一次参数（3%/5%/10% 三线与解级条件），修订走 supersedes 链并附判例；未修订即视为追认。<b>版本：</b>v1.0，落库 <code>rules</code> 表 rule_id 收编序列（随 Q-P1-2）。</p>
+<p class="line">判例锚：ZETA 清仓后反弹 +21.5% 的「清仓类规则内生代价」在案终判——本政策同样声明：回撤触发的强制减压若遇 V 型反转，机会成本属政策内生代价，不做结果追责，只审计触发与执行正确性。</p>
+</div>
+
+<footer>首席投资策略师 签发 · 2026-10-11｜Drawdown Policy v1.0｜纸面推演口径，不构成投资建议</footer>
+</body>
+</html>

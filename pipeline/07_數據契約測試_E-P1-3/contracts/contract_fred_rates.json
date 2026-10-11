@@ -1,0 +1,20 @@
+{
+  "contract_id": "fred_rates@1.0.0",
+  "kind": "csv",
+  "artifact_globs": ["rates/credit_spread_hy.csv", "rates/fedfunds.csv", "rates/vix.csv"],
+  "allow_empty": false,
+  "min_files": 3,
+  "encoding": "utf-8-sig",
+  "required_columns": ["date", "value", "series_id", "fetched_at", "source"],
+  "optional_columns": ["source_level", "grade"],
+  "column_rules": {
+    "date": {"format_date": true},
+    "value": {"float_parse": true},
+    "series_id": {"non_empty": true}
+  },
+  "file_rules": {
+    "date_unique": true,
+    "date_sorted_asc": true,
+    "constant_per_file": ["series_id"]
+  }
+}
