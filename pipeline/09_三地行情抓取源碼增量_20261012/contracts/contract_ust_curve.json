@@ -1,0 +1,23 @@
+{
+  "contract_id": "ust_full_curve@1.0.0",
+  "kind": "csv",
+  "artifact_globs": ["rates/ust_full_curve.csv"],
+  "allow_empty": false,
+  "min_files": 1,
+  "encoding": "utf-8-sig",
+  "required_columns": ["date", "1 Mo", "3 Mo", "2 Yr", "5 Yr", "10 Yr", "30 Yr", "fetched_at", "source"],
+  "optional_columns": ["1.5 Month", "4 Mo", "6 Mo", "1 Yr", "20 Yr", "7 Yr", "3 Yr", "source_level", "grade"],
+  "column_rules": {
+    "date": {"format_date": true},
+    "1 Mo": {"float_parse": true},
+    "3 Mo": {"float_parse": true},
+    "2 Yr": {"float_parse": true},
+    "5 Yr": {"float_parse": true},
+    "10 Yr": {"float_parse": true},
+    "30 Yr": {"float_parse": true}
+  },
+  "file_rules": {
+    "date_unique": true,
+    "date_sorted_asc": true
+  }
+}

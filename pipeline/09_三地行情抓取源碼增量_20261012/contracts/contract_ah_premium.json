@@ -1,0 +1,23 @@
+{
+  "contract_id": "ah_premium@1.0.0",
+  "kind": "csv",
+  "artifact_glob": "ah/ah_premium.csv",
+  "allow_empty": false,
+  "min_files": 1,
+  "encoding": "utf-8-sig",
+  "required_columns": ["date", "name", "a_code", "h_code", "a_price", "h_price", "hkd_cny", "premium_pct", "fetched_at", "source"],
+  "optional_columns": ["note", "source_level"],
+  "column_rules": {
+    "date": {"format_date": true},
+    "a_price": {"float_gt": 0},
+    "h_price": {"float_gt": 0},
+    "hkd_cny": {"float_gt": 0},
+    "premium_pct": {"float_parse": true},
+    "a_code": {"prefix": ["sh", "sz"]},
+    "h_code": {"prefix": ["hk"]}
+  },
+  "file_rules": {
+    "key_unique": ["date", "a_code"],
+    "date_sorted_asc": true
+  }
+}

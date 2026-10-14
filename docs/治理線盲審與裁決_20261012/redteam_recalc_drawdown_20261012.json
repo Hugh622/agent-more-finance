@@ -1,0 +1,282 @@
+{
+ "target": "shared/drawdown_policy_v1_20261011.html",
+ "window": {
+  "start": "2026-06-12",
+  "end": "2026-10-08",
+  "common_days": 82,
+  "portfolio": "A=EW(SPY,QQQ,GLDM) x50% | B=EW(SPCX,ZETA,NOW) x30% | cash 20%"
+ },
+ "R1_daily_line": {
+  "n_days": 81,
+  "trig_le_-2pct": [
+   [
+    "2026-06-17",
+    -2.45
+   ],
+   [
+    "2026-06-22",
+    -2.3
+   ]
+  ],
+  "count_le_-2pct": 2,
+  "count_le_-1.5pct": 5,
+  "worst": [
+   "2026-06-17",
+   -2.45
+  ]
+ },
+ "R2_weekly_wdd": {
+  "n_weeks_full": 17,
+  "ge_3pct": [],
+  "ge_5pct": []
+ },
+ "R3_crossweek_blind": {
+  "n_blind_weeks": 4,
+  "instances": [
+   {
+    "week": "2026-W26",
+    "days": 5,
+    "peak": 0.984604,
+    "close": 0.977923,
+    "wdd_pct": 0.68,
+    "cum_dd_from_peak_pct": 5.23
+   },
+   {
+    "week": "2026-W29",
+    "days": 5,
+    "peak": 0.999282,
+    "close": 0.975629,
+    "wdd_pct": 2.37,
+    "cum_dd_from_peak_pct": 5.46
+   },
+   {
+    "week": "2026-W30",
+    "days": 5,
+    "peak": 0.979142,
+    "close": 0.951159,
+    "wdd_pct": 2.86,
+    "cum_dd_from_peak_pct": 7.83
+   },
+   {
+    "week": "2026-W31",
+    "days": 5,
+    "peak": 0.97415,
+    "close": 0.972321,
+    "wdd_pct": 0.19,
+    "cum_dd_from_peak_pct": 5.78
+   }
+  ]
+ },
+ "R4_monthly_mdd_demo": [
+  {
+   "month": "2026-06",
+   "mdd_pct": 2.91
+  },
+  {
+   "month": "2026-07",
+   "mdd_pct": 4.62
+  },
+  {
+   "month": "2026-08",
+   "mdd_pct": 0.0
+  },
+  {
+   "month": "2026-09",
+   "mdd_pct": 1.85
+  },
+  {
+   "month": "2026-10",
+   "mdd_pct": 1.03
+  }
+ ],
+ "weekly_series": [
+  {
+   "week": "2026-W24",
+   "days": 1,
+   "peak": 1.0,
+   "close": 1.0,
+   "wdd_pct": 0.0,
+   "cum_dd_from_peak_pct": 0.0
+  },
+  {
+   "week": "2026-W25",
+   "days": 4,
+   "peak": 1.031938,
+   "close": 1.007791,
+   "wdd_pct": 2.34,
+   "cum_dd_from_peak_pct": 2.34
+  },
+  {
+   "week": "2026-W26",
+   "days": 5,
+   "peak": 0.984604,
+   "close": 0.977923,
+   "wdd_pct": 0.68,
+   "cum_dd_from_peak_pct": 5.23
+  },
+  {
+   "week": "2026-W27",
+   "days": 4,
+   "peak": 1.007835,
+   "close": 1.007835,
+   "wdd_pct": 0.0,
+   "cum_dd_from_peak_pct": 2.34
+  },
+  {
+   "week": "2026-W28",
+   "days": 5,
+   "peak": 1.019457,
+   "close": 1.007302,
+   "wdd_pct": 1.19,
+   "cum_dd_from_peak_pct": 2.39
+  },
+  {
+   "week": "2026-W29",
+   "days": 5,
+   "peak": 0.999282,
+   "close": 0.975629,
+   "wdd_pct": 2.37,
+   "cum_dd_from_peak_pct": 5.46
+  },
+  {
+   "week": "2026-W30",
+   "days": 5,
+   "peak": 0.979142,
+   "close": 0.951159,
+   "wdd_pct": 2.86,
+   "cum_dd_from_peak_pct": 7.83
+  },
+  {
+   "week": "2026-W31",
+   "days": 5,
+   "peak": 0.97415,
+   "close": 0.972321,
+   "wdd_pct": 0.19,
+   "cum_dd_from_peak_pct": 5.78
+  },
+  {
+   "week": "2026-W32",
+   "days": 5,
+   "peak": 1.055902,
+   "close": 1.055902,
+   "wdd_pct": 0.0,
+   "cum_dd_from_peak_pct": 0.0
+  },
+  {
+   "week": "2026-W33",
+   "days": 5,
+   "peak": 1.080137,
+   "close": 1.07482,
+   "wdd_pct": 0.49,
+   "cum_dd_from_peak_pct": 0.49
+  },
+  {
+   "week": "2026-W34",
+   "days": 5,
+   "peak": 1.079991,
+   "close": 1.079991,
+   "wdd_pct": 0.0,
+   "cum_dd_from_peak_pct": 0.01
+  },
+  {
+   "week": "2026-W35",
+   "days": 5,
+   "peak": 1.099,
+   "close": 1.09807,
+   "wdd_pct": 0.08,
+   "cum_dd_from_peak_pct": 0.08
+  },
+  {
+   "week": "2026-W36",
+   "days": 5,
+   "peak": 1.115141,
+   "close": 1.103913,
+   "wdd_pct": 1.01,
+   "cum_dd_from_peak_pct": 1.01
+  },
+  {
+   "week": "2026-W37",
+   "days": 4,
+   "peak": 1.09624,
+   "close": 1.089458,
+   "wdd_pct": 0.62,
+   "cum_dd_from_peak_pct": 2.3
+  },
+  {
+   "week": "2026-W38",
+   "days": 5,
+   "peak": 1.09819,
+   "close": 1.096115,
+   "wdd_pct": 0.19,
+   "cum_dd_from_peak_pct": 1.71
+  },
+  {
+   "week": "2026-W39",
+   "days": 5,
+   "peak": 1.107372,
+   "close": 1.095252,
+   "wdd_pct": 1.09,
+   "cum_dd_from_peak_pct": 1.78
+  },
+  {
+   "week": "2026-W40",
+   "days": 5,
+   "peak": 1.108454,
+   "close": 1.108454,
+   "wdd_pct": 0.0,
+   "cum_dd_from_peak_pct": 0.6
+  },
+  {
+   "week": "2026-W41",
+   "days": 4,
+   "peak": 1.127183,
+   "close": 1.115556,
+   "wdd_pct": 1.03,
+   "cum_dd_from_peak_pct": 1.03
+  }
+ ],
+ "evidence": {
+  "A_spy": {
+   "file": "market_data/daily/usspy_am.csv",
+   "sha256": "fc797b52c554a39c67fee03bf42ed9ac695ffc3f7a8b523330272a63d5f31d6e",
+   "rows": 250,
+   "first": "2025-10-13",
+   "last": "2026-10-09"
+  },
+  "A_qqq": {
+   "file": "market_data/daily/usqqq_oq.csv",
+   "sha256": "c613764884ed744edf2302d1ffc64fa9a72a0df2e16807a5c28095e1daad10d6",
+   "rows": 250,
+   "first": "2025-10-13",
+   "last": "2026-10-09"
+  },
+  "A_gldm": {
+   "file": "market_data/daily/usgldm_am.csv",
+   "sha256": "38a4993deec9f88da97ba0e4e32a2a8e7bcc863f97f51a376d0af0061ccd6e3d",
+   "rows": 250,
+   "first": "2025-10-13",
+   "last": "2026-10-09"
+  },
+  "B_spcx": {
+   "file": "market_data/daily/usspcx_oq.csv",
+   "sha256": "7cf8766205c0f41cffa2df1baeb6bf4ac9edcffc3c9e8c26726bcdb30c7459ce",
+   "rows": 82,
+   "first": "2026-06-12",
+   "last": "2026-10-08"
+  },
+  "B_zeta": {
+   "file": "market_data/daily/uszeta_n.csv",
+   "sha256": "4f0eef5b7c827f9be0ed54bad7519671d7fccc62f0e3963db85e2346869d43e9",
+   "rows": 250,
+   "first": "2025-10-13",
+   "last": "2026-10-09"
+  },
+  "B_now": {
+   "file": "market_data/daily/usnow_n.csv",
+   "sha256": "e1de03d5e4438eaa1e203ef02e4202c19ddaa9d6c8de3f8cb6f73ab4acaae1b9",
+   "rows": 250,
+   "first": "2025-10-13",
+   "last": "2026-10-09"
+  }
+ }
+}

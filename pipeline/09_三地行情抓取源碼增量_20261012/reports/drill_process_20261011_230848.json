@@ -1,0 +1,50 @@
+{
+  "drill": "process_pullup_and_missed_run_alert",
+  "ts": "2026-10-11T23:08:48.105914+08:00",
+  "spec": "杀守护<=120s自动拉起(watchdog 60s巡检); 心跳停跳>15min落job_missed_heartbeat告警留痕; 停止回拨后自恢复",
+  "A_scheduler": {
+    "label": "A.scheduler",
+    "killed": 1,
+    "pulled": true,
+    "elapsed_sec": 32.0,
+    "deadline_sec": 120.0,
+    "pass": true
+  },
+  "B_spcx": {
+    "label": "B.spcx_monitor",
+    "killed": 1,
+    "pulled": true,
+    "elapsed_sec": 2.0,
+    "deadline_sec": 120.0,
+    "pass": true
+  },
+  "C_missed_run_alert": {
+    "seen": true,
+    "elapsed_sec": 55.0,
+    "head_alerts": [
+      {
+        "type": "job_missed_heartbeat",
+        "daemon": "scheduler",
+        "detail": "存活但心跳停跳 1201s(>900s), 疑漏跑",
+        "at": "2026-10-11T23:08:19"
+      },
+      {
+        "type": "daemon_down_restarted",
+        "daemon": "spcx_monitor",
+        "detail": "死亡→已拉起 pid=2934, 复核alive=True",
+        "at": "2026-10-11T23:06:19"
+      },
+      {
+        "type": "daemon_down_restarted",
+        "daemon": "scheduler",
+        "detail": "死亡→已拉起 pid=2925, 复核alive=True",
+        "at": "2026-10-11T23:06:17"
+      }
+    ]
+  },
+  "D_recover": {
+    "fresh": true,
+    "elapsed_sec": 25.0
+  },
+  "pass": true
+}

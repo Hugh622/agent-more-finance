@@ -1,0 +1,21 @@
+{
+  "contract_id": "fx_matrix@1.0.0",
+  "kind": "csv",
+  "artifact_glob": "fx/fx_matrix.csv",
+  "allow_empty": false,
+  "min_files": 1,
+  "encoding": "utf-8-sig",
+  "required_columns": ["date", "dxy", "hkdcny", "usdcny", "usdhkd", "fetched_at", "source"],
+  "optional_columns": ["source_level"],
+  "column_rules": {
+    "date": {"format_date": true},
+    "dxy": {"float_gt": 0},
+    "hkdcny": {"float_gt": 0},
+    "usdcny": {"float_gt": 0},
+    "usdhkd": {"float_gt": 0}
+  },
+  "file_rules": {
+    "date_unique": true,
+    "date_sorted_asc": true
+  }
+}

@@ -1,0 +1,187 @@
+{
+ "run_id": "run_20260928_004419_kline_batch",
+ "type": "kline_batch",
+ "run_ts": "2026-09-28 00:43:59",
+ "schema_version": "2.0-freeze-retro",
+ "code_commit": "v1.0-20261011@0786c312f0f5eee235366b52cfb7ff5de0163afb",
+ "code_commit_retro": true,
+ "frozen_at": "2026-10-11T22:35:00+08:00",
+ "manifest_file": "manifest/run_20260928_004419_kline_batch.json",
+ "manifest_sha256": "c72866fdfdb079d4948ab6aec0095aa85f5f97cf5f3594071f5b634507600ee7",
+ "data_files": [
+  {
+   "path": "daily/usxlb_am.csv",
+   "status": "frozen",
+   "sha256": "82db33ef68ad92632e72c79382d3417db7329188c4bea555890ac0fec14e1615",
+   "bytes": 52665,
+   "mtime": "2026-10-10T05:27:02.898650Z",
+   "actual_rows": 250,
+   "actual_last_date": "2026-10-09"
+  },
+  {
+   "path": "daily/usxlc_am.csv",
+   "status": "frozen",
+   "sha256": "b32353f0e623c393b5e12cdb9af9bea032322db5aa2adf1666388794ab4d0539",
+   "bytes": 55013,
+   "mtime": "2026-10-10T05:26:49.205178Z",
+   "actual_rows": 250,
+   "actual_last_date": "2026-10-09"
+  },
+  {
+   "path": "daily/usxle_am.csv",
+   "status": "frozen",
+   "sha256": "31c543f7278ee6b526f12996383583cc8f227ca628814f23ea4f9e68985b8492",
+   "bytes": 52756,
+   "mtime": "2026-10-10T05:26:56.018413Z",
+   "actual_rows": 250,
+   "actual_last_date": "2026-10-09"
+  },
+  {
+   "path": "daily/usxlf_am.csv",
+   "status": "frozen",
+   "sha256": "e84f8656149e93d0bf57b3b0f9fd8cdc47b6dc5dfb753cb9486849cd8ed04b33",
+   "bytes": 52736,
+   "mtime": "2026-10-10T05:26:54.308354Z",
+   "actual_rows": 250,
+   "actual_last_date": "2026-10-09"
+  },
+  {
+   "path": "daily/usxli_am.csv",
+   "status": "frozen",
+   "sha256": "70040aa609682bb38dfeaec10d9caaf8a6eb09ed007684a4896b3fe64f50f761",
+   "bytes": 53584,
+   "mtime": "2026-10-10T05:26:57.760473Z",
+   "actual_rows": 250,
+   "actual_last_date": "2026-10-09"
+  },
+  {
+   "path": "daily/usxlk_am.csv",
+   "status": "frozen",
+   "sha256": "014e8b8300256dc00d1e4d452a9c83d7d51776f228b6217559bc85126804ed40",
+   "bytes": 53639,
+   "mtime": "2026-10-10T05:26:47.494120Z",
+   "actual_rows": 250,
+   "actual_last_date": "2026-10-09"
+  },
+  {
+   "path": "daily/usxlp_am.csv",
+   "status": "frozen",
+   "sha256": "fde7b62fc48ca09f045174bde0d2563ac25f4aec6bea1afac8d637c318905fb7",
+   "bytes": 54189,
+   "mtime": "2026-10-10T05:26:52.606296Z",
+   "actual_rows": 250,
+   "actual_last_date": "2026-10-09"
+  },
+  {
+   "path": "daily/usxlre_am.csv",
+   "status": "frozen",
+   "sha256": "ef3b88caf25d72ce0e41611b2ace9f7b2b2ad39147cb858b2db2f7d979a94c33",
+   "bytes": 53528,
+   "mtime": "2026-10-10T05:27:04.595709Z",
+   "actual_rows": 250,
+   "actual_last_date": "2026-10-09"
+  },
+  {
+   "path": "daily/usxlu_am.csv",
+   "status": "frozen",
+   "sha256": "07ab0f57a887c3acad04a8b8c9f65f346afd54d0e42d4b57b621a419a2b39f61",
+   "bytes": 54221,
+   "mtime": "2026-10-10T05:27:01.212592Z",
+   "actual_rows": 250,
+   "actual_last_date": "2026-10-09"
+  },
+  {
+   "path": "daily/usxlv_am.csv",
+   "status": "frozen",
+   "sha256": "90fff348206b01d8abd2c62ffdecc88f7c794a44edaf3f56ffefad8a20a2b803",
+   "bytes": 53639,
+   "mtime": "2026-10-10T05:26:59.515534Z",
+   "actual_rows": 250,
+   "actual_last_date": "2026-10-09"
+  },
+  {
+   "path": "daily/usxly_am.csv",
+   "status": "frozen",
+   "sha256": "8303f327f0240b4fec713ec8c59db04b5729873dbcd78de95c0cd90a971f102e",
+   "bytes": 55065,
+   "mtime": "2026-10-10T05:26:50.914237Z",
+   "actual_rows": 250,
+   "actual_last_date": "2026-10-09"
+  }
+ ],
+ "summary": {
+  "files_total": 11,
+  "frozen": 11,
+  "mutable_pointer": 0,
+  "missing": 0,
+  "missing_superseded": 0
+ },
+ "claims_check": [
+  {
+   "code": "usXLK.AM",
+   "claimed_rows": 250,
+   "claimed_last_date": "2026-09-25",
+   "check": "advanced_overwritten"
+  },
+  {
+   "code": "usXLC.AM",
+   "claimed_rows": 250,
+   "claimed_last_date": "2026-09-25",
+   "check": "advanced_overwritten"
+  },
+  {
+   "code": "usXLY.AM",
+   "claimed_rows": 250,
+   "claimed_last_date": "2026-09-25",
+   "check": "advanced_overwritten"
+  },
+  {
+   "code": "usXLP.AM",
+   "claimed_rows": 250,
+   "claimed_last_date": "2026-09-25",
+   "check": "advanced_overwritten"
+  },
+  {
+   "code": "usXLF.AM",
+   "claimed_rows": 250,
+   "claimed_last_date": "2026-09-25",
+   "check": "advanced_overwritten"
+  },
+  {
+   "code": "usXLE.AM",
+   "claimed_rows": 250,
+   "claimed_last_date": "2026-09-25",
+   "check": "advanced_overwritten"
+  },
+  {
+   "code": "usXLI.AM",
+   "claimed_rows": 250,
+   "claimed_last_date": "2026-09-25",
+   "check": "advanced_overwritten"
+  },
+  {
+   "code": "usXLV.AM",
+   "claimed_rows": 250,
+   "claimed_last_date": "2026-09-25",
+   "check": "advanced_overwritten"
+  },
+  {
+   "code": "usXLU.AM",
+   "claimed_rows": 250,
+   "claimed_last_date": "2026-09-25",
+   "check": "advanced_overwritten"
+  },
+  {
+   "code": "usXLB.AM",
+   "claimed_rows": 250,
+   "claimed_last_date": "2026-09-25",
+   "check": "advanced_overwritten"
+  },
+  {
+   "code": "usXLRE.AM",
+   "claimed_rows": 250,
+   "claimed_last_date": "2026-09-25",
+   "check": "advanced_overwritten"
+  }
+ ]
+}

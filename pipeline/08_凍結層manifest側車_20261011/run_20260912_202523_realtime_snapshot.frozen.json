@@ -1,0 +1,35 @@
+{
+ "run_id": "run_20260912_202523_realtime_snapshot",
+ "type": "realtime_snapshot",
+ "run_ts": "2026-09-12 20:25:23",
+ "schema_version": "2.0-freeze-retro",
+ "code_commit": "v1.0-20261011@0786c312f0f5eee235366b52cfb7ff5de0163afb",
+ "code_commit_retro": true,
+ "frozen_at": "2026-10-11T22:35:00+08:00",
+ "manifest_file": "manifest/run_20260912_202523_realtime_snapshot.json",
+ "manifest_sha256": "9cea931afb7be72550509c7181de123ef8bdfc65ebe4541bd057835b303f09d2",
+ "data_files": [
+  {
+   "path": "realtime/latest.csv",
+   "status": "mutable_pointer",
+   "sha256": "5129a4d895f3134d82f07e511b4dda668c2e84c38dd4ea9132c333bdbe938d99",
+   "bytes": 40444,
+   "mtime": "2026-10-10T05:27:05.439738Z"
+  },
+  {
+   "path": "realtime/snapshot_20260912_2025.csv",
+   "status": "frozen",
+   "sha256": "e42b806878bbbb8f75678ca3c61250b855c7e1410e090da6036687bcc78f0f7f",
+   "bytes": 39886,
+   "mtime": "2026-09-12T12:25:23.525948Z"
+  }
+ ],
+ "summary": {
+  "files_total": 2,
+  "frozen": 1,
+  "mutable_pointer": 1,
+  "missing": 0,
+  "missing_superseded": 0
+ },
+ "claims_check": []
+}

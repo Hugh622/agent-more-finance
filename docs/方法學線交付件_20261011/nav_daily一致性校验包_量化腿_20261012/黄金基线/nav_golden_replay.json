@@ -1,0 +1,85 @@
+{
+ "window": {
+  "start": "2026-06-12",
+  "end": "2026-10-08",
+  "common_days": 82
+ },
+ "evidence": {
+  "usspy_am.csv": {
+   "sha256": "fc797b52c554a39c67fee03bf42ed9ac695ffc3f7a8b523330272a63d5f31d6e",
+   "rows": 250,
+   "first": "2025-10-13",
+   "last": "2026-10-09"
+  },
+  "usqqq_oq.csv": {
+   "sha256": "c613764884ed744edf2302d1ffc64fa9a72a0df2e16807a5c28095e1daad10d6",
+   "rows": 250,
+   "first": "2025-10-13",
+   "last": "2026-10-09"
+  },
+  "usgldm_am.csv": {
+   "sha256": "38a4993deec9f88da97ba0e4e32a2a8e7bcc863f97f51a376d0af0061ccd6e3d",
+   "rows": 250,
+   "first": "2025-10-13",
+   "last": "2026-10-09"
+  },
+  "usspcx_oq.csv": {
+   "sha256": "7cf8766205c0f41cffa2df1baeb6bf4ac9edcffc3c9e8c26726bcdb30c7459ce",
+   "rows": 82,
+   "first": "2026-06-12",
+   "last": "2026-10-08"
+  },
+  "uszeta_n.csv": {
+   "sha256": "4f0eef5b7c827f9be0ed54bad7519671d7fccc62f0e3963db85e2346869d43e9",
+   "rows": 250,
+   "first": "2025-10-13",
+   "last": "2026-10-09"
+  },
+  "usnow_n.csv": {
+   "sha256": "e1de03d5e4438eaa1e203ef02e4202c19ddaa9d6c8de3f8cb6f73ab4acaae1b9",
+   "rows": 250,
+   "first": "2025-10-13",
+   "last": "2026-10-09"
+  }
+ },
+ "stats": {
+  "n_weeks_full": 17,
+  "wdd_max": {
+   "week": "2026-W30",
+   "days": 5,
+   "close": 0.9511587293190095,
+   "wdd_pct": 2.86
+  },
+  "wdd_ge3_weeks": [],
+  "cum_dd_max": {
+   "week": "2026-W30",
+   "days": 5,
+   "cum_dd_pct": 7.83
+  },
+  "cum_ge5_weeks": [
+   "2026-W26",
+   "2026-W29",
+   "2026-W30",
+   "2026-W31"
+  ],
+  "daily_le_minus2": [
+   [
+    "2026-06-17",
+    -2.45
+   ],
+   [
+    "2026-06-22",
+    -2.3
+   ]
+  ],
+  "n_daily": 81,
+  "monthly_mdd": {
+   "2026-06": 2.91,
+   "2026-07": 4.62,
+   "2026-08": 0.0,
+   "2026-09": 1.85,
+   "2026-10": 1.03
+  },
+  "nav_last": 1.115556
+ }
+}

@@ -1,0 +1,25 @@
+{
+  "contract_id": "daily_kline@1.0.0",
+  "kind": "csv",
+  "artifact_glob": "daily/*.csv",
+  "allow_empty": false,
+  "min_files": 100,
+  "encoding": "utf-8-sig",
+  "required_columns": ["date", "open", "high", "low", "close", "volume", "code", "market", "fetched_at", "source"],
+  "optional_columns": ["amount_raw", "name", "source_level", "grade"],
+  "column_rules": {
+    "date": {"format_date": true},
+    "open": {"float_gt": 0},
+    "high": {"float_gt": 0},
+    "low": {"float_gt": 0},
+    "close": {"float_gt": 0},
+    "volume": {"float_ge": 0},
+    "market": {"enum": ["US", "HK", "CN"]},
+    "code": {"market_prefix": {"US": "us", "HK": "hk", "CN": ["sh", "sz"]}}
+  },
+  "file_rules": {
+    "date_unique": true,
+    "date_sorted_asc": true,
+    "ohlc_sane": true
+  }
+}

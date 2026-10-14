@@ -1,0 +1,140 @@
+{
+ "run_id": "run_20261006_082358_macro",
+ "type": "macro",
+ "run_ts": "2026-10-06 08:23:08",
+ "schema_version": "2.0-freeze-retro",
+ "code_commit": "v1.0-20261011@0786c312f0f5eee235366b52cfb7ff5de0163afb",
+ "code_commit_retro": true,
+ "frozen_at": "2026-10-11T22:35:00+08:00",
+ "manifest_file": "manifest/run_20261006_082358_macro.json",
+ "manifest_sha256": "a53c09775ef082bd70815524856e330a84d2d2e2d6357ddd646e2e563141a357",
+ "data_files": [
+  {
+   "path": "ah/ah_premium.csv",
+   "status": "frozen",
+   "sha256": "d2c8163adfac974f64941b12dbc312281368b503a09d00cc4f7a4a1643caabdc",
+   "bytes": 3283,
+   "mtime": "2026-10-10T05:27:13.128003Z"
+  },
+  {
+   "path": "calendar/fomc_calendar.json",
+   "status": "frozen",
+   "sha256": "d97a791ed19314f759deac632bb52b5cb04dcc6c849858cafd567336fc2866b9",
+   "bytes": 1551,
+   "mtime": "2026-10-10T05:27:59.043585Z"
+  },
+  {
+   "path": "calendar/southbound_template.json",
+   "status": "frozen",
+   "sha256": "b4ab6cbf05754b342f0526623d9dde04378272d1ad889042092c7e3a88582504",
+   "bytes": 689,
+   "mtime": "2026-10-10T05:27:59.044585Z"
+  },
+  {
+   "path": "calendar/us_earnings_calendar.json",
+   "status": "frozen",
+   "sha256": "77038f3c61584bd8536b4ba967806bebd2df80013edf26ee5ae311db5f8a23ba",
+   "bytes": 9718,
+   "mtime": "2026-10-10T05:27:34.728747Z"
+  },
+  {
+   "path": "calendar/us_release_calendar_template.json",
+   "status": "frozen",
+   "sha256": "c8a9c85390770a41d221c2d6bdb3c296901b66493986858c02c12f2603a27a17",
+   "bytes": 674,
+   "mtime": "2026-10-10T05:27:59.044585Z"
+  },
+  {
+   "path": "fundamentals/us_metrics_latest.csv",
+   "status": "frozen",
+   "sha256": "94e24eaad4f3da8ff7a5ba8c84daaea482fd4f74e6cad8b1eed72ff41feb8699",
+   "bytes": 2137,
+   "mtime": "2026-10-10T05:27:59.040585Z"
+  },
+  {
+   "path": "fx/fx_matrix.csv",
+   "status": "frozen",
+   "sha256": "25c1c5b07fb61a054c82e29fcfa3d230e8d912a0f918f6c83b4215fc7f78080f",
+   "bytes": 192,
+   "mtime": "2026-10-10T05:27:12.762990Z"
+  },
+  {
+   "path": "fx/fx_snapshot.csv",
+   "status": "frozen",
+   "sha256": "5ca3e47f12572a4e21f150aed202ebb76d5d408810cf1b0165fbb5f45659fa26",
+   "bytes": 725,
+   "mtime": "2026-10-10T05:27:12.750990Z"
+  },
+  {
+   "path": "rates/credit_spread_hy.csv",
+   "status": "frozen",
+   "sha256": "db250afd1fb22f867844a7c4ce3f8c2e90118cadd5c0d388578479779e1fa201",
+   "bytes": 3865,
+   "mtime": "2026-10-10T05:27:12.388978Z"
+  },
+  {
+   "path": "rates/fedfunds.csv",
+   "status": "frozen",
+   "sha256": "fbb478e8447b196b1c686552613b040a2fb49c12090abb3efe51bad57d675bd0",
+   "bytes": 3601,
+   "mtime": "2026-10-10T05:27:09.597881Z"
+  },
+  {
+   "path": "rates/us02y.csv",
+   "status": "frozen",
+   "sha256": "13f6b8d7d292fefc93711abf6290503d518d039040174af75c4bfbc19fab1ee3",
+   "bytes": 3387,
+   "mtime": "2026-10-10T05:27:07.099795Z"
+  },
+  {
+   "path": "rates/us10y.csv",
+   "status": "frozen",
+   "sha256": "79de131631da881f1350c42d6dd3b1ade4e83f93033781492816f81cc0583b12",
+   "bytes": 3386,
+   "mtime": "2026-10-10T05:27:07.102795Z"
+  },
+  {
+   "path": "rates/us30y.csv",
+   "status": "frozen",
+   "sha256": "08f8b91c08fe21e4244d053a9f3878618eec6c0c5c95c7ef9008016ec227c994",
+   "bytes": 3385,
+   "mtime": "2026-10-10T05:27:07.105795Z"
+  },
+  {
+   "path": "rates/ust_full_curve.csv",
+   "status": "frozen",
+   "sha256": "23d7171708c1432ab3dc6cb5df7445752bc87b861cf606d738e29e826f3f134c",
+   "bytes": 5184,
+   "mtime": "2026-10-10T05:27:07.107795Z"
+  },
+  {
+   "path": "rates/vix.csv",
+   "status": "frozen",
+   "sha256": "ed36b1ac461baff614b8703b523bd911841f63e5829e69223fda89647f319965",
+   "bytes": 3717,
+   "mtime": "2026-10-10T05:27:10.989929Z"
+  },
+  {
+   "path": "sec/finnhub_filings_crosscheck.csv",
+   "status": "frozen",
+   "sha256": "a3a5523c9355f5c5055fadefe71667f31778fc9df273a910b379d5afe3aa1113",
+   "bytes": 97137,
+   "mtime": "2026-10-10T05:27:45.519119Z"
+  },
+  {
+   "path": "sec/us_recent_filings.csv",
+   "status": "frozen",
+   "sha256": "a287706a7672ec00e5ba5a608773bfba92f78a4885beb1d7216c47104faa60b0",
+   "bytes": 4531,
+   "mtime": "2026-10-10T05:27:33.679711Z"
+  }
+ ],
+ "summary": {
+  "files_total": 17,
+  "frozen": 17,
+  "mutable_pointer": 0,
+  "missing": 0,
+  "missing_superseded": 0
+ },
+ "claims_check": []
+}

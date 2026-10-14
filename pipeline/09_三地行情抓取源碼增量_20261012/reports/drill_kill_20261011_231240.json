@@ -1,0 +1,18 @@
+{
+  "drill": "kill_drill(原子写入验收)",
+  "standard": "评审文件2: 人为kill写档进程100次, 不产生可见半档",
+  "rounds": 100,
+  "payload_kb": 2048,
+  "fail_count": 0,
+  "batch_states": {
+    "complete": 75,
+    "in_progress": 25,
+    "corrupted": 0,
+    "no_marker": 0
+  },
+  "warning_count": 0,
+  "result": "PASS",
+  "finished_at": "2026-10-11T23:12:40",
+  "fails": [],
+  "warnings": []
+}

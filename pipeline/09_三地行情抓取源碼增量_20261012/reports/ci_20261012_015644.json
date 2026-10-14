@@ -1,0 +1,16 @@
+{
+  "runner": "pytest(stock)",
+  "ts": "2026-10-12T01:56:30.289827+08:00",
+  "min_collected": 80,
+  "ci_fix": "E-P0-3",
+  "tests_collected": 86,
+  "collect_stderr_tail": [],
+  "passed": 86,
+  "failed": 0,
+  "errors": 0,
+  "duration_sec": null,
+  "pytest_tail": [
+    "86 passed in 8.50s"
+  ],
+  "verdict": "PASS"
+}

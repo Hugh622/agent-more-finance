@@ -1,0 +1,14 @@
+{
+  "src": "/home/z/my-project/shared/pool_review_20261010/池子全清单_数据覆盖矩阵_20261010.csv",
+  "out": "/home/z/my-project/shared/pool_review_20261010/池子全清单_数据覆盖矩阵_20261010_枚举版v1.1.csv",
+  "ts": "2026-10-11T23:15:16",
+  "rows": 212,
+  "cols": 9,
+  "na": 0,
+  "ok": 212,
+  "missing": 0,
+  "degraded": 0,
+  "pool_rows": 0,
+  "symbol_rows": 212,
+  "filled_cells": 201
+}

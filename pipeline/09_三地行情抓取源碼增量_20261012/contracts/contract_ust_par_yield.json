@@ -1,0 +1,20 @@
+{
+  "contract_id": "ust_par_yield@1.0.0",
+  "kind": "csv",
+  "artifact_globs": ["rates/us02y.csv", "rates/us10y.csv", "rates/us30y.csv"],
+  "allow_empty": false,
+  "min_files": 3,
+  "encoding": "utf-8-sig",
+  "required_columns": ["date", "ticker", "value", "fetched_at", "source"],
+  "optional_columns": ["source_level", "grade"],
+  "column_rules": {
+    "date": {"format_date": true},
+    "ticker": {"non_empty": true},
+    "value": {"float_parse": true}
+  },
+  "file_rules": {
+    "date_unique": true,
+    "date_sorted_asc": true,
+    "constant_per_file": ["ticker"]
+  }
+}

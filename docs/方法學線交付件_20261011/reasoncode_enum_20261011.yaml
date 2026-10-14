@@ -1,0 +1,100 @@
+# =====================================================================
+# reasoncode_enum_20261011.yaml — Reason Code 八類機讀註冊冊 v1.0.0
+# 唯一基準：首席《reason_code_registry_v1_20261011.html》（2026-10-11 簽發）
+# 本文件＝該定稿的機讀投影（供 DDL 生成器/引擎/五閘審計器直接消費），不含任何新增類別
+# 修訂規則：走 supersedes 鏈（v1.0→v1.1 須附判例）；無法歸類掛 GAP_FILL＋周檢提請立碼
+# =====================================================================
+meta:
+  registry_version: "1.0.0"
+  date: "2026-10-11"
+  source_of_truth: "shared/reason_code_registry_v1_20261011.html"
+  owner_leg: "首席投資策略師（簽發）／量化技術專家（機讀投影維護）"
+  design_principles:
+    - "判例錨定制：每類必須掛現行判例庫在案判例，無判例不立碼"
+    - "機檢優先：每類附可機檢觸發特徵（五閘審計器/覆蓋矩陣校驗器直接消費）"
+    - "主輔碼制：主碼=最初觸發原因，輔碼=處置結果；一單最多一主一輔，第三碼入備註"
+
+categories:
+  - code: DATA_CONFLICT
+    zh: 數據衝突
+    definition: "多源讀數矛盾、快照漂移、口徑漂移、陳舊緩存"
+    machine_signature: "同標的同時點≥2源差>0.5%；同字段多文檔不一致"
+    downstream: "雙源仲裁→勘誤帶→總表更正；單源必須明示"
+  - code: MODEL_DISAGREEMENT
+    zh: 模型分歧
+    definition: "兩腿/多腿結論衝突，需首席仲裁"
+    machine_signature: "同決策點兩腿結論相反且均有依據"
+    downstream: "首席仲裁→「同一把尺」裁定→入判例庫"
+  - code: HUMAN_OVERRIDE
+    zh: 人工裁定
+    definition: "用戶明示破閘/改判，或首席行使終審權改變規則默認輸出"
+    machine_signature: "決策鏈出現「用戶明示」「首席終審」標記且偏離規則默認值"
+    downstream: "必須全量入 override 台賬（§三）"
+  - code: EXECUTION_SLIP
+    zh: 執行偏差
+    definition: "規則正確但執行走樣：踏空、追價、滑點超帶、錯過掛單窗"
+    machine_signature: "紙面台賬實際成交價 vs 計劃掛價差>滑點容差；應觸發未觸發"
+    downstream: "行為復盤扣分項；C 系列修法候選證據"
+  - code: RULE_VIOLATION
+    zh: 規則失效/違反
+    definition: "規則本身缺陷或被違反：口徑硬傷、閘門未攔、CI 假綠燈類工程失效"
+    machine_signature: "規則輸出與事實校驗不符；閘門應 BLOCK 未 BLOCK"
+    downstream: "規則修法（supersedes 鏈）＋失效登記；涉工程轉工程線"
+  - code: GAP_FILL
+    zh: 缺口補錄
+    definition: "信息不全/留白/待核項的補全與收口"
+    machine_signature: "缺口登記冊狀態由 open→closed"
+    downstream: "補全後回寫引用源；無法補全須明示收口"
+  - code: LESSON_LEARNED
+    zh: 經驗沉澱
+    definition: "復盤產出方法論修正、條件結構升級、判例入庫"
+    machine_signature: "復盤收口產出條款級變更提案"
+    downstream: "走「兩輪同向」升格程序→條款庫版本號遞增"
+  - code: REGIME_CHANGE
+    zh: 環境躍遷
+    definition: "市場環境/狀態機降檔或升檔導致的規則適用域切換，非規則、非執行、非數據問題"
+    machine_signature: "狀態機檔位變更事件；天花板/執行閘數值切換"
+    downstream: "閘值聯動切換＋全員通報；回檢窗口隨檔位重置"
+
+main_sub_rule:
+  main_code: "最初觸發原因"
+  sub_code: "處置結果（可空）"
+  max_per_decision: "一主一輔，第三碼入 notes"
+  unclassifiable: "掛 GAP_FILL＋周檢提請首席立碼（防濫立）"
+  composite_examples:
+    - "快照漂移導致止損誤判 = 主 DATA_CONFLICT + 輔 EXECUTION_SLIP"
+    - "用戶明示破閘後造成回撤觸發 = 主 HUMAN_OVERRIDE + 輔 REGIME_CHANGE（若伴隨狀態機動作）"
+
+minimal_fields:   # decision/override 共用最小集（六字段）
+  - {name: code_id,      type: "主碼＋可選輔碼", spec: "八類枚舉，一單一主一輔"}
+  - {name: as_of_time,   type: "UTC+HKT 雙時戳", spec: "與 Manifest v2 對齊；判定時點不可回填篡改"}
+  - {name: snapshot_id,  type: "外鍵",           spec: "引用市場快照批次（數據源分離鐵律）"}
+  - {name: rule_id,      type: "外鍵",           spec: "C/R/N/D/K/W/G 收編編號；無規則來源填 N-A"}
+  - {name: evidence,     type: "文本≤300字",     spec: "判例錨/來源鏈接/雙源標注"}
+  - {name: owner,        type: "枚舉",           spec: "首席/量化/宏觀/全棧/通用/用戶"}
+owner_enum: ["chief", "quantitative", "macro", "fullstack", "general", "user"]
+
+override_log_min7:
+  - {name: override_id, spec: "OV-日期-序號（如 OV-20261011-01）"}
+  - {name: object,      spec: "被改對象：規則/倉位/標的/流程，帶原值→新值"}
+  - {name: reason_code, spec: "主碼（多為 HUMAN_OVERRIDE，也允許其他主碼）"}
+  - {name: decider,     spec: "決策人：用戶／首席／（緊急時）當值腿"}
+  - {name: rationale,   spec: "理由分類：用戶裁定／首席改判／緊急風控，附一句話依據"}
+  - {name: validity,    spec: "一次性／限期（到期自動失效）／永久（須附復檢日）"}
+  - {name: review_due,  spec: "復檢日；到期未復檢的限期項在周檢自動亮紅"}
+validity_enum: ["one_shot", "term", "permanent"]
+analysis_cadence: "每三個月 override 增值分析（與判斷vs恐懼截胡行為復盤並軌，三分法：判斷問題/恐懼截胡/合理審慎）"
+
+# ── 舊枚舉（外部評審七類+REGIME_CHANGE，MySQL DDL v1.0.0 現行）→ 首席八類 收編映射 ──
+# 原則：不做沒有基準的發明；首席冊為唯一基準。
+legacy_enum_mapping:
+  DATA_CONFLICT:       DATA_CONFLICT        # 同名直收
+  MODEL_DISAGREEMENT:  MODEL_DISAGREEMENT   # 同名直收
+  HUMAN_OVERRIDE:      HUMAN_OVERRIDE       # 同名直收
+  EXECUTION_FAILURE:   EXECUTION_SLIP       # 併入首席 EXECUTION_SLIP（定義含「執行走樣」全族）
+  REGIME_CHANGE:       REGIME_CHANGE        # 同名直收
+  STALE_SIGNAL:        DATA_CONFLICT        # 首席 DATA_CONFLICT 定義明文含「陳舊緩存」
+  RISK_CAP:            null                 # 不強行歸類（首席 GAP_FILL 定義=信息缺口，風控攔截非缺口）；
+                                            # 語義由 chief_verdict=reject＋rule_id（C10/C11/四閘）＋evidence 承載；
+                                            # 存量行 evidence 註記 legacy=RISK_CAP，周檢請首席定奪是否立碼
+  EVENT_BLOCK:         null                 # 同上（E0 事件窗執法語義由 rule_id=P0.E0 承載）；周檢請首席定奪

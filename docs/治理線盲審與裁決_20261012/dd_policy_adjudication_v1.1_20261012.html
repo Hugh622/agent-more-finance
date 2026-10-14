@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Drawdown Policy 解盲裁决书暨 v1.1 修订口径</title>
+<style>
+:root{--bg:#0d1117;--card:#161b22;--card2:#1c2330;--bd:#30363d;--gold:#d4af37;--grn:#3fb950;--red:#f85149;--blu:#58a6ff;--org:#f0883e;--mut:#8b949e;--tx:#e6edf3;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:"PingFang TC","Microsoft JhengHei",sans-serif;}
+body{background:var(--bg);color:var(--tx);padding:28px 18px;max-width:1080px;margin:0 auto;line-height:1.75;}
+h1{font-size:24px;color:var(--gold);border-bottom:2px solid var(--gold);padding-bottom:10px;margin-bottom:6px;}
+h2{font-size:18px;color:var(--gold);margin:26px 0 10px;border-left:4px solid var(--gold);padding-left:10px;}
+.sub{color:var(--mut);font-size:13px;margin-bottom:20px;}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:16px 18px;margin:12px 0;}
+.card2{background:var(--card2);}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0;}
+th{background:#21262d;color:var(--gold);padding:8px 10px;text-align:left;border:1px solid var(--bd);}
+td{padding:7px 10px;border:1px solid var(--bd);vertical-align:top;}
+tr:nth-child(even) td{background:#11161d;}
+.line{font-size:12px;color:var(--mut);}
+.hl{color:var(--gold);font-weight:bold;}
+.g{color:var(--grn);}.b{color:var(--blu);}.o{color:var(--org);}.r{color:var(--red);}
+.tag{display:inline-block;padding:2px 10px;border-radius:6px;font-weight:bold;font-size:12px;}
+.tpass{background:rgba(63,185,80,.15);color:var(--grn);border:1px solid var(--grn);}
+.tmod{background:rgba(88,166,255,.15);color:var(--blu);border:1px solid var(--blu);}
+.trej{background:rgba(248,81,73,.15);color:var(--red);border:1px solid var(--red);}
+.bar{height:14px;background:#21262d;border-radius:7px;overflow:hidden;margin:4px 0;}
+.bar>div{height:100%;border-radius:7px;}
+.num{font-size:22px;font-weight:bold;color:var(--gold);}
+.kpi{display:inline-block;text-align:center;margin:6px 14px 6px 0;padding:10px 16px;background:var(--card2);border:1px solid var(--bd);border-radius:10px;min-width:150px;}
+.kpi .lbl{font-size:11px;color:var(--mut);}
+footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--bd);color:var(--mut);font-size:12px;}
+code{background:#21262d;padding:1px 6px;border-radius:4px;font-size:12px;}
+</style>
+</head>
+<body>
+
+<h1>Drawdown Policy 解盲裁决书暨 v1.1 修订口径</h1>
+<div class="sub">裁决人：首席投资策略师｜2026-10-12｜信封编号 VG-R1-20261012｜审对象：《Drawdown Policy 正式条款 v1.0》｜红队：全栈开发（轮值制首轮）｜红队判决：有保留通过 → 本席裁决后处置：修订落文 v1.1，判决升格「通过」｜生效日维持 2026-10-16（首次周五周检）</div>
+
+<h2>〇、解盲核验：证据链独立复核（首席重放）</h2>
+<div class="card">
+<p>解盲后本席<b>未采信文字、先重放证据</b>：将红队复算脚本在本席环境独立重跑（仅改输出路径），结果与盲审书附录 B <b>逐位一致</b>——</p>
+<div>
+<span class="kpi"><div class="num">2 / 81</div><div class="lbl">单日 ≤−2% 触发次（最深 −2.45%）<br>→ L1 日线不过敏（红队自证否决其「过敏」假设，诚实记录）</div></span>
+<span class="kpi"><div class="num r">0 / 0</div><div class="lbl">周内锚 WDD≥3% / ≥5% 触发周数（17 完整周）<br>→ 主干在阴跌中全程沉默</div></span>
+<span class="kpi"><div class="num r">4 周 · −7.83%</div><div class="lbl">同窗滚动峰累计回撤 ≥5% 周数 / 极大值<br>→ 真实回撤远超主条款感知（W26/W29/W30/W31）</div></span>
+<span class="kpi"><div class="num">−4.62%</div><div class="lbl">月内峰谷极值（7 月）＜10%<br>→ L3 同窗未触发</div></span>
+</div>
+<p>文本比对：盲审书附录 A 五项反证（A1 锚定自相矛盾／A2 触发结果分叉 0~15 周／A3 月回撤无口径／A4 与日亏损闸重复／A5 净值载体缺席）逐条对验原文 §1.1／§1.2／§1.4／§2／§3，<b>全部坐实</b>；附录 C 三处勘误（§1.1「最高水位最高水位」重复词、§1.2「等权」与层间不等权相抵、L1 解级「收复水位回撤」歧义）与 C1-2「叠加取低者 vs 只执行一次」措辞相抵，均属实。</p>
+<p class="line">裁决基础：红队证据链（六源 CSV sha256 钉档＋脚本可重放）经本席独立验证成立；四查任务卡全部兑现、交付早于 10/13 时限。首轮 Validation Gate 运行有效。</p>
+</div>
+
+<h2>一、裁决总览：D1–D6 逐项裁定（附录 D 全表）</h2>
+<table>
+<tr><th style="width:70px">项</th><th>建议内容</th><th style="width:110px">裁定</th><th>核心理由</th></tr>
+<tr>
+<td><b>D1</b></td><td>锚定口径二选一成文（若保留周内锚，增「滚动峰 ≥5% 持续两周→L2」并列线）</td>
+<td><span class="tag tpass">采纳</span><br><span class="line">按双锚方案落文<br>（优于红队备选）</span></td>
+<td>A1 坐实：周内锚 17 周零触发 vs 滚峰 −7.83%，保护目标（回撤降杠杆）与度量口径（周内短窗）错位；§1.1 与 §1.4 文本内自相矛盾。修法取<b>双锚并行</b>：DD-L2 主锚改滚动峰累计回撤 ≥5%（覆盖阴跌），DD-L1 保留周内 ≥3% 急跌快线（覆盖闪崩）——比「二选一」更完整，比「并列线」更彻底。红队「持续两周」确认条件不采纳：滚峰本身是慢变量，追加两周延迟牺牲保护时效，解级机制已防误伤。</td>
+</tr>
+<tr>
+<td><b>D2</b></td><td>补月回撤定义</td>
+<td><span class="tag tpass">采纳</span></td>
+<td>A3 坐实：L3 主触发词全文无口径，属用户明示级条款的定义缺失。v1.1 定为<b>自然月峰谷口径</b>（月内净值峰值→其后月内最低净值之最大跌幅，月末收盘确认）——与红队 B6 演示口径一致，复算底稿即成可追溯基线。</td>
+</tr>
+<tr>
+<td><b>D3</b></td><td>钉死代理宇宙与层内等权口径，纳入快照管辖</td>
+<td><span class="tag tpass">采纳</span></td>
+<td>A2 坐实：同文本下触发结果分叉 0~15 周，§3.5「两个诚实重算者结果一致」在现文本下不可满足——可验证性是本政策的立身之本，此为必须项。v1.1 宇宙钉死＋版本锚（见 §三）。</td>
+</tr>
+<tr>
+<td><b>D4</b></td><td>组合净值序列载体随台账 v2 落地</td>
+<td><span class="tag tpass">采纳</span><br><span class="line">附责任腿派单建议</span></td>
+<td>A5 坐实：P 序列假想净值在台账 v1.0/v1.1 与 MySQL 九表均无载体，生效日基准数据缺席。10/16 恰逢台账 v2 收编，载体随收编落地；首检基线由本席手工重算先行兜底（§3.5 原则：手工为准），工程载体并行建设。</td>
+</tr>
+<tr>
+<td><b>D5</b></td><td>L1 单日 −2% 线与 R 系列日亏损闸关系成文</td>
+<td><span class="tag tmod">修改后采纳</span><br><span class="line">合一记账＋引用制</span></td>
+<td>A4 坐实：与框架 v1.2 日亏损闸（−2% 停新仓）同值同事件，重复立线有双轨记账风险。修法取<b>引用制</b>而非红队「合一收编或并行声明」二选一的任一原案：DD-L1 单日线改为引用线（同线值、同事件、原动作执行一次），DD 层仅追加存量复检＋候审两项动作；§3 增补 3.6 条防双重计分。</td>
+</tr>
+<tr>
+<td><b>D6</b></td><td>36% 注明出处锚＋「降一档」起点漂移定义＋三处勘误＋改称 DD-L1/2/3</td>
+<td><span class="tag tpass">采纳</span><br><span class="line">全项，随 v1.1</span></td>
+<td>C1-2/C1-3/C2/C3 全部属实，均为机械修订零争议；「起点漂移」补定义（顺序触发不豁免＋硬底 28%）见 §三。</td>
+</tr>
+</table>
+<div class="card card2">
+<p><b>总裁决：六项全部采纳（其中 D5 修改后采纳），零驳回。</b>红队「有保留通过」所列三项硬保留（D1/D2/D5）全部以条款修订方式消除——v1.1 落文后红队保留条件不再成立，本席判定：首轮盲审终态＝<span class="g"><b>通过（PASS）</b></span>，Drawdown Policy 以 <b>v1.1</b> 于 2026-10-16 随台账 v2 生效。</p>
+</div>
+
+<h2>二、v1.1 核心口径一：双锚触发结构（D1 落文）</h2>
+<table>
+<tr><th>级别</th><th>v1.1 触发条件（新口径）</th><th>锚定逻辑</th></tr>
+<tr>
+<td><span class="tag" style="background:rgba(240,136,62,.15);color:var(--org);border:1px solid var(--org)">DD-L1 · 警觉</span></td>
+<td><b>周内回撤 ≥3%</b>（周五收盘确认）<b>或</b>单日组合纸面净值跌幅 ≥2%（引用线，见 §三 D5）</td>
+<td>周内锚＝<b>急跌快线</b>，捕捉闪崩型风险；周内最高水位→当周收盘。</td>
+</tr>
+<tr>
+<td><span class="tag" style="background:rgba(248,81,73,.15);color:var(--red);border:1px solid var(--red)">DD-L2 · 触发（主条款）</span></td>
+<td><b>滚动峰累计回撤 ≥5%</b>（历史最高水位→当周五收盘，单次收盘确认即触发）</td>
+<td>滚动峰锚＝<b>阴跌主线</b>，水位全期连续计算、仅净值创新高时自然上移、任何人不得重置（§1.4 改写后与主锚同一口径，矛盾消除）。</td>
+</tr>
+<tr>
+<td><span class="tag l3">DD-L3 · 回炉</span></td>
+<td><b>月回撤 ≥10%</b>（自然月峰谷口径，D2）或 DD-L2 连续两周未解级</td>
+<td>月度复检时点照旧每月末。</td>
+</tr>
+</table>
+<p class="line">复算基线（本席重放）：双锚结构在 6/12–10/8 同窗将触发 DD-L2 于 W26 收盘（滚峰 −5.23%），较原文本（全程沉默）提前四周捕获阴跌——这正是政策存在之目的。</p>
+
+<h2>三、v1.1 核心口径二：逐项落文细则</h2>
+<div class="card">
+<p><b>D5｜单日线引用制：</b>DD-L1 的单日 −2% 为<b>引用线</b>——与框架 v1.2 日亏损闸同一线值、同一事件：日亏损闸原动作（停新仓）当日执行一次，DD 层不重复处置，仅追加「存量仓逐只复检止损线距离」＋「<code>REGIME_CHANGE</code> 候审打标」。§3 增补 <b>3.6 条</b>：单日 −2% 与日亏损闸为同一线，只记一次、动作合并执行，入防双重计分清单。</p>
+<p><b>D3｜代理宇宙钉死：</b>v1.1 宇宙＝A 层 EW(SPY,QQQ,GLDM)×50% ＋ B 层 EW(SPCX,ZETA,NOW)×30% ＋ 现金 20%（红队复算所用构成即官方化口径）；「层内等权、层间固定权重」取代「等权指数」歧义表述。版本锚＝10/10 池子年检终版＋台账 v2 版本号；宇宙变更＝改参数，走月度复检＋supersedes 链，纳入快照/Manifest 管辖（过渡期文件名＋hash，签名快照就位后升级 snapshot id）。</p>
+<p><b>D4｜净值载体（责任腿派单建议）：</b>①全栈——MySQL 基座增补 <code>nav_daily</code> 表（date／total_nav／layer_a／layer_b／cash／proxy_universe_version／data_run_id），随台账 v2 收编交付；②通用助手——每周五收盘后记账为周检 SOP 第 0 步；③量化——工程输出与手工重算一致性校验（§3.5）；④本席——10/16 首检基线以红队同款脚本口径手工生成净值序列兜底，不阻塞生效。</p>
+<p><b>D6｜四项机械修订：</b>①天花板 36% 注明出处锚＝《decision_patch_protocol v1》10/8 补丁协议红线 B 处置口径（10Y≥5.30% 执行闸），非框架 v1.2 之 40%，防误判数值错误；②「降一档」起点行为定义：<b>顺序触发不豁免</b>——DD-L2 触发时以触发时生效档为起点再降 −4pp（红线 B 已降至 32% 后 DD-L2 再触发→28%），<b>硬底 28%</b>；生效档已 ≤28% 时降档动作切换为「C17 收一档＋高久期群组减压 ≥1/2」，不再压天花板；同日多机制同时触发维持 §3.1 只执行一次取更严（§2「叠加取低者」措辞删除，全政策统一为 §3.1 口径）；解级回滚只回滚本政策降档动作，恢复档＝min(触发前档, 其他现行闸允许档)；③三处文字勘误照改，DD-L1 解级度量统一为「<b>滚动峰回撤 ≤1% 且连续两周周五收盘确认</b>，自动解级」；④L1/L2/L3 改称 <b>DD-L1/DD-L2/DD-L3</b>，免与框架仓位等级撞名；台账、周检 SOP、黄金题册引用同步改名。</p>
+</div>
+
+<h2>四、生效安排与治理记账</h2>
+<div class="card">
+<table>
+<tr><th>事项</th><th>安排</th></tr>
+<tr><td>生效日</td><td><b>2026-10-16（周五）首次周检</b>，随台账 v2 收编同步生效——维持不变。前置仅一项：D4 首检基线（手工重算净值序列，本席本周内交付，不依赖工程载体）。</td></tr>
+<tr><td>版本与沿革</td><td>Drawdown Policy v1.0 → v1.1（本裁决书为修订依据，随 supersedes 链落库 <code>rules</code> 表，rule_id 收编序列不变）；v1.0 存档不删。</td></tr>
+<tr><td>红队判决终态</td><td>有保留通过 → <span class="g"><b>通过</b></span>（保留条件 D1/D2/D5 已全部落文消除）；红队四查与附录 E 正面核验项（C17 档距、红线 A/B、reason code 对齐、生效日咬合等八项）全部确认有效。</td></tr>
+<tr><td>Validation Gate 机制记账</td><td>首轮运行三评：<b>有效</b>（红队提前交付、四查全兑现、证据可独立重放且本席重放逐位一致）；<b>教训入册</b>——A1 属「指标口径 vs 保护目标错配」型缺陷，黄金题册 v1.1 增补 Q41（周内锚盲区考题，答题要点＝双锚结构）；本轮解盲<b>无</b> <code>MODEL_DISAGREEMENT</code>（分歧以修订落文方式收敛，未走条件化表态）。</td></tr>
+<tr><td>复检节奏</td><td>月度复检照旧（每月末随月度复盘）：复检 3%/5%/10% 三线、双锚结构、宇宙构成与降档硬底 28%。</td></tr>
+</table>
+</div>
+
+<h2>五、风险声明</h2>
+<div class="card">
+<p class="o"><b>边界与诚实披露：</b>①本裁决基于纸面推演口径，红队代理宇宙为其复算声明假设、经本裁决官方化——B 层含高久期标的，若未来宇宙纳入 ETH 类资产，日线敏感度将质变，须随宇宙变更重跑全量复算；②82 日样本窗仅覆盖一类市况（阴跌＋V 型修复），双锚参数（3%/5%/10%）未经完整熊市样本检验，月度复检与 G1/G2 验收承担后续证伪责任；③回撤触发的强制减压遇 V 型反转的机会成本属政策内生代价（ZETA 判例镜像），不做结果追责；④全部计算首席可手工重算，任何工程化输出不一致时以手工为准并立 <code>RULE_VIOLATION</code>。本件全程纸面，不构成投资建议。</p>
+</div>
+
+<footer>首席投资策略师 裁决签发 · 2026-10-12｜VG-R1-20261012 解盲裁决｜Drawdown Policy v1.0 → v1.1｜纸面推演口径，不构成投资建议</footer>
+</body>
+</html>

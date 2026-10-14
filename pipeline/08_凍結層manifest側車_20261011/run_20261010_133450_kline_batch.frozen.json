@@ -1,0 +1,67 @@
+{
+ "run_id": "run_20261010_133450_kline_batch",
+ "type": "kline_batch",
+ "run_ts": "2026-10-10 13:34:45",
+ "schema_version": "2.0-freeze-retro",
+ "code_commit": "v1.0-20261011@0786c312f0f5eee235366b52cfb7ff5de0163afb",
+ "code_commit_retro": true,
+ "frozen_at": "2026-10-11T22:35:00+08:00",
+ "manifest_file": "manifest/run_20261010_133450_kline_batch.json",
+ "manifest_sha256": "f5f73a5a118ee017b9dd5d5d08f10d225e0ec22a609e5e4958183ac882298e4e",
+ "data_files": [
+  {
+   "path": "daily/sh688023.csv",
+   "status": "frozen",
+   "sha256": "79059dfea648c41a86e12f20c4629a01973298ada700c03346c5d2893f85e5e3",
+   "bytes": 53837,
+   "mtime": "2026-10-10T05:34:46.746619Z",
+   "actual_rows": 250,
+   "actual_last_date": "2026-10-09"
+  },
+  {
+   "path": "daily/sz002439.csv",
+   "status": "frozen",
+   "sha256": "0c3a88abf17814830507070617e82d319e2ee0d8439568202c7dd0990419400e",
+   "bytes": 53665,
+   "mtime": "2026-10-10T05:34:50.042733Z",
+   "actual_rows": 250,
+   "actual_last_date": "2026-10-09"
+  },
+  {
+   "path": "daily/sz300454.csv",
+   "status": "frozen",
+   "sha256": "fe9520bd0d69410c9200fb2a39f5f515ea223c8cd34da688ae33756677b59012",
+   "bytes": 54512,
+   "mtime": "2026-10-10T05:34:48.401676Z",
+   "actual_rows": 250,
+   "actual_last_date": "2026-10-09"
+  }
+ ],
+ "summary": {
+  "files_total": 3,
+  "frozen": 3,
+  "mutable_pointer": 0,
+  "missing": 0,
+  "missing_superseded": 0
+ },
+ "claims_check": [
+  {
+   "code": "sh688023",
+   "claimed_rows": 250,
+   "claimed_last_date": "2026-10-09",
+   "check": "match"
+  },
+  {
+   "code": "sz300454",
+   "claimed_rows": 250,
+   "claimed_last_date": "2026-10-09",
+   "check": "match"
+  },
+  {
+   "code": "sz002439",
+   "claimed_rows": 250,
+   "claimed_last_date": "2026-10-09",
+   "check": "match"
+  }
+ ]
+}

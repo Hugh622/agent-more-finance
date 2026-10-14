@@ -1,0 +1,100 @@
+{
+  "golden_manifest@1.0.0": "金準樣本釘死（E-P2-2 測試金字塔批次1）",
+  "entries": [
+    {
+      "file": "fedfunds_golden.csv",
+      "sha256": "fbb478e8447b196b1c686552613b040a2fb49c12090abb3efe51bad57d675bd0",
+      "rows": 30,
+      "pinned_from": "../../../market_data/rates/fedfunds.csv",
+      "pinned_at": "2026-10-12"
+    },
+    {
+      "file": "fx_snapshot_golden.csv",
+      "sha256": "5ca3e47f12572a4e21f150aed202ebb76d5d408810cf1b0165fbb5f45659fa26",
+      "rows": 4,
+      "pinned_from": "../../../market_data/fx/fx_snapshot.csv",
+      "pinned_at": "2026-10-12"
+    },
+    {
+      "file": "corporate_action/us_split_10to1_golden.csv",
+      "sha256": "49bc4f91e94fab2e442f580507f74429d77f3789b386a2a22c6a3efba7ec2a5d",
+      "rows": 16,
+      "case": {
+        "market": "US",
+        "kind": "split",
+        "ex_date": "2026-09-15",
+        "params": {
+          "ratio": 10.0
+        },
+        "expect_factor": 9.9609375,
+        "factor_tol": 0.005,
+        "expect_continuity": 0.0,
+        "continuity_tol": 0.001
+      },
+      "pinned_at": "2026-10-12"
+    },
+    {
+      "file": "corporate_action/hk_exdiv_golden.csv",
+      "sha256": "9a87a6db64467ea3eed4d85d15b443cea3b8cb6057eb99da491f2341361c34a9",
+      "rows": 22,
+      "case": {
+        "market": "HK",
+        "kind": "div",
+        "ex_date": "2026-09-18",
+        "params": {
+          "div_per_share": 4.0
+        },
+        "expect_factor": 0.9603960396039604,
+        "factor_tol": 0.005,
+        "expect_continuity": 0.0,
+        "continuity_tol": 0.001,
+        "detect_threshold": 0.02
+      },
+      "pinned_at": "2026-10-12"
+    },
+    {
+      "file": "corporate_action/sh_split_div_golden.csv",
+      "sha256": "07cec98fcafff7b9b7b8cbb3b77d5d16b45c69b1c765d38d86eedcaa40132c5e",
+      "rows": 19,
+      "case": {
+        "market": "CN",
+        "kind": "split_div",
+        "ex_date": "2026-09-16",
+        "params": {
+          "ratio": 0.3,
+          "div_per_share": 0.1
+        },
+        "expect_factor": 1.3063357282821684,
+        "factor_tol": 0.005,
+        "expect_continuity": 0.0001500000000000945,
+        "continuity_tol": 0.001
+      },
+      "pinned_at": "2026-10-12"
+    },
+    {
+      "file": "sec_filings_golden.csv",
+      "sha256": "8a0df0f38d2b855a91a0169bc385d872f4f14baa38b5709c3d6ad49546d76e36",
+      "rows": 12,
+      "pinned_from": "../../../market_data/sec/us_recent_filings.csv",
+      "pinned_at": "2026-10-12"
+    },
+    {
+      "file": "us_metrics_golden.csv",
+      "sha256": "299d965b736f4f2119d1ddc4a306016ffdc68571da85d97b60870d94cdca5665",
+      "rows": 12,
+      "pinned_from": "../../../market_data/fundamentals/us_metrics_latest.csv",
+      "pinned_at": "2026-10-12",
+      "re_pin_rule": "metrics 每日刷新(值漂移/取數時間變)——例行刷新後需按規程重釘 sha"
+    },
+    {
+      "file": "fomc_meetings_golden.csv",
+      "sha256": "599e4e6c55614755382c5f4d22ab9091e6f3826ed9b16f229e758ff1b0f4ff46",
+      "rows": 8,
+      "pinned_from": "../../../market_data/bsg/silver/calendar/fomc_calendar.csv (源=calendar/fomc_calendar.json)",
+      "pinned_at": "2026-10-12",
+      "re_pin_rule": "decision=pending 行隨宏觀『決議後24h內更新』條款變化——更新後按規程重釘 sha"
+    }
+  ],
+  "golden_manifest@1.1.0": "金準樣本釘死（E-P2-2 測試金字塔批次1+2；批次2 增三地 corporate action 三案）",
+  "golden_manifest@1.2.0": "金準樣本釘死（E-P2-2 批次1 v1.0.0 → 批次2 v1.2.0；v1.1 域分發中間版併入）"
+}

@@ -1,0 +1,277 @@
+{
+ "run_id": "run_20261010_133344_kline_batch",
+ "type": "kline_batch",
+ "run_ts": "2026-10-10 13:33:05",
+ "schema_version": "2.0-freeze-retro",
+ "code_commit": "v1.0-20261011@0786c312f0f5eee235366b52cfb7ff5de0163afb",
+ "code_commit_retro": true,
+ "frozen_at": "2026-10-11T22:35:00+08:00",
+ "manifest_file": "manifest/run_20261010_133344_kline_batch.json",
+ "manifest_sha256": "e24bc3e4f1af67bf6bab44a5cafc0b83f86d30a1d414ec7bfbd726f741bc5d9a",
+ "data_files": [
+  {
+   "path": "daily/usbmnr_am.csv",
+   "status": "frozen",
+   "sha256": "96091bf1262dbfc6e02ba41d53ae3d585a9d85fe3fec95e90903177447f3efa1",
+   "bytes": 55438,
+   "mtime": "2026-10-10T05:33:35.215160Z",
+   "actual_rows": 251,
+   "actual_last_date": "2026-10-09"
+  },
+  {
+   "path": "daily/uscper_am.csv",
+   "status": "frozen",
+   "sha256": "e6cb7d407eb96e702a7853021eb7edce2438ced9b9184d9ef8f789522ca7315d",
+   "bytes": 54059,
+   "mtime": "2026-10-10T05:33:39.511308Z",
+   "actual_rows": 250,
+   "actual_last_date": "2026-10-09"
+  },
+  {
+   "path": "daily/usestc_n.csv",
+   "status": "frozen",
+   "sha256": "1667596f08bc00ca012882d006944a525f167e8878cbee03b5f8727e65415823",
+   "bytes": 52684,
+   "mtime": "2026-10-10T05:33:24.309785Z",
+   "actual_rows": 250,
+   "actual_last_date": "2026-10-09"
+  },
+  {
+   "path": "daily/usgdx_am.csv",
+   "status": "frozen",
+   "sha256": "4d83d2ab6b8a0d6349bf160c9f888c33c121157033c8923af2290146d7cb912e",
+   "bytes": 55648,
+   "mtime": "2026-10-10T05:33:43.783455Z",
+   "actual_rows": 250,
+   "actual_last_date": "2026-10-09"
+  },
+  {
+   "path": "daily/usgldm_am.csv",
+   "status": "frozen",
+   "sha256": "38a4993deec9f88da97ba0e4e32a2a8e7bcc863f97f51a376d0af0061ccd6e3d",
+   "bytes": 56850,
+   "mtime": "2026-10-10T05:33:41.661382Z",
+   "actual_rows": 250,
+   "actual_last_date": "2026-10-09"
+  },
+  {
+   "path": "daily/ushpe_n.csv",
+   "status": "frozen",
+   "sha256": "27684d5a8f777adc17e5f250991ea19940eaa14825d98efbca2400124cae441d",
+   "bytes": 52441,
+   "mtime": "2026-10-10T05:33:13.273406Z",
+   "actual_rows": 250,
+   "actual_last_date": "2026-10-09"
+  },
+  {
+   "path": "daily/uskkr_n.csv",
+   "status": "frozen",
+   "sha256": "93d5a7ea181e48b66da512940531166ef21b71f03ccda5867fc17b41559302d2",
+   "bytes": 52028,
+   "mtime": "2026-10-10T05:33:26.413858Z",
+   "actual_rows": 250,
+   "actual_last_date": "2026-10-09"
+  },
+  {
+   "path": "daily/usnow_n.csv",
+   "status": "frozen",
+   "sha256": "e1de03d5e4438eaa1e203ef02e4202c19ddaa9d6c8de3f8cb6f73ab4acaae1b9",
+   "bytes": 54166,
+   "mtime": "2026-10-10T05:33:08.955257Z",
+   "actual_rows": 250,
+   "actual_last_date": "2026-10-09"
+  },
+  {
+   "path": "daily/usnrg_n.csv",
+   "status": "frozen",
+   "sha256": "5d4b52e2f694f7b5dd941cc4d8dff9a38dd4a56046da090176ef19c2327dbae9",
+   "bytes": 53921,
+   "mtime": "2026-10-10T05:33:11.099331Z",
+   "actual_rows": 250,
+   "actual_last_date": "2026-10-09"
+  },
+  {
+   "path": "daily/usoklo_n.csv",
+   "status": "frozen",
+   "sha256": "92b5b33fd20f0a3cc79c67aa962555243fee8a75449bef64971faf72484e5e3c",
+   "bytes": 52169,
+   "mtime": "2026-10-10T05:33:30.711005Z",
+   "actual_rows": 250,
+   "actual_last_date": "2026-10-09"
+  },
+  {
+   "path": "daily/uspfe_n.csv",
+   "status": "frozen",
+   "sha256": "2f6cfe73f2dfeee460b7ba30914d314e08e7cee71507cdea392c8b7a3dbdb8b6",
+   "bytes": 52497,
+   "mtime": "2026-10-10T05:33:19.976636Z",
+   "actual_rows": 250,
+   "actual_last_date": "2026-10-09"
+  },
+  {
+   "path": "daily/usqs_n.csv",
+   "status": "frozen",
+   "sha256": "f84962a12f14da44d32ec751605a6d6992c5c5ee27d23668b7a885f2d74ad450",
+   "bytes": 53206,
+   "mtime": "2026-10-10T05:33:28.553931Z",
+   "actual_rows": 251,
+   "actual_last_date": "2026-10-09"
+  },
+  {
+   "path": "daily/ussmr_n.csv",
+   "status": "frozen",
+   "sha256": "d7040c02fabd56ffec396b0d6af1075871626fed2170a6d7c7580ff5d3b5c662",
+   "bytes": 53923,
+   "mtime": "2026-10-10T05:33:33.097087Z",
+   "actual_rows": 250,
+   "actual_last_date": "2026-10-09"
+  },
+  {
+   "path": "daily/ussnow_n.csv",
+   "status": "frozen",
+   "sha256": "a2ed0c3999d635d8c1e9496e78ba989b40b2f71d4f96c416230297913cb2b0dd",
+   "bytes": 54140,
+   "mtime": "2026-10-10T05:33:22.133710Z",
+   "actual_rows": 250,
+   "actual_last_date": "2026-10-09"
+  },
+  {
+   "path": "daily/usunh_n.csv",
+   "status": "frozen",
+   "sha256": "96174587fae2a9f420279a95292f25f178de8cecd33e3d7407ecd176ba7bd3f4",
+   "bytes": 54700,
+   "mtime": "2026-10-10T05:33:17.552553Z",
+   "actual_rows": 250,
+   "actual_last_date": "2026-10-09"
+  },
+  {
+   "path": "daily/usxbi_am.csv",
+   "status": "frozen",
+   "sha256": "535f482df6026ab8ed096c9e5562b7563bea2e39da6bbe6ed41e2e9b58695353",
+   "bytes": 57577,
+   "mtime": "2026-10-10T05:33:37.322233Z",
+   "actual_rows": 250,
+   "actual_last_date": "2026-10-09"
+  },
+  {
+   "path": "daily/uszeta_n.csv",
+   "status": "frozen",
+   "sha256": "4f0eef5b7c827f9be0ed54bad7519671d7fccc62f0e3963db85e2346869d43e9",
+   "bytes": 53752,
+   "mtime": "2026-10-10T05:33:15.423480Z",
+   "actual_rows": 250,
+   "actual_last_date": "2026-10-09"
+  }
+ ],
+ "summary": {
+  "files_total": 17,
+  "frozen": 17,
+  "mutable_pointer": 0,
+  "missing": 0,
+  "missing_superseded": 0
+ },
+ "claims_check": [
+  {
+   "code": "usNOW.N",
+   "claimed_rows": 250,
+   "claimed_last_date": "2026-10-09",
+   "check": "match"
+  },
+  {
+   "code": "usNRG.N",
+   "claimed_rows": 250,
+   "claimed_last_date": "2026-10-09",
+   "check": "match"
+  },
+  {
+   "code": "usHPE.N",
+   "claimed_rows": 250,
+   "claimed_last_date": "2026-10-09",
+   "check": "match"
+  },
+  {
+   "code": "usZETA.N",
+   "claimed_rows": 250,
+   "claimed_last_date": "2026-10-09",
+   "check": "match"
+  },
+  {
+   "code": "usUNH.N",
+   "claimed_rows": 250,
+   "claimed_last_date": "2026-10-09",
+   "check": "match"
+  },
+  {
+   "code": "usPFE.N",
+   "claimed_rows": 250,
+   "claimed_last_date": "2026-10-09",
+   "check": "match"
+  },
+  {
+   "code": "usSNOW.N",
+   "claimed_rows": 250,
+   "claimed_last_date": "2026-10-09",
+   "check": "match"
+  },
+  {
+   "code": "usESTC.N",
+   "claimed_rows": 250,
+   "claimed_last_date": "2026-10-09",
+   "check": "match"
+  },
+  {
+   "code": "usKKR.N",
+   "claimed_rows": 250,
+   "claimed_last_date": "2026-10-09",
+   "check": "match"
+  },
+  {
+   "code": "usQS.N",
+   "claimed_rows": 251,
+   "claimed_last_date": "2026-10-09",
+   "check": "match"
+  },
+  {
+   "code": "usOKLO.N",
+   "claimed_rows": 250,
+   "claimed_last_date": "2026-10-09",
+   "check": "match"
+  },
+  {
+   "code": "usSMR.N",
+   "claimed_rows": 250,
+   "claimed_last_date": "2026-10-09",
+   "check": "match"
+  },
+  {
+   "code": "usBMNR.AM",
+   "claimed_rows": 251,
+   "claimed_last_date": "2026-10-09",
+   "check": "match"
+  },
+  {
+   "code": "usXBI.AM",
+   "claimed_rows": 250,
+   "claimed_last_date": "2026-10-09",
+   "check": "match"
+  },
+  {
+   "code": "usCPER.AM",
+   "claimed_rows": 250,
+   "claimed_last_date": "2026-10-09",
+   "check": "match"
+  },
+  {
+   "code": "usGLDM.AM",
+   "claimed_rows": 250,
+   "claimed_last_date": "2026-10-09",
+   "check": "match"
+  },
+  {
+   "code": "usGDX.AM",
+   "claimed_rows": 250,
+   "claimed_last_date": "2026-10-09",
+   "check": "match"
+  }
+ ]
+}

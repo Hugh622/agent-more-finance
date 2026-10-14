@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BJ 10/12 日誌 · 兩腿統合終審〔脱敏版〕｜首席投資策略師</title>
+<style>
+  :root{
+    --bg:#0b0f17; --card:#141b26; --card2:#1a2332; --line:#26324a;
+    --txt:#dbe4f0; --dim:#8b9bb4; --gold:#e8b84b;
+    --green:#3ddc84; --red:#ff5d6c; --amber:#ffb84d; --blue:#5aa7ff; --purple:#b48cf2;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--bg);color:var(--txt);font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",-apple-system,sans-serif;line-height:1.75;padding:28px 16px 60px;}
+  .wrap{max-width:1080px;margin:0 auto;}
+  .hdr{background:linear-gradient(135deg,#16202f 0%,#1d2a40 60%,#25203a 100%);border:1px solid var(--line);border-radius:16px;padding:30px 30px 24px;margin-bottom:22px;}
+  .hdr .tag{display:inline-block;background:rgba(232,184,75,.14);color:var(--gold);border:1px solid rgba(232,184,75,.4);font-size:12px;padding:3px 12px;border-radius:20px;letter-spacing:2px;margin-bottom:12px;}
+  .hdr h1{font-size:26px;font-weight:800;letter-spacing:1px;margin-bottom:8px;}
+  .hdr .sub{color:var(--dim);font-size:13.5px;}
+  .hdr .sub b{color:var(--txt);}
+  .verdict-line{margin-top:16px;background:rgba(232,184,75,.08);border-left:4px solid var(--gold);padding:12px 16px;border-radius:0 10px 10px 0;font-size:15px;}
+  h2.q{font-size:21px;font-weight:800;margin:34px 0 6px;color:#fff;}
+  h2.q .no{color:var(--gold);margin-right:8px;font-family:Georgia,serif;}
+  .h2sub{color:var(--dim);font-size:13px;margin-bottom:14px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin-bottom:16px;}
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:16px;}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 14px;text-align:center;}
+  .kpi .v{font-size:24px;font-weight:800;}
+  .kpi .l{font-size:12px;color:var(--dim);margin-top:4px;}
+  .g{color:var(--green);} .r{color:var(--red);} .a{color:var(--amber);} .b{color:var(--blue);} .p{color:var(--purple);} .gd{color:var(--gold);}
+  table{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0;}
+  th{background:#1c2740;color:#cfe0f5;text-align:left;padding:9px 10px;font-size:12.5px;border-bottom:2px solid var(--line);white-space:nowrap;}
+  td{padding:9px 10px;border-bottom:1px solid #1f2937;vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  tr:hover td{background:rgba(90,167,255,.05);}
+  .pill{display:inline-block;font-size:11px;font-weight:700;padding:2px 9px;border-radius:10px;white-space:nowrap;}
+  .pill.ok{background:rgba(61,220,132,.14);color:var(--green);border:1px solid rgba(61,220,132,.4);}
+  .pill.mod{background:rgba(255,184,77,.14);color:var(--amber);border:1px solid rgba(255,184,77,.4);}
+  .pill.no{background:rgba(255,93,108,.14);color:var(--red);border:1px solid rgba(255,93,108,.4);}
+  .pill.info{background:rgba(90,167,255,.14);color:var(--blue);border:1px solid rgba(90,167,255,.4);}
+  .bar{height:10px;border-radius:6px;background:#232e44;overflow:hidden;margin:5px 0;}
+  .bar i{display:block;height:100%;border-radius:6px;}
+  .duo{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--dim);}
+  .duo .bar{flex:1;margin:0;}
+  .callout{border-radius:12px;padding:14px 16px;margin:12px 0;font-size:14px;}
+  .co-red{background:rgba(255,93,108,.08);border:1px solid rgba(255,93,108,.35);}
+  .co-amber{background:rgba(255,184,77,.08);border:1px solid rgba(255,184,77,.35);}
+  .co-green{background:rgba(61,220,132,.08);border:1px solid rgba(61,220,132,.35);}
+  .co-blue{background:rgba(90,167,255,.08);border:1px solid rgba(90,167,255,.35);}
+  .callout b{color:#fff;}
+  .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px;}
+  .stock{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
+  .stock h3{font-size:16px;font-weight:800;color:#fff;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;}
+  .stock .px{color:var(--dim);font-weight:600;font-size:13px;}
+  .lv{display:flex;justify-content:space-between;font-size:13px;padding:5px 0;border-bottom:1px dashed #22304a;}
+  .lv:last-child{border-bottom:none;}
+  .lv .k{color:var(--dim);}
+  .note{font-size:12px;color:var(--dim);margin-top:8px;}
+  .timeline{position:relative;padding-left:26px;}
+  .timeline::before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--gold),var(--red));border-radius:2px;}
+  .tl{position:relative;margin-bottom:14px;}
+  .tl::before{content:"";position:absolute;left:-23px;top:7px;width:10px;height:10px;border-radius:50%;background:var(--gold);border:2px solid var(--bg);}
+  .tl .d{font-weight:800;color:var(--gold);font-size:14px;}
+  .tl .t{font-size:13.5px;}
+  .tl .t b{color:#fff;}
+  .hl{color:var(--gold);font-weight:700;}
+  .foot{color:#6d7d95;font-size:12px;text-align:center;margin-top:36px;line-height:1.9;}
+  .sec-title{display:flex;align-items:center;gap:8px;margin:14px 0 8px;font-weight:800;color:#fff;font-size:15px;}
+  .wchart{display:flex;align-items:center;gap:10px;font-size:12.5px;margin:6px 0;}
+  .wchart .nm{width:64px;color:var(--dim);text-align:right;flex-shrink:0;}
+  .wchart .bar{flex:1;margin:0;height:14px;}
+  .wchart .pc{width:56px;font-weight:700;}
+  .gates{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;}
+  .gate{background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:12px;text-align:center;}
+  .gate .gv{font-size:16px;font-weight:800;}
+  .gate .gl{color:var(--dim);margin-top:2px;}
+</style>
+</head>
+<body>
+<!-- ⚠️ 含真实持仓·禁入外包（2026-10-14 全栈开发标记） -->
+<div style="background:#7f1d1d;color:#fff;border:2px solid #ef4444;border-radius:12px;padding:14px 18px;margin-bottom:18px;font-size:14px;font-weight:700;">⚠️🚫 含真实持仓·禁入外包 —— 本件含用户真实持仓信息（持仓构成／成本位／账户仓位水位），仅限团队内部使用，严禁进入任何外发包。脱敏版：bj_final_verdict_20261013_脱敏版.html</div>
+<div class="wrap">
+
+<div style="background:rgba(61,220,132,.10);border:1px solid rgba(61,220,132,.45);border-radius:12px;padding:12px 16px;margin-bottom:18px;font-size:13.5px;">🛡️ <b>脱敏版</b>（2026-10-14｜外包工程項#1）：供外包／評審通道使用。持倉屬性、建倉成本位、賬戶倉位水位等敏感信息已打碼或區間化；技術位、裁定與結論結構保留。團隊自用原版（含真實持倉·禁入外包）另存於 shared/。</div>
+
+<!-- ================= HEADER ================= -->
+<div class="hdr">
+  <span class="tag">首席投資策略師 · 兩腿統合終審</span>
+  <h1>BJ Finance 10/12 交易日誌 · 終審裁決與實戰部署〔脱敏版〕</h1>
+  <div class="sub">
+    輸入：<b>技術腿量化執行版</b>（8條判斷複核＋執行位）× <b>宏觀腿簡報</b>（OpenAI風波／Agent AI／軟件格局／SPCX解禁／銅ETH基本面／事件日曆）<br>
+    數據截至：美股 <b>10/12 收市</b>；加密／銅金 <b>10/13 午間 HKT</b> ｜ 口徑：紙面推演（零實盤）
+  </div>
+  <div class="verdict-line">
+    一句話判詞：本期結構判讀（脱敏口徑）＝<b class="gd">平台順風（MSFT/META）＋硬件逆風（SNDK/NOW）＋SPCX 騎虎＋銅金守住＋ETH 等催化</b>。未來三週（CPI→解禁→FOMC 財報牆→選舉）係全倉壓力測試期——<b>呢一仗嘅輸贏唔在於買幾多，在於減得夠唔夠快。</b>
+  </div>
+</div>
+
+<!-- ================= §0 KPI ================= -->
+<h2 class="q"><span class="no">§0</span>BJ 今期判斷有幾準？</h2>
+<div class="h2sub">技術腿逐條數字複核 × 宏觀腿消息面對驗，首席統合裁定</div>
+<div class="kpis">
+  <div class="kpi"><div class="v g">8 / 8</div><div class="l">判斷通過數字覆核</div></div>
+  <div class="kpi"><div class="v g">4</div><div class="l">純採納</div></div>
+  <div class="kpi"><div class="v a">4</div><div class="l">修正採納（要補位）</div></div>
+  <div class="kpi"><div class="v r">0</div><div class="l">否決（另框架否決1項加倉）</div></div>
+  <div class="kpi"><div class="v r">84.5%</div><div class="l">12月加息定價＝全倉共同風險</div></div>
+  <div class="kpi"><div class="v a">11 日</div><div class="l">距 SPCX 10/24 解禁</div></div>
+</div>
+
+<div class="card">
+  <div class="sec-title">📊 市場底色（半分鐘版）</div>
+  <table>
+    <tr><th>指標</th><th>讀數</th><th>點解重要</th></tr>
+    <tr><td>標普 / 納指100 / 道指</td><td>7807.24（-0.05%）/ 30664.70（-0.71%）/ 51850.55（+0.38%）</td><td>10/12 典型「科技弱、道指撐」rotation 日，資金由 AI 硬件滾去 mega 平台</td></tr>
+    <tr><td>10Y / 30Y（10/9 官方）</td><td class="r">5.24% / 5.60%</td><td>「利率唔會快落」係全部持倉最大共同風險因子</td></tr>
+    <tr><td>FOMC 定價</td><td>10月按兵 ~79.5%｜<span class="r">12月加息 ~84.5%</span></td><td>10/14 CPI 係再定價點：再熱隨時變 95%+</td></tr>
+    <tr><td>金 / Brent</td><td>~$4,211 歷史高位區 / ~$103</td><td>通脹風險未散，銅金防通脹腿有基本盤</td></tr>
+  </table>
+</div>
+
+<!-- ================= §1 逐項裁定 ================= -->
+<h2 class="q"><span class="no">§1</span>BJ 逐項判斷，首席點裁定？</h2>
+<div class="h2sub">八條判斷（ETH 拆短線／中期兩條計）——方向全數認可，四條要修補充實</div>
+<div class="card">
+  <table>
+    <tr><th style="width:30px">#</th><th style="width:23%">BJ 觀點（10/12）</th><th style="width:31%">兩腿覆核結果</th><th>首席裁定</th><th style="width:78px">標籤</th></tr>
+    <tr><td>1</td><td><b>CPER</b>：區間震盪、高位減磅</td><td>屬實，但補充：4個月底部抬升＝<b>上升三角形</b>，唔係死箱；宏觀：供應缺口年，中期偏多</td><td>減磅方向啱，但唔好清袋——41.3-41.5 分段減之後<b>留返 1/3 底倉博突破</b>（放量收&gt;41.52 上望 43.5-45）</td><td><span class="pill mod">修正採納</span></td></tr>
+    <tr><td>2</td><td><b>SPCX</b>：BO 後結構良好</td><td>數字全核（兩日+16.1%；10/6 高 176.42 精確測 6/12 高 176.52，差 -0.06%）；三度回踩 160 全守</td><td>結構認可，<b>但頭頂有解禁日程表</b>：10/24 再嚟 3.28 億股，11 月中 28%，12/8 全額——呢啲係定量供給唔係情緒</td><td><span class="pill mod">修正採納</span></td></tr>
+    <tr><td>3</td><td><b>NOW</b>：走勢偏弱</td><td>高開+3.3% 全回吐倒跌收場＝典型<b>多頭陷阱</b>；宏觀：基本面未壞，係相對動量弱＋tier 轉軌期</td><td>短線技術話事：持有必須帶三線紀律；「更強軟件股喺出面」冇講錯，反轉期權留返 10/29 財報後</td><td><span class="pill mod">修正採納</span></td></tr>
+    <tr><td>4</td><td><b>ETH 短線</b>：失守 50ma、弱於 BTC</td><td>量化確認：一週落後 BTC <b>5.4pp</b>、回撤深度 2.7 倍、ETH/BTC 0.0301 繼續沉底</td><td>完全成立，照單全收</td><td><span class="pill ok">採納</span></td></tr>
+    <tr><td>5</td><td><b>ETH 中期</b>：8月以來升勢仍在</td><td>技術：<b>有條件成立</b>——跌返入 9 月箱體（2,400-2,550）＝假突破警號；宏觀：升軌完整＋BMNR 吸籌 6.31M ETH</td><td><b>打折採納</b>：趨勢「名義存續、質量降級」。處理綁相對強弱（ETH/BTC &lt;0.029 觸發減磅）而唔係淨價格</td><td><span class="pill mod">修正採納</span></td></tr>
+    <tr><td>6</td><td><b>SNDK</b>：AI 硬件走勢差</td><td>三連陰（-4.9%/-1.7%/-6.0%）破晒 MA10/20/50/100，RSI 19.8；宏觀：業績冇問題，係估值／週期敘事 de-rating</td><td>同意——<b>唔撈、等右側</b>。超賣反彈都要等收復 1584（MA50）先算數，10/29 財報係裁判</td><td><span class="pill ok">採納</span></td></tr>
+    <tr><td>7</td><td><b>SNOW/TEAM/PLTR/GTLB</b>：已突破等回踩買</td><td>四隻放量突破全核實（2.0×/1.7×/2.4×/1.5×）；但 <b>PLTR RSI 81.7、GTLB RSI 77.4 雙超買</b>，TEAM/PLTR 距 MA50 伸到 +18%/+17%</td><td>方向啱、紀律要加辣：<b>千祈唔好喺高位追價</b>，回踩縮量企穩先係入場訊號，買入區下沿先係好價</td><td><span class="pill mod">修正採納</span></td></tr>
+    <tr><td>8</td><td><b>Agent AI 供應商 performing well</b>帶起 MSFT/META</td><td>10/12 鏡像硬證據：META +3.38%、MSFT +1.14% 逆市，同硬件板塊殺跌呈兩個世界</td><td>認同——但呢個係「順風＋擠高」狀態：MSFT 541 逼歷史高、META 逼 52 週高，<b>財報前唔加注</b>，等回落或者等財報確認</td><td><span class="pill ok">採納</span></td></tr>
+  </table>
+  <div class="callout co-green" style="margin-bottom:0">
+    <b>總評：</b>BJ 今期日誌質素高——8 條全過數字覆核，SPCX 同 NOW 兩條精確到小數位級吻合。佢嘅問題從來唔係睇得唔準，係<b>持倉處理同事件日曉嘅配合</b>——呢樣就係下面終審報告要做嘅嘢。
+  </div>
+</div>
+
+<!-- ================= §2 分歧仲裁 ================= -->
+<h2 class="q"><span class="no">§2</span>三個分歧點，首席點判？</h2>
+<div class="h2sub">兩腿意見唔完全一致嘅地方，逐一仲裁落死線</div>
+
+<div class="grid2">
+  <div class="card">
+    <div class="sec-title">⚔️ 分歧一：ETH 中期趨勢存唔存續？</div>
+    <table>
+      <tr><th>立場</th><th>講法</th></tr>
+      <tr><td><span class="pill info">技術腿</span></td><td>有條件成立：低點 2,472 仍高於 9/15 低 2,398（高點序列未斷），<b>但</b>回收入 9 月箱體＝假突破警號已觸發</td></tr>
+      <tr><td><span class="pill info">宏觀腿</span></td><td>8 月升軌完整（8 月低 ~$1,93x 以來 +31%）＋BMNR 吸籌未停＋ETF staking 係未兌現催化</td></tr>
+    </table>
+    <div class="callout co-amber" style="margin-bottom:0">
+      <b>首席裁定：「貼線存續」。</b>趨勢名義上未死、質量已降級——一個來回全數回吐突破升幅，呢種趨勢唔可以畀佢全信用。處理採納宏觀腿建議：<b>減磅觸發綁 ETH/BTC 跌穿 0.029</b>（而唔係淨 ETH 價格），轉強確認＝放量收回 2,550 之上。持有可以，信用額度減半。
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="sec-title">⚔️ 分歧二：NOW 係弱勢股定困境反轉？</div>
+    <table>
+      <tr><th>立場</th><th>講法</th></tr>
+      <tr><td><span class="pill info">宏觀腿</span></td><td>-27% 位置＋管理層口徑正面，若 Q3 證實 AI ACV 加速，<b>反轉彈性最大係佢</b></td></tr>
+      <tr><td><span class="pill info">技術腿</span></td><td>下降三角＋10/12 多頭陷阱＋量 0.89× 冲高無接力＝<b>偏空</b>，減磅線 135.6／清袋 132.8</td></tr>
+    </table>
+    <div class="callout co-amber" style="margin-bottom:0">
+      <b>首席裁定：短線技術話事、中線財報話事。</b>兩邊都啱，只係時間尺度唔同——最危險係用中線邏輯做短線持有嘅藉口。10/29 財報前 NOW 倉必須帶齊三線（135.6／132.8／126.75），反轉期權留俾財報後三個數字：AI-native tier 轉換率、net-new ACV 環比、Now Assist pool 消耗率。<b>數據唔到，故事唔算數。</b>
+    </div>
+  </div>
+
+  <div class="card" style="grid-column:1/-1">
+    <div class="sec-title">⚔️ 分歧三：SPCX 160 一線，買唔買？</div>
+    <table>
+      <tr><th>立場</th><th>講法</th></tr>
+      <tr><td><span class="pill info">技術腿</span></td><td>三度探 160 全守＋回踩量能逐日萎縮（77M→67M）＝健康洗盤，<b>160-160.9 縮量企穩即第一注</b></td></tr>
+      <tr><td><span class="pill no">首席框架</span></td><td>SPCX 新倉＝0（既有裁決）＋解禁前壓 ≤3.5–4.5%（脱敏）——10/5 減磅令（框架指令）仲生效中</td></tr>
+    </table>
+    <div class="callout co-red" style="margin-bottom:0">
+      <b>首席裁定：框架否決加倉，技術結構照樣認可。</b>160 企穩係真嘅，但 SPCX 唔係普通強勢股——P/S 60x+ 冇容錯空間，頭頂 60 日三波解禁（10/24 三億股→11 月中 28%→12/8 全額）。<b>結構靚唔等於賠率靚。</b>對持倉者，160 係「守倉位」；對冇倉者，係「睇唔到手」嘅位。今期唯一被首席直接否決嘅操作建議，就係呢個。
+    </div>
+  </div>
+</div>
+
+<!-- ================= §3 持倉執行計劃 ================= -->
+<h2 class="q"><span class="no">§3</span>八隻標的（持倉屬性已脱敏），逐隻點處理？</h2>
+<div class="h2sub">持有／減磅／清袋三級制——所有線收市口徑確認，破位減磅走人</div>
+
+<div class="card">
+  <table>
+    <tr><th>標的</th><th>10/12 收</th><th>裁定</th><th>減磅線（收盤）</th><th>止蝕／清袋線</th><th>關鍵事件</th><th>權重帽</th></tr>
+    <tr><td><b>MSFT</b></td><td>541.15</td><td><span class="pill ok">持有</span> 順風擠高</td><td class="a">&lt;522.9（通道B確認線）</td><td class="r">&lt;513.7 減半｜&lt;508.9-509.2 清</td><td>10/27-29 財報：Azure 增速＋capex guidance 係裁決點</td><td>≤5–7%（脱敏）</td></tr>
+    <tr><td><b>META</b></td><td>742.96</td><td><span class="pill ok">持有</span></td><td class="a">&lt;719（MA20 帶，滑動覆核）</td><td class="r">&lt;713.19 清</td><td>~10/29 財報：capex/FCF 紀律係最大軟肋</td><td>≤2.5–3.5%（脱敏）</td></tr>
+    <tr><td><b>CPER</b></td><td>40.63</td><td><span class="pill mod">持有＋高位分段減磅</span></td><td class="a">41.3-41.5 分段減（留 1/3 博突破）</td><td class="r">&lt;39.2 轉弱｜&lt;38.00 失效清</td><td>銅 232 關稅裁定未定（15%/30% 擬案）</td><td>≤2.5–3.5%（脱敏）</td></tr>
+    <tr><td><b>GLDM</b></td><td>金 ~$4,211</td><td><span class="pill ok">持有唔加注</span> 對沖腿</td><td class="a">金收 &lt;$4,100 減半（框架線）</td><td class="r">金收 &lt;$3,950 清（框架線）</td><td><b>10/14 CPI＝金鏈裁決日</b>；新倉解禁＝收復 85.29＋12月加息 &lt;60%</td><td>≤4%</td></tr>
+    <tr><td><b>SPCX</b></td><td>163.42</td><td><span class="pill no">減磅令</span> 解禁前行先</td><td class="a">165.5-166.2 第一段｜159.8-160.7 第二段，<b>10/24 前壓至 ≤3.5–4.5%（脱敏）</b></td><td class="r">&lt;158（假突破）減磅走人唔等解禁｜&lt;149.9 減半｜&lt;145.4 清</td><td><b>10/24 Day135 解禁 328.4M 股</b>；11/17 Q3＋28%；12/8 全解禁</td><td>≤3.5–4.5%（脱敏）→11月中再壓</td></tr>
+    <tr><td><b>NOW</b></td><td>140.32</td><td><span class="pill mod">持有＋嚴格紀律</span></td><td class="a">&lt;135.6 減磅</td><td class="r">&lt;132.8 清｜硬止蝕 126.75｜反手確認＝放量收 &gt;148.2</td><td>10/29 財報二揀一（AI ACV 三數字）</td><td>≤1.5–2.5%（脱敏）</td></tr>
+    <tr><td><b>HPE</b></td><td>70.33</td><td><span class="pill mod">高危警示持有</span></td><td class="a">&lt;68.0 減磅（框架線，待量化覆核）</td><td class="r">&lt;62.15 舊頸線清（框架線）</td><td>10/12 無 catalyst 殺 -4.26%——未明風險本身就係風險</td><td>≤1.5–2.5%（脱敏）</td></tr>
+    <tr><td><b>ZETA</b></td><td>33.51</td><td><span class="pill ok">持有</span> 非焦點</td><td class="a">&lt;32.0 減磅（框架線）</td><td class="r">&lt;30.5 清｜硬底 28.4</td><td>隨軟件 beta；11 月財報留意 ACV 證據</td><td>≤1–2%（脱敏）</td></tr>
+  </table>
+  <div class="callout co-red">
+    <b>加密腿（ETH/BTC）：</b>ETH ≈$2,505（五源 2,481-2,515）持有但綁相對強弱——<b>ETH/BTC 跌穿 0.029 或 UTC 日收 &lt;2,400 即機械減磅</b>，轉強＝放量收回 2,550；支撐 2,472→2,400-2,430→2,398。BTC ≈$83,350：82.9-83.5k 接位單（1%）維持貼價有效，<b>78.6k（MA50）＝生死線</b>，阻力 84k→86.4-87k→89.3-90k。<b>注意：加密閘已滿（水位脱敏），實際零新增空間。</b>
+  </div>
+  <div class="callout co-amber" style="margin-bottom:0">
+    <b>資金從邊度嚟？</b>觀察清單任何買入＝<b>先減後買</b>——資金來源就係 SPCX 減磅令＋NOW 壓縮騰出嚟嘅額度。四閘近滿（主題閘／加密閘／總倉水位已脱敏：總倉約九成（區間口徑）），零自由加倉。
+  </div>
+</div>
+
+<div class="card">
+  <div class="sec-title">⚖️ 持倉多空力量對比（首席綜合評分）</div>
+  <div class="duo"><span style="width:110px">MSFT 平台順風</span><div class="bar"><i style="width:70%;background:linear-gradient(90deg,#2fa864,#3ddc84)"></i></div><span>70</span></div>
+  <div class="duo"><span style="width:110px">META 廣告雙引擎</span><div class="bar"><i style="width:65%;background:linear-gradient(90deg,#2fa864,#3ddc84)"></i></div><span>65</span></div>
+  <div class="duo"><span style="width:110px">CPER 升三角形</span><div class="bar"><i style="width:60%;background:linear-gradient(90deg,#2fa864,#3ddc84)"></i></div><span>60</span></div>
+  <div class="duo"><span style="width:110px">GLDM 金歷史高位</span><div class="bar"><i style="width:60%;background:linear-gradient(90deg,#2fa864,#3ddc84)"></i></div><span>60</span></div>
+  <div class="duo"><span style="width:110px">ZETA 區間偏上</span><div class="bar"><i style="width:50%;background:linear-gradient(90deg,#b8862f,#e8b84b)"></i></div><span>50</span></div>
+  <div class="duo"><span style="width:110px">SPCX 強勢×解禁</span><div class="bar"><i style="width:55%;background:linear-gradient(90deg,#b8862f,#e8b84b)"></i></div><span>55</span></div>
+  <div class="duo"><span style="width:110px">HPE 未明殺跌</span><div class="bar"><i style="width:45%;background:linear-gradient(90deg,#b8862f,#e8b84b)"></i></div><span>45</span></div>
+  <div class="duo"><span style="width:110px">ETH 貼線掙扎</span><div class="bar"><i style="width:40%;background:linear-gradient(90deg,#c0392b,#ff5d6c)"></i></div><span>40</span></div>
+  <div class="duo"><span style="width:110px">NOW 多頭陷阱</span><div class="bar"><i style="width:35%;background:linear-gradient(90deg,#c0392b,#ff5d6c)"></i></div><span>35</span></div>
+  <div class="note">*脫敏：建議權重以區間口徑呈現，精確值見內部原版。<br>評分＝技術結構 × 基本面方向 × 事件風險加權；SPCX 技術分高但被解禁日程扣分、NOW 被價格行為扣分。</div>
+</div>
+
+<div class="card">
+  <div class="sec-title">💰 建議權重分配（上限口徑，合計約28–31%（脱敏）＜ 執行閘 32%）</div>
+  <div class="wchart"><span class="nm">MSFT</span><div class="bar"><i style="width:100%;background:#3ddc84"></i></div><span class="pc g">5–7%*</span></div>
+  <div class="wchart"><span class="nm">GLDM</span><div class="bar"><i style="width:67%;background:#e8b84b"></i></div><span class="pc a">3–5%*</span></div>
+  <div class="wchart"><span class="nm">SPCX</span><div class="bar"><i style="width:67%;background:#e8b84b"></i></div><span class="pc a">3–5%*↓</span></div>
+  <div class="wchart"><span class="nm">CPER</span><div class="bar"><i style="width:50%;background:#5aa7ff"></i></div><span class="pc b">2.5–3.5%*</span></div>
+  <div class="wchart"><span class="nm">META</span><div class="bar"><i style="width:50%;background:#5aa7ff"></i></div><span class="pc b">2.5–3.5%*</span></div>
+  <div class="wchart"><span class="nm">BTC</span><div class="bar"><i style="width:33%;background:#b48cf2"></i></div><span class="pc p">1.5–2.5%*</span></div>
+  <div class="wchart"><span class="nm">ETH</span><div class="bar"><i style="width:33%;background:#b48cf2"></i></div><span class="pc p">1.5–2.5%*</span></div>
+  <div class="wchart"><span class="nm">NOW</span><div class="bar"><i style="width:33%;background:#ff5d6c"></i></div><span class="pc r">1.5–2.5%*↓</span></div>
+  <div class="wchart"><span class="nm">HPE</span><div class="bar"><i style="width:33%;background:#ff5d6c"></i></div><span class="pc r">1.5–2.5%*</span></div>
+  <div class="wchart"><span class="nm">ZETA</span><div class="bar"><i style="width:25%;background:#ff5d6c"></i></div><span class="pc r">1–2%*</span></div>
+  <div class="gates" style="margin-top:14px">
+    <div class="gate"><div class="gv r">40%</div><div class="gl">L2 權益天花板</div></div>
+    <div class="gate"><div class="gv a">32%</div><div class="gl">執行閘</div></div>
+    <div class="gate"><div class="gv a">28%</div><div class="gl">個股合計閘</div></div>
+    <div class="gate"><div class="gv r">12%</div><div class="gl">主題閘（C17）</div></div>
+    <div class="gate"><div class="gv r">滿</div><div class="gl">加密閘（水位脱敏）</div></div>
+    <div class="gate"><div class="gv a">≈0</div><div class="gl">自由加倉空間（脱敏）</div></div>
+  </div>
+</div>
+
+<!-- ================= §4 觀察清單 ================= -->
+<h2 class="q"><span class="no">§4</span>觀察清單四隻，幾時先可以入手？</h2>
+<div class="h2sub">全部「已突破＋量能配合」核實——但超買股嘅入場證只有一張：縮量回踩</div>
+<div class="card">
+  <table>
+    <tr><th>標的</th><th>收盤</th><th>突破核實</th><th>回踩買入區</th><th>加倉確認</th><th>失效位</th><th>超買警示</th></tr>
+    <tr><td><b>SNOW</b></td><td>360.37</td><td>10/9 放量 2.0× 收 368.89 破 348.28</td><td><b>348-353</b>（BO頂）或 MA10 343-345 縮量企穩</td><td>放量收 369-370 三日二守</td><td class="r">收 &lt;338（MA20）</td><td>距 MA50 +8.7%</td></tr>
+    <tr><td><b>TEAM</b></td><td>207.75</td><td>10/8 放量 1.7× 收 203.57 破 200（9月高）</td><td><b>200-203</b>（BO頂）或 MA10 194-196</td><td>收 &gt;212.84（52週高）</td><td class="r">收 &lt;190（MA20下）</td><td class="a">距 MA50 +18%</td></tr>
+    <tr><td><b>PLTR</b></td><td>209.00</td><td>10/8 放量 2.4× 收 198.78 破 194.78，10/9 再 +5.1%</td><td><b>194.5-200</b>（BO頂＋MA10 重疊區）</td><td>收 &gt;212.94（ATH）</td><td class="r">收 &lt;188.8（MA20）</td><td class="r">RSI 81.7 深超買</td></tr>
+    <tr><td><b>GTLB</b></td><td>56.01</td><td>10/8 放量 1.5×，10/12 盘中 52 週高 56.64</td><td><b>51-52.5</b>（MA10）或 50-51（MA20＋整數位）</td><td>放量收 &gt;56.64 站穩</td><td class="r">收 &lt;48.5</td><td class="r">RSI 77.4 超買</td></tr>
+  </table>
+  <div class="callout co-amber">
+    <b>回踩買入三條鐵律（修正採納嘅加辣版）：</b><br>
+    ① <b>限價掛單，日 K 收喺買入區上沿之上先入場，唔好用市價接刀</b>；<br>
+    ② PLTR/GTLB 超買＋TEAM/PLTR 伸得最長——回踩深度預備充足，<b>買入區下沿先係好價，上沿只係合格價</b>；<br>
+    ③ 事件窗限制：<b>10/14 CPI 日禁新倉；10/27-29 只減不加</b>；單注 ≤1.5%、四隻合計 ≤5%（規則保留），同既有持倉（屬性脱敏）共用個股閘 28%——即係話，若相關持倉（屬性脱敏）未先行減磅，呢四隻一注都落唔到場。
+  </div>
+  <div class="note">SNDK（1487.33，無倉迴避）：唔撈。右側確認＝收復 1584（MA50）；10/29 財報（同 NOW 撞日）先係真正裁判；下方 1464→1453→1400→1187（MA200）一級級落。</div>
+</div>
+
+<!-- ================= §5 事件窗劇本 ================= -->
+<h2 class="q"><span class="no">§5</span>未來三週事件窗，倉位點部署？</h2>
+<div class="h2sub">四關閘一齊埋身：CPI → 解禁 → FOMC＋財報牆 → 選舉</div>
+<div class="card">
+  <div class="timeline">
+    <div class="tl"><div class="d">10/14（三）08:30 ET · 9月 CPI</div><div class="t"><b>全倉第一裁決點。</b>12月加息 84.5% 會唔會變 95%+ 就睇呢一日。三情景：<b>熱</b>→估值倉再殺、金續強（GLDM 受惠）；<b>凍</b>→照舊拉鋸；<b>降溫</b>→風險資產鬆口氣但金回吐（GLDM 執行金 $4,100 減半線）。<b>CPI 日禁新倉。</b></div></div>
+    <div class="tl"><div class="d">~10/16 · TSMC Q3 法說</div><div class="t">存儲鏈情緒指標——SNDK 板塊嘅風向球，10/16 週檢一併覆核。</div></div>
+    <div class="tl"><div class="d">10/20-23 · SPCX 解禁前減磅窗</div><div class="t"><b>10/24 Day135 解禁 328.4M 股擺喺度，唔好等 10/24 先反應。</b>執行兩段：165.5-166.2 第一段（10/6 高回落後反抽區）、159.8-160.7 第二段（回踩帶），10/24 收市前壓至 ≤3.5–4.5%（脱敏）。</div></div>
+    <div class="tl"><div class="d">10/27-28 · FOMC</div><div class="t">10月按兵 79.5% 為基準，聲明＋點陣係焦點。<b>前後 72hr 只減不加</b>（既有鐵律）。</div></div>
+    <div class="tl"><div class="d">10/27-29 · 財報牆：MSFT × META × NOW × SNDK</div><div class="t"><b>最危險 72 小時。</b>高位浮盈的相關倉位（屬性脱敏）財報前擠高＝減 ≥1/2（扎堆週減壓線）；<b>財報夜只減不加，任何 beat 都等 T+1 收盤確認先講</b>——FOMC 實實證「鷹派已計價」教訓仲溫熱。</div></div>
+    <div class="tl"><div class="d">11/3 · 美國中期選舉</div><div class="t">政策不確定性高（民主黨未必大勝）。<b>高波動倉（屬性脱敏：SPCX＋BTC）合計 ≤3.5–4.5%（脱敏）。</b></div></div>
+    <div class="tl"><div class="d">~11/17 → 12/8 · SPCX Q3 財報＋28% 解禁 → Day180 全解禁</div><div class="t">11 月中再壓一程；<b>12 月全解禁前做清零評估</b>（既有裁決不變）。</div></div>
+    <div class="tl"><div class="d">未定 · 銅 232 關稅／ETH ETF staking</div><div class="t">兩個未兌現催化：銅裁定＝COMEX 溢價放大器（利 CPER）；staking 獲批＝ETH 中期大利好——未有文件前，一律只記雷達唔入倉。</div></div>
+  </div>
+</div>
+
+<!-- ================= §6 風險預警 ================= -->
+<h2 class="q"><span class="no">§6</span>有咩風險要提防？</h2>
+<div class="card">
+  <table>
+    <tr><th style="width:56px">級別</th><th style="width:26%">風險</th><th>說明同應對</th></tr>
+    <tr><td><span class="pill no">R1 高</span></td><td><b>SPCX 解禁洪峰</b></td><td>60 日三波定量供給（10/24 三億股／11月中 28%／12/8 全額）＋P/S 60x 冇容錯。<b>應對：10/24 前機械執行減磅令，寧可早減三日，唔好遲減一秒。</b></td></tr>
+    <tr><td><span class="pill no">R2 高</span></td><td><b>財報牆二揀一</b></td><td>NOW/SNDK 10/29 同日、MSFT/META 同窗。四隻一齊miss＝組合級衝擊。<b>應對：財報夜零加倉，T+1 收盤確認制。</b></td></tr>
+    <tr><td><span class="pill no">R3 高</span></td><td><b>12月加息 84.5% 再定價</b></td><td>CPI 再熱→95%+，壓晒全部估值倉（SPCX/NOW/ZETA/ETH 全部利率敏感）。<b>應對：CPI 日禁新倉＋全部倉帶住止蝕線過夜。</b></td></tr>
+    <tr><td><span class="pill mod">R4 中高</span></td><td><b>HPE 未明 catalyst</b></td><td>上週五仲係 52 週高附近，10/12 無消息殺 -4.26%——「冇消息嘅跌」係最差嗰種弱。<b>應對：收 &lt;68.0 減磅紀律行先，等量化腿補核量價結構。</b></td></tr>
+    <tr><td><span class="pill mod">R5 中</span></td><td><b>超買追高陷阱</b></td><td>PLTR RSI 81.7／GTLB 77.4——呢個位置追價＝送錢。<b>應對：只做縮量回踩限價單，買入區下沿先入場。</b></td></tr>
+    <tr><td><span class="pill mod">R6 中</span></td><td><b>ETH 相對弱勢擴散</b></td><td>ETH/BTC 0.030 貼歷史弱區，資金集中 BTC；ETH 同美股 AI 鏈 correlation 高（10/12 同步跌）。<b>應對：跌破 0.029 機械執行，唔同佢講感情。</b></td></tr>
+  </table>
+  <div class="callout co-blue" style="margin-bottom:0">
+    <b>透明度聲明（缺口明示，唔編數）：</b>①HPE 10/12 單日 catalyst 兩腿均未搵到可靠來源；②MSFT/META/NOW/SNDK 財報確實日期為記憶錨 10/27-29 窗口，待公司官方確認；③10Y 10/12 官方值未出（最新 10/9＝5.24%）；④ETH 八月前歷史無法複算（FRED 全 down），趨勢線斜率用 9 月錨點代驗證，置信度已降級；⑤GLDM/HPE/ZETA 嘅「框架線」由首席既定口徑推出，已標注待量化腿覆核。
+  </div>
+</div>
+
+<!-- ================= §7 總結 ================= -->
+<div class="card" style="border:1px solid rgba(232,184,75,.45);background:linear-gradient(135deg,#1a2332,#20263b)">
+  <div class="sec-title" style="color:var(--gold)">🏁 總結</div>
+  <div style="font-size:15px">
+    BJ 睇市嘅眼光冇退步——8 條判斷全過覆核，SPCX 同 NOW 兩條仲要精確到小數位。但佢個倉而家嘅問題唔係睇唔睇得準，係<b>三週內四關閘（CPI→解禁→FOMC 財報牆→選舉）一齊埋身</b>。首席裁決：<span class="hl">結構最穩嘅銅同 MSFT/META 守住唔加注；最危險嘅 SPCX 同 NOW 寧可早減三日，唔好遲減一秒；觀察清單四隻超買股，千祈唔好喺高位追價，專心守好手上呢一倉。</span><br><br>
+    <b style="font-size:17px">總結一句：呢一仗贏在紀律，唔贏在眼光——減得快嘅人先有資格講趨勢。</b>
+  </div>
+</div>
+
+<div class="foot">
+  首席投資策略師 · BJ Finance 2026-10-12 交易日誌兩腿統合終審 ｜ 2026-10-13 HKT<br>
+  輸入：技術腿量化執行版（shared/BJ交易日志核验_技术腿量化执行版_20261013.md）× 宏觀腿簡報（shared/bj_review_20261013/）<br>
+  【脱敏版】持倉屬性／成本位／賬戶水位已脱敏（區間化），原版含真實持倉·禁入外包 ｜ 2026-10-14<br>口徑：紙面推演（零實盤）· 所有執行線收盤確認制 · 本報告為研究交流用途，唔構成投資建議
+</div>
+
+</div>
+</body>
+</html>
